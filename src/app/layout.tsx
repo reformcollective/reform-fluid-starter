@@ -1,3 +1,4 @@
+import Navbar from "@/components/Navbar";
 import config from "@/config/env_config";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -13,11 +14,11 @@ export const metadata: Metadata = {
 
 declare global {
   interface Window {
-    fcs: any
-    fluidChatSettings: any
-    fluidSettings: any
-    Spreedly: any
-    showCartCount: Function
+    fcs: any;
+    fluidChatSettings: any;
+    fluidSettings: any;
+    Spreedly: any;
+    showCartCount: Function;
   }
 }
 
@@ -29,7 +30,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <Script id="fluid-widget-boot" strategy="beforeInteractive">{`
+        <Script id="fluid-widget-boot" strategy="beforeInteractive">
+          {`
           window.fcs = {api_url_host: '${config.apiHost}'};
           (function(){ var f_ws = document.createElement('script'); f_ws.async = true; f_ws.src = '${config.widgetHost}'; x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(f_ws,x); })();
         `}
@@ -38,7 +40,12 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className} h-screen`}>
+        <div>
+          <Navbar />
+          {children}
+        </div>
+      </body>
     </html>
   );
 }
