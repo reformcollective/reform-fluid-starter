@@ -18,7 +18,7 @@ const Navbar: FC = () => {
         <div>profile</div>
         <div>cart</div>
       </div>
-      <div className="mx-auto text-center w-72">LOGO</div>
+      <div className="mx-auto font-bold text-lg text-center w-72">Logo</div>
     </div>
   );
 };
