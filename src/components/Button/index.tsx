@@ -5,6 +5,7 @@ const styleTypes = {
   primary: "text-white bg-black",
   secondary: "text-black bg-white",
   transparent: "text-white bg-transparent border border-white",
+  "transparent-dark": "text-black bg-transparent border border-black",
 };
 
 type ButtonProps = {

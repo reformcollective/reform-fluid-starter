@@ -1,9 +1,14 @@
-import Navbar from "@/components/Navbar";
+import Footer from "@/components/PageElements/Footer";
+import Navbar from "@/components/PageElements/Navbar";
 import config from "@/config/env_config";
+import { config as faConfig } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+
+faConfig.autoAddCss = false;
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -44,6 +49,7 @@ export default function RootLayout({
         <div>
           <Navbar />
           {children}
+          <Footer />
         </div>
       </body>
     </html>

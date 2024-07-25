@@ -2,11 +2,20 @@ import Image from "next/image";
 
 type LazySvgProps = {
   code: string;
+  height?: number;
+  width?: number;
+  fill?: boolean;
 };
 
-const Flag = ({ code }: LazySvgProps) => {
+const Flag = ({ code, height, width, fill }: LazySvgProps) => {
   return (
-    <Image height="40" width="40" src={`/countryFlag/${code}.svg`} alt={code} />
+    <Image
+      fill={!!fill}
+      height={height}
+      width={width}
+      src={`/countryFlag/${code}.svg`}
+      alt={code}
+    />
   );
 };
 

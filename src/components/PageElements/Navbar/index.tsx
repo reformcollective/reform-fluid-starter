@@ -1,8 +1,14 @@
 "use client";
+import CountryLanguagePicker from "@/components/CountryLanguagePicker";
+import {
+  faCartShopping,
+  faMagnifyingGlass,
+  faUser,
+} from "@awesome.me/kit-ac6c036e20/icons/classic/regular";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { FC } from "react";
-import CountryLanguagePicker from "../CountryLanguagePicker";
 
 const Navbar: FC = () => {
   const { affiliate } = useParams();
@@ -12,11 +18,17 @@ const Navbar: FC = () => {
         <Link href={`/${affiliate || "home"}/`}>Home</Link>
         <Link href={`/${affiliate || "home"}/shop/`}>Shop</Link>
       </div>
-      <div className="inline-flex float-right gap-2">
+      <div className="inline-flex float-right gap-4">
         <CountryLanguagePicker />
-        <div>search</div>
-        <div>profile</div>
-        <div>cart</div>
+        <div>
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
+        </div>
+        <div>
+          <FontAwesomeIcon icon={faUser} />
+        </div>
+        <div>
+          <FontAwesomeIcon icon={faCartShopping} />
+        </div>
       </div>
       <div className="mx-auto font-bold text-lg text-center w-72">Logo</div>
     </div>

@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "fluid-template",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
