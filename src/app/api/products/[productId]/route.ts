@@ -1,19 +1,28 @@
 import client from "@/api/client";
-import type { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 
-async function GET(req: NextApiRequest, res: NextApiResponse) {
+async function GET(req: NextRequest) {
   const urlParams = req.url?.split("/");
   const productId = urlParams?.[urlParams.length - 1];
   if (productId) {
     try {
       const fluidResponse = await client(`products/${productId}`);
-      console.log({ fluidResponse });
-      return res.status(fluidResponse.status).json(fluidResponse);
+      const body = await fluidResponse.json();
+      if (fluidResponse.status !== 200) {
+        return NextResponse.json(
+          { message: fluidResponse.statusText },
+          { status: fluidResponse.status }
+        );
+      }
+      return NextResponse.json(body, { status: fluidResponse.status });
     } catch (error) {
-      return res.status(500).json({ message: "Internal Server Error" });
+      return NextResponse.json(
+        { message: "Internal Server Error" },
+        { status: 500 }
+      );
     }
   } else {
-    return res.status(400).json({ message: "Bad Request" });
+    return NextResponse.json({ message: "Bad Request" }, { status: 400 });
   }
 }
 

@@ -4,7 +4,7 @@ const FluidApiClient = (url: string, options?: RequestInit) => {
     headers: {
       ...options?.headers,
       "Content-Type": "application/json",
-      Authorization: `Bearer ${process.env.FLUID_API_KEY}`,
+      Authorization: `Bearer ${process.env.FLUID_API_TOKEN}`,
     },
   });
 };

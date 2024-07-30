@@ -35,7 +35,7 @@ const Testimonials = () => {
               </p>
               <div className="inline-flex">
                 <div className="rounded-full overflow-hidden mr-4">
-                  <img src="https://placehold.co/56x56/2F4F4F/black/png" />
+                  <img src="https://placehold.co/56x56/2F4F4F/black@3x.png" />
                 </div>
                 <div className="text-start">
                   <h2 className="font-bold text-lg">Customer Name</h2>
@@ -61,7 +61,7 @@ const Testimonials = () => {
               </p>
               <div className="inline-flex">
                 <div className="rounded-full overflow-hidden mr-4">
-                  <img src="https://placehold.co/56x56/2F4F4F/black/png" />
+                  <img src="https://placehold.co/56x56/2F4F4F/black@3x.png" />
                 </div>
                 <div className="text-start">
                   <h2 className="font-bold text-lg">Customer Name</h2>
@@ -87,7 +87,7 @@ const Testimonials = () => {
               </p>
               <div className="inline-flex">
                 <div className="rounded-full overflow-hidden mr-4">
-                  <img src="https://placehold.co/56x56/2F4F4F/black/png" />
+                  <img src="https://placehold.co/56x56/2F4F4F/black@3x.png" />
                 </div>
                 <div className="text-start">
                   <h2 className="font-bold text-lg">Customer Name</h2>

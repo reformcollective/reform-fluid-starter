@@ -13,7 +13,7 @@ import { FC } from "react";
 const Navbar: FC = () => {
   const { affiliate } = useParams();
   return (
-    <div className="h-18 px-16 py-6 relative">
+    <div className="h-18 px-20 py-6 relative border-b border-black">
       <div className="inline-flex float-left gap-2 w-72">
         <Link href={`/${affiliate || "home"}/`}>Home</Link>
         <Link href={`/${affiliate || "home"}/shop/`}>Shop</Link>

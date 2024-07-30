@@ -44,7 +44,7 @@ const CenteredImageWithSideDescriptions = () => {
         </div>
         <div className="w-1/2 px-12">
           <img
-            src={`https://placehold.co/${halfRemainingWidth}x${halfRemainingWidth}/2F4F4F/black/png`}
+            src={`https://placehold.co/${halfRemainingWidth}x${halfRemainingWidth}/2F4F4F/black@3x.png`}
             alt="Centered Image"
           />
         </div>

@@ -17,7 +17,7 @@ const OneFeature = ({ reversed }: { reversed?: boolean }) => {
           <img
             src={`https://placehold.co/${width / 2 - 80}x${
               width / 2 - 80
-            }/2F4F4F/black/png`}
+            }/2F4F4F/black@3x.png`}
             alt="image"
           />
         </div>

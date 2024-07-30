@@ -5,12 +5,18 @@ meta {
 }
 
 get {
-  url: fluid.lvh.me:8080/api/products/79
-  body: none
+  url: fluid.lvh.me:8080/api/products/
+  body: json
   auth: none
 }
 
 headers {
   Authorization: Bearer C-m5Ednh73qsdiXDgYhb6dcGmp
   Content-Type: application/json
+}
+
+body:json {
+  {
+    "collectionId": 1
+  }
 }
