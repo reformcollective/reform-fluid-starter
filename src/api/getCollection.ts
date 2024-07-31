@@ -6,8 +6,7 @@ import { headers } from "next/headers";
 async function getCollection(collectionId: string) {
   const products = await getProducts({ collectionId });
 
-  const fluidResponse = await client(`collections/${collectionId}`);
-  const body = await fluidResponse.json();
+  const { body } = await client(`collections/${collectionId}`);
 
   body.products = products;
 

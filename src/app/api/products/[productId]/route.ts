@@ -6,15 +6,13 @@ async function GET(req: NextRequest) {
   const productId = urlParams?.[urlParams.length - 1];
   if (productId) {
     try {
-      const fluidResponse = await client(`products/${productId}`);
-      const body = await fluidResponse.json();
-      if (fluidResponse.status !== 200) {
-        return NextResponse.json(
-          { message: fluidResponse.statusText },
-          { status: fluidResponse.status }
-        );
+      const { body, status, statusText } = await client(
+        `products/${productId}`
+      );
+      if (status !== 200) {
+        return NextResponse.json({ message: statusText }, { status });
       }
-      return NextResponse.json(body, { status: fluidResponse.status });
+      return NextResponse.json(body, { status });
     } catch (error) {
       return NextResponse.json(
         { message: "Internal Server Error" },

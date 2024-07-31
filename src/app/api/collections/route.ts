@@ -3,15 +3,11 @@ import { NextResponse } from "next/server";
 
 async function GET() {
   try {
-    const fluidResponse = await client(`collections/`);
-    const body = await fluidResponse.json();
-    if (fluidResponse.status === 200) {
+    const { body, statusText, status } = await client(`collections/`);
+    if (status === 200) {
       return NextResponse.json(body, { status: 200 });
     }
-    return NextResponse.json(
-      { message: fluidResponse.statusText },
-      { status: fluidResponse.status }
-    );
+    return NextResponse.json({ message: statusText }, { status: status });
   } catch (error) {
     return NextResponse.json(
       { message: "Internal Server Error" },

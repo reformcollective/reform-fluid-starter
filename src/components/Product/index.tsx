@@ -6,7 +6,6 @@ import { useParams } from "next/navigation";
 
 const Product = ({ product }: { product: Product }) => {
   const { affiliateSlug } = useParams();
-
   return (
     <div className="snap-start">
       <div className="w-[364px]">

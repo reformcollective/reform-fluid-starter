@@ -1,10 +1,18 @@
 import client from "@/api/client";
+import { productSchema } from "@/types/product";
+import { z } from "zod";
 
-async function getProducts({ collectionId }: { collectionId?: string }) {
-  const fluidResponse = await client(
+const productsSchema = z.array(productSchema);
+
+type Props = {
+  collectionId?: string;
+};
+
+async function getProducts({ collectionId }: Props) {
+  const { body } = await client(
     `products/${collectionId ? `?collection_id=${collectionId}` : ""}`
   );
-  return await fluidResponse.json();
+  return productsSchema.parse(body);
 }
 
 export default getProducts;

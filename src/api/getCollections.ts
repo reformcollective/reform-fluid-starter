@@ -8,12 +8,11 @@ const collectionArraySchema = z.array(collectionSchema);
 
 async function getCollections() {
   "use server";
-  const fluidResponse = await client("collections");
-  const body = await fluidResponse.json();
-  const collectionIds = body.map((collection: Collection) =>
+  const { body } = await client("collections");
+  const productPromisesByCollectionIds = body.map((collection: Collection) =>
     getProducts({ collectionId: collection.id.toString() })
   );
-  const products = await Promise.all(collectionIds);
+  const products = await Promise.all(productPromisesByCollectionIds);
   const collectionsWithMappedProducts = body.map(
     (collection: Collection, index: number) => ({
       ...collection,

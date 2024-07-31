@@ -3,11 +3,8 @@ import { productSchema } from "@/types/product";
 import { headers } from "next/headers";
 
 async function getProduct(productIdOrSlug: string) {
-  const fluidResponse = await client(`products/${productIdOrSlug}`);
-  if (!fluidResponse.ok)
-    throw new Error(`Failed to fetch product ${productIdOrSlug}`);
-  const parsedResponse = await fluidResponse.json();
-  return productSchema.parse(parsedResponse);
+  const { body } = await client(`products/${productIdOrSlug}`);
+  return productSchema.parse(body);
 }
 
 // use this one to get from the server without having to use "useParams" and therefore "use client" lets us render on the server

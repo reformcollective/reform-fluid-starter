@@ -22,7 +22,9 @@ const Collection = ({ collection }: Props) => {
             View All
           </LinkButton>
         </div>
-        <div>{<ProductCarousel products={collection.products} />}</div>
+        <div>
+          <ProductCarousel products={collection.products} />
+        </div>
       </div>
     )
   );

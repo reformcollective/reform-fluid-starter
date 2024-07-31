@@ -23,7 +23,7 @@ const productSchema = z.object({
   in_stock: z.boolean().nullable(),
   unlimited_inventory: z.boolean().nullable().optional(),
   keep_selling: z.boolean().nullable(),
-  image_url: z.string().optional(),
+  image_url: z.string(),
   images: z.array(
     z.object({
       id: z.number(),

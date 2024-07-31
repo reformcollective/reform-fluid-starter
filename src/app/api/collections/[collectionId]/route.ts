@@ -5,15 +5,13 @@ async function GET(req: NextRequest) {
   const urlParams = req.url?.split("/");
   const collectionId = urlParams?.[urlParams.length - 1];
   try {
-    const fluidResponse = await client(`collections/${collectionId}`);
-    const body = await fluidResponse.json();
-    if (fluidResponse.status === 200) {
+    const { body, status, statusText } = await client(
+      `collections/${collectionId}`
+    );
+    if (status === 200) {
       return NextResponse.json(body, { status: 200 });
     }
-    return NextResponse.json(
-      { message: fluidResponse.statusText },
-      { status: fluidResponse.status }
-    );
+    return NextResponse.json({ message: statusText }, { status });
   } catch (error) {
     return NextResponse.json(
       { message: "Internal Server Error" },

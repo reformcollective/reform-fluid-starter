@@ -48,7 +48,7 @@ const Page = () => {
               <Input
                 className="w-24 text-center h-10"
                 type="number"
-                defaultValue={0}
+                defaultValue={1}
               />
               <Button
                 variant="transparent-dark"
@@ -85,7 +85,7 @@ const Page = () => {
               <Input
                 className="w-24 text-center h-10"
                 type="number"
-                defaultValue={0}
+                defaultValue={1}
               />
               <Button
                 variant="transparent-dark"
