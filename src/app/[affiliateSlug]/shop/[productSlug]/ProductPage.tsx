@@ -12,7 +12,11 @@ type Props = {
 
 const Page = ({ product }: Props) => {
   const [imageHoverIndex, setImageHoverIndex] = useState<number>();
-  const [imageSelectedIndex, setImageSelectedIndex] = useState(0);
+  const [imageSelectedIndex, setImageSelectedIndex] = useState(1);
+  const [selectedVariant, setSelectedVariant] = useState<number>(
+    product.variants?.[0].id
+  );
+  const [quantity, setQuantity] = useState(1);
 
   return (
     <div className="pt-28 px-20">
@@ -61,7 +65,10 @@ const Page = ({ product }: Props) => {
             )}
           </div>
         )}
-        <div className="w-1/2 flex flex-col gap-6">
+        <div
+          data-fluid-checkout-group={selectedVariant}
+          className="w-1/2 flex flex-col gap-6"
+        >
           <div className="flex flex-col gap-2">
             <h1 className="font-bold text-4xl">{product.title}</h1>
             <h2 className="text-2xl font-bold">{product.display_price}</h2>
@@ -82,6 +89,10 @@ const Page = ({ product }: Props) => {
             <div>
               {product.variants.map((variant) => (
                 <Button
+                  onClick={() =>
+                    variant.id !== selectedVariant &&
+                    setSelectedVariant(variant.id)
+                  }
                   variant={variant.buyable ? "primary" : "transparent-dark"}
                   key={variant.id}
                 >
@@ -91,23 +102,47 @@ const Page = ({ product }: Props) => {
             </div>
           </div>
           <div className="inline-flex gap-2">
-            <Button variant="transparent-dark" className="pl-3.5 w-10">
+            <Button
+              onClick={() => setQuantity((prev) => (prev > 1 ? prev - 1 : 1))}
+              variant="transparent-dark"
+              className="pl-3.5 w-10"
+            >
               -
             </Button>
             <Input
+              onChange={(e) => {
+                const value = parseInt(e.target.value);
+                setQuantity(value < 1 ? 1 : value);
+              }}
+              name="fluid-checkout-quantity"
               className="w-24 text-center"
               type="number"
+              value={quantity}
               defaultValue={0}
             />
-            <Button variant="transparent-dark" className="pl-3.5 w-10">
+            <Button
+              onClick={() => setQuantity((prev) => prev + 1)}
+              variant="transparent-dark"
+              className="pl-3.5 w-10"
+            >
               +
             </Button>
           </div>
           <div className="flex flex-col gap-4 pb-6 ">
-            <Button variant="primary" className="w-full">
+            <Button
+              data-fluid-checkout-type="variant"
+              data-fluid-checkout-group-id={selectedVariant}
+              id="add-to-cart-button"
+              variant="primary"
+              className="w-full"
+            >
               Add To Cart
             </Button>
-            <Button variant="transparent-dark" className="w-full">
+            <Button
+              data-fluid-checkout={selectedVariant}
+              variant="transparent-dark"
+              className="w-full"
+            >
               Buy Now
             </Button>
             <div className="text-xs text-center">Free shipping over $50</div>

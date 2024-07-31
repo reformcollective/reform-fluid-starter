@@ -1,5 +1,5 @@
 import cx from "classnames";
-import { HTMLInputTypeAttribute } from "react";
+import { ChangeEventHandler, HTMLInputTypeAttribute } from "react";
 import { twMerge } from "tailwind-merge";
 
 const styleTypes = {
@@ -12,6 +12,9 @@ type Props = {
   className?: string;
   type?: HTMLInputTypeAttribute | undefined;
   defaultValue?: string | number;
+  name?: string;
+  value?: string | number;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
 };
 
 const Input = ({
@@ -19,12 +22,18 @@ const Input = ({
   className,
   type,
   defaultValue,
+  name,
+  value,
+  onChange,
 }: Props) => {
   return (
     <input
       defaultValue={defaultValue}
       type={type}
+      value={value}
+      onChange={onChange}
       className={twMerge(cx(styleTypes.all, styleTypes[variant], className))}
+      name={name}
     />
   );
 };

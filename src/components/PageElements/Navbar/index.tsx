@@ -11,24 +11,24 @@ import { useParams } from "next/navigation";
 import { FC } from "react";
 
 const Navbar: FC = () => {
-  const { affiliate } = useParams();
+  const { affiliateSlug } = useParams();
   return (
     <div className="h-18 px-20 py-6 relative border-b border-black">
       <div className="inline-flex float-left gap-2 w-72">
-        <Link href={`/${affiliate || "home"}/`}>Home</Link>
-        <Link href={`/${affiliate || "home"}/shop/`}>Shop</Link>
+        <Link href={`/${affiliateSlug || "home"}/`}>Home</Link>
+        <Link href={`/${affiliateSlug || "home"}/shop/`}>Shop</Link>
       </div>
       <div className="inline-flex float-right gap-4">
         <CountryLanguagePicker />
-        <div>
+        <Link href={`/${affiliateSlug || "home"}/shop/`}>
           <FontAwesomeIcon icon={faMagnifyingGlass} />
-        </div>
-        <div>
+        </Link>
+        <Link href={`/${affiliateSlug || "home"}/`}>
           <FontAwesomeIcon icon={faUser} />
-        </div>
-        <div>
+        </Link>
+        <Link href={`/${affiliateSlug || "home"}/cart/`}>
           <FontAwesomeIcon icon={faCartShopping} />
-        </div>
+        </Link>
       </div>
       <div className="mx-auto font-bold text-lg text-center w-72">Logo</div>
     </div>
