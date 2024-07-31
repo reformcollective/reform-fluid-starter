@@ -1,3 +1,5 @@
+"use client";
+import cx from "classnames";
 import { FC, ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -13,6 +15,7 @@ type ButtonProps = {
   variant?: keyof typeof styleTypes;
   children: ReactNode;
   className?: string;
+  onClick?: () => void;
   id?: string;
 };
 
@@ -20,13 +23,15 @@ const Button: FC<ButtonProps> = ({
   variant = "primary",
   className,
   children,
+  onClick = () => {},
   id,
   ...rest
 }) => {
   return (
     <button
       id={id}
-      className={twMerge(styleTypes[variant], className, styleTypes.all)}
+      onClick={onClick}
+      className={twMerge(cx(styleTypes[variant], styleTypes.all, className))}
       {...rest}
     >
       {children}

@@ -15,8 +15,7 @@ const Footer = () => {
         <div>Shop</div>
         <div>Cart</div>
       </div>
-      <hr className="border-0.5 border-blask mx-20 mt-20" />
-      <div className="inline-flex px-20 w-full mt-8 justify-between">
+      <div className="inline-flex mx-20 border-t border-black mt-8 pt-20 justify-between">
         <div className="inline-flex gap-4">
           <div className="text-sm">© 2024 Fluid. All rights reserved.</div>
           <div className="text-sm underline">Privacy Policy</div>

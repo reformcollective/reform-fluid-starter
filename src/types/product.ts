@@ -23,7 +23,15 @@ const productSchema = z.object({
   in_stock: z.boolean().nullable(),
   unlimited_inventory: z.boolean().nullable().optional(),
   keep_selling: z.boolean().nullable(),
-  images: z.array(z.string()),
+  image_url: z.string().optional(),
+  images: z.array(
+    z.object({
+      id: z.number(),
+      image_url: z.string(),
+      image_path: z.string(),
+      position: z.number(),
+    })
+  ),
   variants: z.array(variantSchema),
 });
 

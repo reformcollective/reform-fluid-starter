@@ -6,7 +6,7 @@ const collectionSchema = z.object({
   title: z.string(),
   description: z.boolean().nullable(),
   image_path: z.boolean().nullable(),
-  image_url: z.string(),
+  image_url: z.string().optional(),
   position: z.number(),
   public: z.boolean().nullable(),
   products: z.array(productSchema).optional(),

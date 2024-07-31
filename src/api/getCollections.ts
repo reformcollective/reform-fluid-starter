@@ -11,7 +11,7 @@ async function getCollections() {
   const fluidResponse = await client("collections");
   const body = await fluidResponse.json();
   const collectionIds = body.map((collection: Collection) =>
-    getProducts({ collectionId: collection.id })
+    getProducts({ collectionId: collection.id.toString() })
   );
   const products = await Promise.all(collectionIds);
   const collectionsWithMappedProducts = body.map(

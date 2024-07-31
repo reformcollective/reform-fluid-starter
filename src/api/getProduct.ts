@@ -13,8 +13,9 @@ async function getProduct(productIdOrSlug: string) {
 // use this one to get from the server without having to use "useParams" and therefore "use client" lets us render on the server
 function serverGetProduct() {
   const headersList = headers();
-  const fullUrl = headersList.get("referer") || "";
+  const fullUrl = headersList.get("x-current-path") || "";
   const splitUrl = fullUrl.split("/");
+
   return getProduct(splitUrl[splitUrl.length - 1]);
 }
 
