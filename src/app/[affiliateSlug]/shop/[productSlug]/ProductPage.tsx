@@ -118,7 +118,6 @@ const Page = ({ product }: Props) => {
               className="w-24 text-center"
               type="number"
               value={quantity}
-              defaultValue={0}
             />
             <Button
               onClick={() => setQuantity((prev) => prev + 1)}
