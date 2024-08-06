@@ -9,7 +9,7 @@ const Product = ({ product }: { product: Product }) => {
   return (
     <div className="snap-start">
       <div className="w-[364px]">
-        <Link href={`/${affiliateSlug}/shop/${product.id}`}>
+        <Link href={`/${affiliateSlug}/shop/${product.slug}`}>
           <Image
             src={
               product.images[0]?.image_url ||

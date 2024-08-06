@@ -35,7 +35,6 @@ const Page = async () => {
           </span>
         </div>
       </div>
-
       <ProductGrid products={collection.products} />
     </div>
   );

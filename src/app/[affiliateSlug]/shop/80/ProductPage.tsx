@@ -1,6 +1,8 @@
 "use client";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
+import CallToAction from "@/components/PageElements/CallToAction";
+import OneFeature from "@/components/PageElements/OneFeature";
 import Star from "@/svgs/Star";
 import { Product } from "@/types/product";
 import Image from "next/image";
@@ -146,7 +148,35 @@ const Page = ({ product }: Props) => {
             </Button>
             <div className="text-xs text-center">Free shipping over $50</div>
           </div>
+          <div className="border-t border-black pb-6">
+            <h3 className="font-bold text-xl my-4">Details</h3>
+            <p>
+              {product.feature_text ||
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere."}
+            </p>
+          </div>
+          <div className="border-t border-black pb-6">
+            <h3 className="font-bold text-xl my-4">Details</h3>
+            <p>
+              {product.shipping ||
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus tristique posuere."}
+            </p>
+          </div>
+          <div className="border-t border-black pb-6">
+            <h3 className="font-bold text-xl my-4">Details</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Suspendisse varius enim in eros elementum tristique. Duis cursus,
+              mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam
+              libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum
+              lorem imperdiet. Nunc ut sem vitae risus tristique posuere.
+            </p>
+          </div>
         </div>
+      </div>
+      <div>
+        <CallToAction />
+        <OneFeature reversed />
       </div>
     </div>
   );

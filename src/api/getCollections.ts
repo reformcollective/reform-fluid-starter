@@ -1,3 +1,4 @@
+"use server";
 import { getProducts } from "@/api";
 import client from "@/api/client";
 import type { Collection } from "@/types/collection";
@@ -7,13 +8,14 @@ import { z } from "zod";
 const collectionArraySchema = z.array(collectionSchema);
 
 async function getCollections() {
-  "use server";
   const { body } = await client("collections");
-  const productPromisesByCollectionIds = body.map((collection: Collection) =>
-    getProducts({ collectionId: collection.id.toString() })
+  const { collections } = body.data;
+  const productPromisesByCollectionIds = collections.map(
+    (collection: Collection) =>
+      getProducts({ collectionId: collection.id.toString() })
   );
   const products = await Promise.all(productPromisesByCollectionIds);
-  const collectionsWithMappedProducts = body.map(
+  const collectionsWithMappedProducts = collections.map(
     (collection: Collection, index: number) => ({
       ...collection,
       products: products[index],

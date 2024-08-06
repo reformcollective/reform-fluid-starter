@@ -5,18 +5,17 @@ type LazySvgProps = {
   height?: number;
   width?: number;
   fill?: boolean;
+  className?: string;
 };
 
-const Flag = ({ code, height, width, fill }: LazySvgProps) => {
-  return (
-    <Image
-      fill={!!fill}
-      height={height}
-      width={width}
-      src={`/countryFlag/${code}.svg`}
-      alt={code}
-    />
-  );
-};
+const Flag = ({ code, height, width, fill, className }: LazySvgProps) => (
+  <Image
+    className={className}
+    fill={fill}
+    src={`/countryFlag/${code}.svg`}
+    alt={code}
+    {...(!fill ? { height, width } : {})}
+  />
+);
 
 export default Flag;
