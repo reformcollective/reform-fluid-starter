@@ -1,15 +1,21 @@
-import { serverGetProduct } from "@/api";
+import { getProduct } from "@/api";
+import { Product } from "@/types/product";
 import { Metadata } from "next";
 import ProductPage from "./ProductPage";
 
-const Page = async () => {
-  const product = await serverGetProduct();
+type PageProps = {
+  params: Record<string, any>;
+};
 
+const Page = async ({ params }: PageProps) => {
+  const product = await getProduct(params.productSlug);
   return <ProductPage product={product} />;
 };
 
-export async function generateMetadata(): Promise<Metadata> {
-  const product = await serverGetProduct();
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const product = await getProduct(params.productSlug);
 
   const images = [
     {
@@ -18,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
       height: 600,
       alt: `${product.title} main image`,
     },
-    ...product.images.map((image, index) => ({
+    ...product.images.map((image: Product["images"][0], index: number) => ({
       url: image.image_url,
       width: 800,
       height: 600,

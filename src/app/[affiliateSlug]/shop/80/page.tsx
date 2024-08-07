@@ -1,15 +1,15 @@
-import { serverGetProduct } from "@/api";
+import { getProduct } from "@/api";
 import { Metadata } from "next";
 import ProductPage from "./ProductPage";
 
 const Page = async () => {
-  const product = await serverGetProduct();
+  const product = await getProduct("80");
 
   return <ProductPage product={product} />;
 };
 
 export async function generateMetadata(): Promise<Metadata> {
-  const product = await serverGetProduct();
+  const product = await getProduct("80");
 
   return {
     title: product.title,

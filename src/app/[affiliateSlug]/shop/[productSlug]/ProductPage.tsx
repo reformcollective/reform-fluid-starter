@@ -49,7 +49,7 @@ const Page = ({ product }: Props) => {
                     onMouseEnter={() => setImageHoverIndex(index)}
                     onMouseLeave={() => setImageHoverIndex(undefined)}
                     onClick={() => setImageSelectedIndex(index)}
-                    className="relative cursor-pointer flex w-full h-24 bg-gray-100 items-center"
+                    className="relative cursor-pointer flex w-full h-24 border border-gray-200 items-center"
                   >
                     <div className="margin-0 absolute">
                       <Image
@@ -83,7 +83,7 @@ const Page = ({ product }: Props) => {
             </div>
             <div>(4.5 stars) • 10 reviews</div>
           </div>
-          <p>{product.description}</p>
+          <div dangerouslySetInnerHTML={{ __html: product.description }} />
           <div className="flex flex-col gap-2">
             <div>Variant</div>
             <div>

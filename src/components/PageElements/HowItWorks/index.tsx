@@ -3,7 +3,7 @@ const HowItWorks = () => {
   return (
     <div className="text-center py-28 px-12">
       <h1 className="font-bold text-5xl mb-12">How it works</h1>
-      <div className="inline-flex justify-between">
+      <div className="inline-flex max-w-[1200px] justify-between">
         <div className="text-center w-1/4">
           <div className="w-full flex justify-center">
             <Cube size={48} />

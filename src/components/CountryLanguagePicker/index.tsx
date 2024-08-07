@@ -1,3 +1,4 @@
+"use client";
 import Flag from "@/components/Flag";
 import Select from "@/components/Select";
 import countries from "@/constants/countries.json";

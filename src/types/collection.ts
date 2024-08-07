@@ -4,7 +4,7 @@ import { productSchema } from "./product";
 const collectionSchema = z.object({
   id: z.number(),
   title: z.string(),
-  description: z.boolean().nullable(),
+  description: z.string().nullable(),
   image_path: z.boolean().nullable(),
   image_url: z.string().optional(),
   position: z.number(),

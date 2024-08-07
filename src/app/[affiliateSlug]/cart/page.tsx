@@ -1,28 +1,30 @@
-"use client";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
+import LinkButton from "@/components/LinkButton";
 import { faTrash } from "@awesome.me/kit-ac6c036e20/icons/classic/regular";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
-import Link from "next/link";
-import { useParams } from "next/navigation";
 
-const Page = () => {
-  const { affiliateSlug } = useParams();
+type PageProps = {
+  params: Record<string, any>;
+};
+
+const Page = ({ params }: PageProps) => {
+  const { affiliateSlug } = params;
 
   return (
     <div className="px-20 py-28 flex flex-col gap-y-20">
       <div className="inline-flex justify-between w-full">
         <div className="text-5xl font-bold">Your Cart (1)</div>
-        <Link className="mt-4" href={`/${affiliateSlug}/shop`}>
+        <LinkButton className="mt-4" href={`/${affiliateSlug}/shop`}>
           Keep Shopping
-        </Link>
+        </LinkButton>
       </div>
       <div className="flex flex-col">
         <div className="inline-flex pb-4 px-4 border-b border-black">
-          <div className="flex-grow-[4]">product</div>
-          <div className="flex-grow">quantity</div>
-          <div className="flex-shrink text-end">total</div>
+          <div className="flex-grow-[4]">Product</div>
+          <div className="flex-grow">Quantity</div>
+          <div className="flex-shrink text-end">Total</div>
         </div>
         <div className="inline-flex py-4 px-4 border-b border-black">
           <div className="flex-grow-[4] inline-flex">

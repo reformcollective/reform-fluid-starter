@@ -5,23 +5,22 @@ import cx from "classnames";
 
 const OneFeature = ({ reversed }: { reversed?: boolean }) => {
   const { width } = useWindowDimensions();
+  const maxWidth = width / 2 - 80 > 600 ? 600 : width / 2 - 80;
   return (
-    <div className="px-20 py-28">
+    <div className="px-20 py-28 max-w-[1200px] text-center mx-auto">
       <div
         className={cx(
-          "flex w-full",
+          "flex w-full items-center",
           reversed ? "flex-row-reverse" : "flex-row"
         )}
       >
         <div className="w-1/2">
           <img
-            src={`https://placehold.co/${width / 2 - 80}x${
-              width / 2 - 80
-            }/2F4F4F/black@3x.png`}
+            src={`https://placehold.co/${maxWidth}x${maxWidth}/2F4F4F/black@3x.png`}
             alt="image"
           />
         </div>
-        <div className={cx("w-1/2 px-12 pt-36", reversed ? "pr-8" : "pl-8")}>
+        <div className={cx("w-1/2 px-12", reversed ? "pr-8" : "pl-8")}>
           <h2 className="text-3xl font-bold mb-6">Describe This Feature</h2>
           <p className="mb-6">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse

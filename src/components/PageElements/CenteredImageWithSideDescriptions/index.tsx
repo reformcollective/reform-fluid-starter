@@ -7,13 +7,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const CenteredImageWithSideDescriptions = () => {
   const { width } = useWindowDimensions();
-  const halfRemainingWidth = width / 2 - 48 * 3;
+  const halfRemainingWidth =
+    width / 2 - 48 * 3 > 600 ? 600 : width / 2 - 48 * 3;
 
   return (
-    <div className="px-24">
-      <div className="inline-flex w-full">
-        <div className="flex-row w-1/4 pr-12">
-          <div className="text-center flex-row mb-44">
+    <div className="px-24 text-center mx-auto">
+      <div className="inline-flex w-full max-w-[1200px]">
+        <div className="flex-row w-1/4 justify-between pr-12">
+          <div className="text-center flex-row mb-8">
             <div className="w-full flex justify-center mb-6">
               <Cube size={48} />
             </div>
@@ -48,8 +49,8 @@ const CenteredImageWithSideDescriptions = () => {
             alt="Centered Image"
           />
         </div>
-        <div className="flex-row w-1/4 pr-12">
-          <div className="text-center flex-row mb-44">
+        <div className="flex-row justify-between w-1/4 pr-12">
+          <div className="text-center flex-row mb-8">
             <div className="w-full flex justify-center mb-6">
               <Cube size={48} />
             </div>

@@ -1,5 +1,5 @@
-"use client";
 import CountryLanguagePicker from "@/components/CountryLanguagePicker";
+import { Company } from "@/types/company";
 import {
   faCartShopping,
   faMagnifyingGlass,
@@ -7,30 +7,38 @@ import {
 } from "@awesome.me/kit-ac6c036e20/icons/classic/regular";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import { useParams } from "next/navigation";
 import { FC } from "react";
 
-const Navbar: FC = () => {
-  const { affiliateSlug } = useParams();
+const Navbar: FC<{ company: Company; params: Record<string, any> }> = ({
+  company,
+  params,
+}) => {
+  const affiliateSlug = params.affiliateSlug;
   return (
-    <div className="h-18 px-20 py-6 relative border-b border-black">
-      <div className="inline-flex float-left gap-2 w-72">
-        <Link href={`/${affiliateSlug || "home"}/`}>Home</Link>
-        <Link href={`/${affiliateSlug || "home"}/shop/`}>Shop</Link>
+    <div className="h-18 border-b border-black px-20 flex justify-center">
+      <div className="max-w-[1200px] inline-flex mx-auto justify-between w-full">
+        <div className="inline-flex gap-4 w-72 py-6">
+          <Link href={`/${affiliateSlug || "home"}/`}>Home</Link>
+          <Link href={`/${affiliateSlug || "home"}/shop/`}>Shop</Link>
+        </div>
+        <img
+          src={company.logo_url}
+          alt={`${company.name}'s logo`}
+          className="max-h-10 my-4 mx-auto text-center"
+        />
+        <div className="inline-flex gap-4 w-72 py-6">
+          <CountryLanguagePicker />
+          <Link href={`/${affiliateSlug || "home"}/shop/`}>
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
+          </Link>
+          <Link href={`/${affiliateSlug || "home"}/`}>
+            <FontAwesomeIcon icon={faUser} />
+          </Link>
+          <Link href={`/${affiliateSlug || "home"}/cart/`}>
+            <FontAwesomeIcon icon={faCartShopping} />
+          </Link>
+        </div>
       </div>
-      <div className="inline-flex float-right gap-4">
-        <CountryLanguagePicker />
-        <Link href={`/${affiliateSlug || "home"}/shop/`}>
-          <FontAwesomeIcon icon={faMagnifyingGlass} />
-        </Link>
-        <Link href={`/${affiliateSlug || "home"}/`}>
-          <FontAwesomeIcon icon={faUser} />
-        </Link>
-        <Link href={`/${affiliateSlug || "home"}/cart/`}>
-          <FontAwesomeIcon icon={faCartShopping} />
-        </Link>
-      </div>
-      <div className="mx-auto font-bold text-lg text-center w-72">Logo</div>
     </div>
   );
 };
