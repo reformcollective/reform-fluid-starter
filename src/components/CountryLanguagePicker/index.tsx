@@ -1,15 +1,23 @@
 "use client";
 import Flag from "@/components/Flag";
 import Select from "@/components/Select";
-import countries from "@/constants/countries.json";
-import languages from "@/constants/languages.json";
 import { faChevronDown } from "@awesome.me/kit-ac6c036e20/icons/classic/regular";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as Popover from "@radix-ui/react-popover";
 import { useEffect, useState } from "react";
 
-const CountryLanguagePicker = () => {
-  const [country, setCountry] = useState("US");
+type Props = {
+  languageOptions: { label: string; value: string }[];
+  defaultCountry: string;
+  countryOptions: { label: string; value: string }[];
+};
+
+const CountryLanguagePicker = ({
+  languageOptions,
+  defaultCountry,
+  countryOptions,
+}: Props) => {
+  const [country, setCountry] = useState(defaultCountry || "US");
   const [lang, setLang] = useState("en");
 
   useEffect(() => {
@@ -19,9 +27,9 @@ const CountryLanguagePicker = () => {
   return (
     <Popover.Root>
       <Popover.Trigger asChild>
-        <button className="inline-flex gap-2 mr-4">
+        <button className="inline-flex gap-2 mr-4 max-h-24 overflow-hidden">
           <Flag code={country} width={45.6} height={24} />
-          <div>
+          <div className="ml-2">
             {country} | {lang.toUpperCase()}
           </div>
           <FontAwesomeIcon className="mt-0.5" icon={faChevronDown} />
@@ -36,7 +44,7 @@ const CountryLanguagePicker = () => {
                 placeholder="Country"
                 value={country}
                 onChange={setCountry}
-                options={countries}
+                options={countryOptions}
               />
             </div>
             <div>
@@ -45,7 +53,7 @@ const CountryLanguagePicker = () => {
                 placeholder="Language"
                 value={lang}
                 onChange={setLang}
-                options={languages}
+                options={languageOptions}
               />
             </div>
           </div>

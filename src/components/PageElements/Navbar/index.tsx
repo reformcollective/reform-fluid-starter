@@ -27,7 +27,16 @@ const Navbar: FC<{ company: Company; params: Record<string, any> }> = ({
           className="max-h-10 my-4 mx-auto text-center"
         />
         <div className="inline-flex gap-4 w-72 py-6">
-          <CountryLanguagePicker />
+          <CountryLanguagePicker
+            languageOptions={company.languages.map((l) => ({
+              label: l.name,
+              value: l.iso,
+            }))}
+            countryOptions={company.countries.map((c) => ({
+              label: c.name,
+              value: c.iso,
+            }))}
+          />
           <Link href={`/${affiliateSlug || "home"}/shop/`}>
             <FontAwesomeIcon icon={faMagnifyingGlass} />
           </Link>
