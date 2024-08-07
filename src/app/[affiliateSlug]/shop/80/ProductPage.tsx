@@ -85,7 +85,7 @@ const Page = ({ product }: Props) => {
             </div>
             <div>(4.5 stars) • 10 reviews</div>
           </div>
-          <p>{product.description}</p>
+          <div dangerouslySetInnerHTML={{ __html: product.description }} />
           <div className="flex flex-col gap-2">
             <div>Variant</div>
             <div>
