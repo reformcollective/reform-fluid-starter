@@ -32,6 +32,7 @@ const Navbar: FC<{ company: Company; params: Record<string, any> }> = ({
               label: l.name,
               value: l.iso,
             }))}
+            defaultCountry={company.default_country.iso}
             countryOptions={company.countries.map((c) => ({
               label: c.name,
               value: c.iso,
