@@ -1,6 +1,7 @@
 import { getProduct } from "@/api";
 import { Product } from "@/types/product";
 import { Metadata } from "next";
+import { headers } from "next/headers";
 import ProductPage from "./ProductPage";
 
 type PageProps = {
@@ -16,6 +17,7 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const product = await getProduct(params.productSlug);
+  const headersList = headers();
 
   const images = [
     {
@@ -38,7 +40,7 @@ export async function generateMetadata({
     openGraph: {
       title: product.title,
       description: product.description,
-      url: `${process.env.FLUID_HOST}`,
+      url: `${headersList.get("x-url")}`,
       images,
       locale: "en_US",
       type: "website",

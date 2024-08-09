@@ -3,6 +3,7 @@ import ProductGrid from "@/components/ProductGrid";
 import { faChevronDown } from "@awesome.me/kit-ac6c036e20/icons/classic/regular";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Metadata } from "next";
+import { headers } from "next/headers";
 
 type PageProps = {
   params: Record<string, any>;
@@ -49,14 +50,14 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const collection = await getCollection(params.collectionSlug);
-
+  const headersList = headers();
   return {
     title: collection.title,
     description: collection.description,
     openGraph: {
       title: collection.title,
       description: collection.description || "",
-      url: `${process.env.FLUID_HOST}/shop/collection/${collection.id}`,
+      url: headersList.get("x-url"),
       images: [
         {
           url: collection.image_url || "",
