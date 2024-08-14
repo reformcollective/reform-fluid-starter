@@ -84,23 +84,25 @@ const Page = ({ product }: Props) => {
             <div>(4.5 stars) • 10 reviews</div>
           </div>
           <div dangerouslySetInnerHTML={{ __html: product.description }} />
-          <div className="flex flex-col gap-2">
-            <div>Variant</div>
-            <div>
-              {product.variants.map((variant) => (
-                <Button
-                  onClick={() =>
-                    variant.id !== selectedVariant &&
-                    setSelectedVariant(variant.id)
-                  }
-                  variant={variant.buyable ? "primary" : "transparent-dark"}
-                  key={variant.id}
-                >
-                  {variant.title}
-                </Button>
-              ))}
+          {!!product.variants.length && (
+            <div className="flex flex-col gap-2">
+              <div>Variant</div>
+              <div>
+                {product.variants.map((variant, index) => (
+                  <Button
+                    onClick={() =>
+                      variant.id !== selectedVariant &&
+                      setSelectedVariant(variant.id)
+                    }
+                    variant={variant.buyable ? "primary" : "transparent-dark"}
+                    key={variant.id}
+                  >
+                    {variant.title || `Variant ${index + 1}`}
+                  </Button>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
           <div className="inline-flex gap-2">
             <Button
               onClick={() => setQuantity((prev) => (prev > 1 ? prev - 1 : 1))}
