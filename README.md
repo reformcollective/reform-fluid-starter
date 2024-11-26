@@ -11,6 +11,6 @@ yarn
 1. Rename file `template.env.local` to `.env.local` at the root of the project.
 2. Replace the `FLUID_API_TOKEN`'s value with your api token found in the developer settings.
 3. Specify where the Fluid API is with `FLUID_BASE_URL` (no trailing slash `/`).
-   ![alt text](https://github.com/fluid-commerce/fluid/blob/master/public/images/readme1.png?raw=true)
+   ![alt text](https://github.com/fluid-commerce/fluid-template/blob/master/public/images/readme1.png?raw=true)
 
 ### Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
