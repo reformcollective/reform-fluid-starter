@@ -1,0 +1,6 @@
+{
+  "name": "Fluid Template",
+  "description": "A base app for starting your own web store, or learning how to integrate Fluid into your existing site.",
+  "repository": "https://github.com/fluid-commerce/fluid-template/",
+  "keywords": ["node", "express", "static"]
+}

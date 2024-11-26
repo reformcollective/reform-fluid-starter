@@ -14,4 +14,6 @@ yarn
 
 ![where to find the Fluid API token](public/images/readme1.png)
 
-Open [localhost](http://localhost:8080) with your browser to see the result.
+Open [localhost](http://localhost:8080) in your browser to see the result.
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://www.heroku.com/deploy)
