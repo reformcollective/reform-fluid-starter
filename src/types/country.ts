@@ -13,10 +13,10 @@ const countrySchema = z.object({
   separator: z.string(),
   delimiter: z.string(),
   address3: z.boolean(),
-  state: z.boolean(),
-  passport: z.boolean(),
-  itn: z.boolean(),
-  tax_rate: z.number(),
+  state: z.boolean().optional(),
+  passport: z.boolean().optional(),
+  itn: z.boolean().optional(),
+  tax_rate: z.number().optional(),
 });
 
 export type Country = z.infer<typeof countrySchema>;

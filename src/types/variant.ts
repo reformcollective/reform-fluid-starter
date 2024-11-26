@@ -6,7 +6,7 @@ const variantSchema = z.object({
   title: z.string().nullable(),
   is_master: z.boolean(),
   image_urL: z.string().nullable().optional(),
-  buyable: z.boolean(),
+  buyable: z.boolean().nullable(),
   allow_subscription: z.boolean(),
   subscription_only: z.boolean(),
   shipping_included_in_price: z.boolean(),

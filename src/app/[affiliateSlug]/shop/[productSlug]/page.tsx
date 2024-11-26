@@ -2,6 +2,7 @@ import { getProduct } from "@/api";
 import { Product } from "@/types/product";
 import { Metadata } from "next";
 import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 import ProductPage from "./ProductPage";
 
 type PageProps = {
@@ -9,7 +10,15 @@ type PageProps = {
 };
 
 const Page = async ({ params }: PageProps) => {
-  const product = await getProduct(params.productSlug);
+  console.log({ params });
+
+  let product: Product;
+  try {
+    product = await getProduct(params.productSlug);
+  } catch (error) {
+    console.error(error);
+    redirect(`/${params.affiliateSlug}/shop/`);
+  }
   return <ProductPage product={product} />;
 };
 

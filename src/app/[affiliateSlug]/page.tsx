@@ -7,20 +7,18 @@ import OneFeature from "@/components/PageElements/OneFeature";
 import Tagline from "@/components/PageElements/Tagline";
 import Testimonials from "@/components/PageElements/Testimonials";
 
-const Home = () => {
-  return (
-    <main>
-      <BigImageTextOver />
-      <Logos />
-      <HowItWorks />
-      <Tagline />
-      <CenteredImageWithSideDescriptions />
-      <OneFeature />
-      <OneFeature reversed />
-      <Testimonials />
-      <CallToAction />
-    </main>
-  );
-};
+const Home = () => (
+  <main>
+    <BigImageTextOver />
+    <Logos />
+    <HowItWorks />
+    <Tagline />
+    <CenteredImageWithSideDescriptions />
+    <OneFeature />
+    <OneFeature reversed />
+    <Testimonials />
+    <CallToAction />
+  </main>
+);
 
 export default Home;
