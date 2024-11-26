@@ -5,11 +5,11 @@
   "env": {
     "FLUID_API_TOKEN": {
       "description": "The api token for the Fluid API.",
-      "generator": "secret"
+      "value": "<your api token>"
     },
     "FLUID_BASE_URL": {
       "description": "The base url of the Fluid API.",
-      "generator": "secret"
+      "value": "https://<your account slug>.fluid.app"
     }
   },
   "image": "heroku/nodejs",
