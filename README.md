@@ -14,4 +14,4 @@ yarn
 
 ![where to find the Fluid API token](public/images/readme1.png)
 
-### Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [localhost](http://localhost:8080) with your browser to see the result.
