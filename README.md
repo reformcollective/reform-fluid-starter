@@ -13,5 +13,6 @@ yarn
 3. Specify where the Fluid API is with `FLUID_BASE_URL` (no trailing slash `/`).
 
 ![where to find the Fluid API token](public/images/readme1.png)
+[The api token and base url are both found here](https://www.fluid.app/settings/developer)
 
 ### Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
