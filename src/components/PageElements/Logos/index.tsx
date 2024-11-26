@@ -4,7 +4,7 @@ const Logos = () => {
   return (
     <div className="text-center py-20 px-15">
       <div className="mb-8 font-bold">
-        Trusted by the world's best companies [social proof to build
+        Trusted by the world&aposs best companies [social proof to build
         credibility]
       </div>
       <div className="inline-flex justify-around w-full">

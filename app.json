@@ -15,6 +15,6 @@
   "image": "heroku/nodejs",
   "logo": "https://ik.imagekit.io/fluid/s3/Bv44xc3TR6spQ6ucP9Am_OKP0yD5ZRcadn11Kz9P9_logo%25402x.png?tr=h-35",
   "scripts": {
-    "postinstall": "yarn && yarn start"
+    "postinstall": "yarn && yarn build && yarn start"
   }
 }

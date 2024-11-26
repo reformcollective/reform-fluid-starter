@@ -57,7 +57,7 @@ export async function generateMetadata({
     openGraph: {
       title: collection.title,
       description: collection.description || "",
-      url: headersList.get("x-url"),
+      url: headersList.get("x-url") || "",
       images: [
         {
           url: collection.image_url || "",

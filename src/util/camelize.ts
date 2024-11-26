@@ -4,14 +4,8 @@ import isObject from "lodash/isObject";
 import transform from "lodash/transform";
 
 const camelize = (obj: any) =>
-  transform(obj, (acc: Object | Array<any>, value, key, target) => {
-    const camelKey = isArray(target)
-      ? key
-      : camelCase(
-          typeof key === "number" || typeof key === "symbol"
-            ? key.toString()
-            : key
-        );
+  transform(obj, (acc: { [key: string]: any }, value, key, target) => {
+    const camelKey = isArray(target) ? String(key) : camelCase(String(key));
 
     acc[camelKey] = isObject(value) ? camelize(value) : value;
   });
