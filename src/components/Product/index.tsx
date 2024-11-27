@@ -25,7 +25,10 @@ const Product = ({ product }: { product: Product }) => {
           <div className="inline-flex justify-between w-full my-4">
             <div>
               <h2 className="font-bold">{product.title}</h2>
-              <p className="text-sm">{product.description}</p>
+              <div
+                className="text-sm"
+                dangerouslySetInnerHTML={{ __html: product.description }}
+              />
             </div>
             <p className="font-bold">{product.display_price}</p>
           </div>

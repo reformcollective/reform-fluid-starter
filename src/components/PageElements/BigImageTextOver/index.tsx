@@ -4,10 +4,13 @@ import useWindowDimensions from "@/hooks/useWindowDimensions";
 
 const BigImageTextOver = () => {
   const { width, height } = useWindowDimensions();
+
   return (
     <div className="relative">
       <img
-        src={`https://placehold.co/${width}x${height - 72}/2F4F4F/black@3x.png`}
+        src={`https://placehold.co/${width || 1920}x${
+          (height || 980) - 72
+        }/2F4F4F/black@3x.png`}
         alt="Big Image"
       />
       <div className="absolute top-1/2 transform -translate-y-1/2 px-16 w-1/2">

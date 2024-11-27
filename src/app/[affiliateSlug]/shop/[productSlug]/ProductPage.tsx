@@ -3,16 +3,16 @@ import Button from "@/components/Button";
 import Input from "@/components/Input";
 import Star from "@/svgs/Star";
 import { Product } from "@/types/product";
+import cx from "classnames";
 import Image from "next/image";
 import { useState } from "react";
-
 type Props = {
   product: Product;
 };
 
 const Page = ({ product }: Props) => {
   const [imageHoverIndex, setImageHoverIndex] = useState<number>();
-  const [imageSelectedIndex, setImageSelectedIndex] = useState(1);
+  const [imageSelectedIndex, setImageSelectedIndex] = useState(0);
   const [selectedVariant, setSelectedVariant] = useState<number>(
     product.variants?.[0].id
   );
@@ -27,19 +27,19 @@ const Page = ({ product }: Props) => {
         {!!(product.images.length || product.image_url) && (
           <div className="w-1/2 flex flex-row-reverse">
             <div className="h-full max-h-2/3 w-full relative">
-              {product.images[imageHoverIndex ?? imageSelectedIndex]
+              {(product.images[imageHoverIndex ?? imageSelectedIndex]
                 ?.image_url ||
-                (product.image_url && (
-                  <Image
-                    src={
-                      product.images[imageHoverIndex ?? imageSelectedIndex]
-                        ?.image_url || product.image_url
-                    }
-                    alt={`image ${imageHoverIndex ?? imageSelectedIndex}`}
-                    height={300}
-                    width={700}
-                  />
-                ))}
+                product.image_url) && (
+                <Image
+                  src={
+                    product.images[imageHoverIndex ?? imageSelectedIndex]
+                      ?.image_url || product.image_url
+                  }
+                  alt={`image ${imageHoverIndex ?? imageSelectedIndex}`}
+                  height={300}
+                  width={700}
+                />
+              )}
             </div>
             {!!product.images.length && (
               <div className="w-20 mr-4 flex flex-col gap-y-4">
@@ -49,7 +49,12 @@ const Page = ({ product }: Props) => {
                     onMouseEnter={() => setImageHoverIndex(index)}
                     onMouseLeave={() => setImageHoverIndex(undefined)}
                     onClick={() => setImageSelectedIndex(index)}
-                    className="relative cursor-pointer flex w-full h-24 border border-gray-200 items-center"
+                    className={cx(
+                      "relative cursor-pointer flex w-full h-24 border items-center box-border",
+                      imageSelectedIndex === index
+                        ? "border-gray-500 bg-gray-100"
+                        : "border-gray-200"
+                    )}
                   >
                     <div className="margin-0 absolute">
                       <Image
@@ -87,9 +92,15 @@ const Page = ({ product }: Props) => {
           {!!product.variants.length && (
             <div className="flex flex-col gap-2">
               <div>Variant</div>
-              <div>
+              <div className="flex flex-row gap-2 overflow-x-auto overflow-y-hidden">
                 {product.variants.map((variant, index) => (
                   <Button
+                    className={cx(
+                      variant.id === selectedVariant
+                        ? "bg-gray-100 font-bold"
+                        : "",
+                      "flex-shrink-0"
+                    )}
                     onClick={() =>
                       variant.id !== selectedVariant &&
                       setSelectedVariant(variant.id)
@@ -117,7 +128,7 @@ const Page = ({ product }: Props) => {
                 setQuantity(value < 1 ? 1 : value);
               }}
               name="fluid-checkout-quantity"
-              className="w-24 text-center"
+              className="w-24 text-center appearance-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
               type="number"
               value={quantity}
             />

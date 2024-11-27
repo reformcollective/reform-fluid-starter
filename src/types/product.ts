@@ -1,3 +1,4 @@
+import { imageSchema } from "@/types/image";
 import { variantSchema } from "@/types/variant";
 import { z } from "zod";
 
@@ -24,14 +25,7 @@ const productSchema = z.object({
   unlimited_inventory: z.boolean().nullable().optional(),
   keep_selling: z.boolean().nullable(),
   image_url: z.string(),
-  images: z.array(
-    z.object({
-      id: z.number(),
-      image_url: z.string(),
-      image_path: z.string(),
-      position: z.number(),
-    })
-  ),
+  images: z.array(imageSchema),
   variants: z.array(variantSchema),
 });
 

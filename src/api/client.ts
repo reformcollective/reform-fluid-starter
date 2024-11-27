@@ -1,6 +1,6 @@
 const FluidApiClient = async (url: string, options?: RequestInit) => {
   const response = await fetch(
-    `${process.env.FLUID_BASE_URL || "http://fluid.app"}/api/company/v1/${url}`,
+    `${process.env.FLUID_BASE_URL}/api/company/v1/${url}`,
     {
       ...options,
       headers: {

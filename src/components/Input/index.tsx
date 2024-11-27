@@ -3,7 +3,7 @@ import { ChangeEventHandler, HTMLInputTypeAttribute } from "react";
 import { twMerge } from "tailwind-merge";
 
 const styleTypes = {
-  all: "rounded-none pl-3 py-2",
+  all: "rounded-none px-3 py-2",
   default: "text-black bg-transparent border border-black",
 };
 
