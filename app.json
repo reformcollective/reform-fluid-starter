@@ -15,6 +15,6 @@
   "image": "heroku/nodejs",
   "logo": "https://ik.imagekit.io/fluid/s3/Bv44xc3TR6spQ6ucP9Am_OKP0yD5ZRcadn11Kz9P9_logo%25402x.png?tr=h-35",
   "scripts": {
-    "postinstall": "yarn && yarn build && yarn start"
+    "postinstall": "npm config set '@fortawesome:registry' https://npm.fontawesome.com/ && npm config set '//npm.fontawesome.com/:_authToken' '2DD68B3B-EA83-4EB7-9889-66EBDD08E1D8' && yarn && yarn build && yarn start"
   }
 }
