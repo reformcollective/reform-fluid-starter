@@ -16,13 +16,17 @@ yarn
 
 Open [localhost](http://localhost:3000) in your browser to see the result.
 
+#### This project uses [Next.js](https://nextjs.org/) and [Tailwind CSS](https://tailwindcss.com/).
+
+You can view the documentation for those projects to understand how to customize your fork of this project.
+
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://www.heroku.com/deploy)
 
 ### Customize
 
 #### How to create Product templates and assign them in Fluid admin
 
-#### How does SEO meta tags work with the admin Product editor 
+#### How does SEO meta tags work with the admin Product editor
 
 #### How to add a Product / Variant to cart
 
@@ -32,6 +36,6 @@ Open [localhost](http://localhost:3000) in your browser to see the result.
 
 #### How does attribution work on the JavaScript widget
 
-#### How to set Country / Language 
+#### How to set Country / Language
 
 #### How do my reps share a link and get credit?

@@ -44,7 +44,10 @@ export default async function RootLayout({ children, params }: PageProps) {
         </Script>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="icon"
+          href={company.logo_url || "https://cdn.fluid.app/favicon-16x16.png"}
+        />
       </head>
       <body className={`${inter.className} h-screen`}>
         <Navbar params={params} company={company} />
