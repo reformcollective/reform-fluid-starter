@@ -17,3 +17,21 @@ yarn
 Open [localhost](http://localhost:3000) in your browser to see the result.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://www.heroku.com/deploy)
+
+### Customize
+
+#### How to create Product templates and assign them in Fluid admin
+
+#### How does SEO meta tags work with the admin Product editor 
+
+#### How to add a Product / Variant to cart
+
+#### How to add a Product subscription to cart
+
+#### How to build your checkout from scratch
+
+#### How does attribution work on the JavaScript widget
+
+#### How to set Country / Language 
+
+#### How do my reps share a link and get credit?
