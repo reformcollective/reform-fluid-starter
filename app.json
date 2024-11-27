@@ -10,6 +10,10 @@
     "FLUID_BASE_URL": {
       "description": "The base url of the Fluid API.",
       "value": "https://<your account slug>.fluid.app"
+    },
+    "FONTAWESOME_NPM_AUTH_TOKEN": {
+      "description": "The npm auth token for FontAwesome.",
+      "value": "<your npm auth token>"
     }
   },
   "image": "heroku/nodejs",
