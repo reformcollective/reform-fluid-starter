@@ -1,5 +1,5 @@
 "use server";
-import { getProducts } from "@/api";
+import { getProducts, safeZodParse } from "@/api";
 import client from "@/api/client";
 import type { Collection } from "@/types/collection";
 import { collectionSchema } from "@/types/collection";
@@ -7,7 +7,7 @@ import { z } from "zod";
 
 const collectionArraySchema = z.array(collectionSchema);
 
-async function getCollections() {
+async function getCollections(): Promise<Collection[]> {
   const { body } = await client("collections");
   const { collections } = body.data;
   const productPromisesByCollectionIds = collections.map(
@@ -21,7 +21,8 @@ async function getCollections() {
       products: products[index],
     })
   );
-  return collectionArraySchema.parse(collectionsWithMappedProducts);
+
+  return safeZodParse(collectionsWithMappedProducts, collectionArraySchema);
 }
 
 export default getCollections;
