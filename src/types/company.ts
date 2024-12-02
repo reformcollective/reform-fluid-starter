@@ -97,7 +97,7 @@ const companySchema = z.object({
   appstore_url: z.string().nullable(),
   playstore_url: z.string().nullable(),
   token: z.string(),
-  display_billing_zip: z.string().nullable(),
+  display_billing_zip: z.boolean().nullable(),
 });
 
 export type Company = z.infer<typeof companySchema>;
