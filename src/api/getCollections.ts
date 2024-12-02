@@ -21,6 +21,7 @@ async function getCollections() {
       products: products[index],
     })
   );
+  console.log({ collectionsWithMappedProducts });
   return collectionArraySchema.parse(collectionsWithMappedProducts);
 }
 
