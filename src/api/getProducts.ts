@@ -1,3 +1,4 @@
+import { safeZodParse } from "@/api";
 import client from "@/api/client";
 import { productSchema } from "@/types/product";
 import { z } from "zod";
@@ -12,7 +13,7 @@ async function getProducts({ collectionId }: Props) {
   const { body } = await client(
     `products/${collectionId ? `?collection_id=${collectionId}` : ""}`
   );
-  return productsSchema.parse(body.data.products);
+  return safeZodParse(body.data.products, productsSchema);
 }
 
 export default getProducts;

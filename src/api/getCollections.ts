@@ -1,5 +1,5 @@
 "use server";
-import { getProducts } from "@/api";
+import { getProducts, safeZodParse } from "@/api";
 import client from "@/api/client";
 import type { Collection } from "@/types/collection";
 import { collectionSchema } from "@/types/collection";
@@ -21,8 +21,8 @@ async function getCollections() {
       products: products[index],
     })
   );
-  console.log({ collectionsWithMappedProducts });
-  return collectionArraySchema.parse(collectionsWithMappedProducts);
+
+  return safeZodParse(collectionsWithMappedProducts, collectionArraySchema);
 }
 
 export default getCollections;
