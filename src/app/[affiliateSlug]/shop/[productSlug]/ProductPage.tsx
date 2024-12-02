@@ -127,7 +127,7 @@ const Page = ({ product }: Props) => {
                 setQuantity(value < 1 ? 1 : value);
               }}
               name="fluid-checkout-quantity"
-              className="w-24 text-center appearance-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+              className="w-24 text-center [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
               type="number"
               value={quantity}
             />
@@ -143,6 +143,7 @@ const Page = ({ product }: Props) => {
             <Button
               data-fluid-checkout-type="variant"
               data-fluid-checkout-group-id={selectedVariant}
+              data-variant={selectedVariant}
               id="add-to-cart-button"
               variant="primary"
               className="w-full"
@@ -151,6 +152,7 @@ const Page = ({ product }: Props) => {
             </Button>
             <Button
               data-fluid-checkout={selectedVariant}
+              data-variant={selectedVariant}
               variant="transparent-dark"
               className="w-full"
             >
