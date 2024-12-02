@@ -7,7 +7,7 @@ import { z } from "zod";
 
 const collectionArraySchema = z.array(collectionSchema);
 
-async function getCollections() {
+async function getCollections(): Promise<Collection[]> {
   const { body } = await client("collections");
   const { collections } = body.data;
   const productPromisesByCollectionIds = collections.map(

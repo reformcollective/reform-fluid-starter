@@ -1,8 +1,8 @@
 import { getProducts, safeZodParse } from "@/api";
 import client from "@/api/client";
-import { collectionSchema } from "@/types/collection";
+import { Collection, collectionSchema } from "@/types/collection";
 
-async function getCollection(collectionId: string) {
+async function getCollection(collectionId: string): Promise<Collection> {
   const products = await getProducts({ collectionId });
 
   const { body } = await client(`collections/${collectionId}`);
