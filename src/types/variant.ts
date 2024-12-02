@@ -12,7 +12,7 @@ const variantSchema = z.object({
   subscription_only: z.boolean().nullable(),
   shipping_included_in_price: z.boolean().nullable(),
   variant_countries: z.record(variantCountrySchema),
-  images: z.array(imageSchema),
+  images: z.array(imageSchema).nullable(),
 });
 
 export type Variant = z.infer<typeof variantSchema>;
