@@ -14,7 +14,7 @@ const Product = ({ product }: { product: Product }) => {
             src={
               product?.images[0]?.image_url ||
               product?.image_url ||
-              product?.variants[0]?.images[0]?.image_url ||
+              product?.variants[0]?.images?.[0]?.image_url ||
               product?.variants[0]?.image_urL ||
               "https://placehold.co/304x364/2F4F4F/black@3x.png"
             }
