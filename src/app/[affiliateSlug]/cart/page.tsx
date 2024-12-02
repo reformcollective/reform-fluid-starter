@@ -3,7 +3,6 @@ import Input from "@/components/Input";
 import LinkButton from "@/components/LinkButton";
 import { faTrash } from "@awesome.me/kit-ac6c036e20/icons/classic/regular";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Image from "next/image";
 
 type PageProps = {
   params: Record<string, any>;
@@ -28,7 +27,7 @@ const Page = ({ params }: PageProps) => {
         </div>
         <div className="inline-flex py-4 px-4 border-b border-black">
           <div className="flex-grow-[4] inline-flex">
-            <Image
+            <img
               src={`https://placehold.co/${145}x${128}/2F4F4F/black@3x.png`}
               alt="placeholder image"
               height={128}
@@ -65,7 +64,7 @@ const Page = ({ params }: PageProps) => {
         </div>
         <div className="inline-flex py-4 px-4 border-b border-black">
           <div className="flex-grow-[4] inline-flex">
-            <Image
+            <img
               src={`https://placehold.co/${145}x${128}/2F4F4F/black@3x.png`}
               alt="placeholder image"
               height={128}

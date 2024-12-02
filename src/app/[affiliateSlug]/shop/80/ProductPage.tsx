@@ -5,7 +5,6 @@ import CallToAction from "@/components/PageElements/CallToAction";
 import OneFeature from "@/components/PageElements/OneFeature";
 import Star from "@/svgs/Star";
 import { Product } from "@/types/product";
-import Image from "next/image";
 import { useState } from "react";
 
 type Props = {
@@ -33,7 +32,7 @@ const Page = ({ product }: Props) => {
                 {product.images[imageHoverIndex ?? imageSelectedIndex]
                   ?.image_url ||
                   (product.image_url && (
-                    <Image
+                    <img
                       src={
                         product.images[imageHoverIndex ?? imageSelectedIndex]
                           ?.image_url || product.image_url
@@ -55,7 +54,7 @@ const Page = ({ product }: Props) => {
                       className="relative cursor-pointer flex w-full h-24 bg-gray-100 items-center"
                     >
                       <div className="margin-0 absolute">
-                        <Image
+                        <img
                           src={image.image_url}
                           alt={`image ${index}`}
                           height={96}

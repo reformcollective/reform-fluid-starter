@@ -4,7 +4,6 @@ import Input from "@/components/Input";
 import Star from "@/svgs/Star";
 import { Product } from "@/types/product";
 import cx from "classnames";
-import Image from "next/image";
 import { useState } from "react";
 type Props = {
   product: Product;
@@ -30,7 +29,7 @@ const Page = ({ product }: Props) => {
               {(product.images[imageHoverIndex ?? imageSelectedIndex]
                 ?.image_url ||
                 product.image_url) && (
-                <Image
+                <img
                   src={
                     product.images[imageHoverIndex ?? imageSelectedIndex]
                       ?.image_url || product.image_url
@@ -57,7 +56,7 @@ const Page = ({ product }: Props) => {
                     )}
                   >
                     <div className="margin-0 absolute">
-                      <Image
+                      <img
                         src={image.image_url}
                         alt={`image ${index}`}
                         height={96}

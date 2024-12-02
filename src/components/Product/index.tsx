@@ -1,6 +1,5 @@
 "use client";
 import type { Product } from "@/types/product";
-import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 
@@ -10,7 +9,7 @@ const Product = ({ product }: { product: Product }) => {
     <div className="snap-start">
       <div className="w-[364px]">
         <Link href={`/${affiliateSlug}/shop/${product.slug}`}>
-          <Image
+          <img
             src={
               product?.images[0]?.image_url ||
               product?.image_url ||

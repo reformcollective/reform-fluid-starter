@@ -15,6 +15,7 @@ const Flag = ({ code, height, width, fill, className }: LazySvgProps) => (
     src={`/countryFlag/${code.toLowerCase()}.svg`}
     alt={code}
     {...(!fill ? { height, width } : {})}
+    loading="lazy"
   />
 );
 export default Flag;
