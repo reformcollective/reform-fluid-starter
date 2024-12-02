@@ -12,15 +12,15 @@ const Product = ({ product }: { product: Product }) => {
         <Link href={`/${affiliateSlug}/shop/${product.slug}`}>
           <Image
             src={
-              product.images[0]?.image_url ||
-              product.image_url ||
-              product.variants[0]?.images[0]?.image_url ||
-              product.variants[0]?.image_urL ||
+              product?.images[0]?.image_url ||
+              product?.image_url ||
+              product?.variants[0]?.images[0]?.image_url ||
+              product?.variants[0]?.image_urL ||
               "https://placehold.co/304x364/2F4F4F/black@3x.png"
             }
             height={304}
             width={364}
-            alt={product.title}
+            alt={product?.title}
           />
           <div className="inline-flex justify-between w-full my-4">
             <div>

@@ -68,7 +68,6 @@ const companySchema = z.object({
   display_activities: z.boolean(),
   display_analytics: z.boolean(),
   display_leaderboard: z.boolean(),
-  display_simulators: z.boolean(),
   display_discounts: z.boolean(),
   display_share_stats: z.boolean(),
   display_get_started: z.boolean(),
