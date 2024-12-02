@@ -11,7 +11,7 @@ const variantCountrySchema = z.object({
   wholesale: z.string(),
   wholesale_subscription_price: z.string(),
   cost_of_goods_sold: z.string(),
-  compare_price: z.string(),
+  compare_price: z.string().nullable(),
 });
 
 export type VariantCountry = z.infer<typeof variantCountrySchema>;

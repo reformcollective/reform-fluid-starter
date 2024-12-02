@@ -9,7 +9,7 @@ const Shop = async () => {
     <>
       <div className="px-20 overflow-x-hidden mb-28">
         <div className="text-4xl font-bold my-28">Shop</div>
-        <div className="flex gap-y-28 overflow-x-visible">
+        <div className="flex flex-col gap-y-28 overflow-x-visible">
           {(collections || []).map((collection) => (
             <Collection key={collection.id} collection={collection} />
           ))}
