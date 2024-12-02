@@ -12,10 +12,9 @@ const Flag = ({ code, height, width, fill, className }: LazySvgProps) => (
   <Image
     className={className}
     fill={fill}
-    src={`/countryFlag/${code}.svg`}
+    src={`/countryFlag/${code.toLowerCase()}.svg`}
     alt={code}
     {...(!fill ? { height, width } : {})}
   />
 );
-
 export default Flag;
