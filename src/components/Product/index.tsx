@@ -20,7 +20,7 @@ const Product = ({ product }: { product: Product }) => {
             }
             height={304}
             width={364}
-            alt={product.title}
+            alt={product?.title}
           />
           <div className="inline-flex justify-between w-full my-4">
             <div>
