@@ -2,7 +2,7 @@
 
 import Button from "@/components/Button";
 
-const BigImageTextOver = () => {
+const HeroSection = () => {
   return (
     <div
       className="relative bg-cover bg-center h-[900px]"
@@ -42,4 +42,4 @@ const BigImageTextOver = () => {
   );
 };
 
-export default BigImageTextOver;
+export default HeroSection;
