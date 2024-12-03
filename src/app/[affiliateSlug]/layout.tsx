@@ -43,7 +43,10 @@ export default async function RootLayout({ children, params }: PageProps) {
         `}
         </Script>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0"
+        ></meta>
         <link
           rel="icon"
           href={company.logo_url || "https://cdn.fluid.app/favicon-16x16.png"}

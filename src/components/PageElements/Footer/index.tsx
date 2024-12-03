@@ -15,14 +15,14 @@ const Footer = () => {
         <div>Shop</div>
         <div>Cart</div>
       </div>
-      <div className="inline-flex mx-20 border-t border-black mt-8 pt-20 justify-between">
-        <div className="inline-flex gap-4">
+      <div className="flex flex-col sm:inline-flex sm:flex-row sm:mx-20 border-t border-black mt-8 pt-20 justify-between">
+        <div className="flex flex-col sm:inline-flex sm:flex-row gap-4 justify-center sm:justify-start">
           <div className="text-sm">© 2024 Fluid. All rights reserved.</div>
           <div className="text-sm underline">Privacy Policy</div>
           <div className="text-sm underline">Terms of Service</div>
           <div className="text-sm underline">Cookies Settings</div>
         </div>
-        <div className="inline-flex gap-4">
+        <div className="inline-flex gap-4 justify-center sm:justify-start mt-4 sm:mt-0">
           <FontAwesomeIcon icon={faFacebook} />
           <FontAwesomeIcon icon={faInstagram} />
           <FontAwesomeIcon icon={faXTwitter} />

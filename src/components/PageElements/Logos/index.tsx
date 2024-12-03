@@ -5,43 +5,97 @@ const Logos = () => {
         Trusted by the world&aposs best companies [social proof to build
         credibility]
       </div>
-      <div className="inline-flex justify-around w-full">
-        <img
-          src="/images/logo.png"
-          alt="impressive logo here"
-          width={150}
-          height={60}
-        />
-        <img
-          src="/images/logo.png"
-          alt="impressive logo here"
-          width={150}
-          height={60}
-        />
-        <img
-          src="/images/logo.png"
-          alt="impressive logo here"
-          width={150}
-          height={60}
-        />
-        <img
-          src="/images/logo.png"
-          alt="impressive logo here"
-          width={150}
-          height={60}
-        />
-        <img
-          src="/images/logo.png"
-          alt="impressive logo here"
-          width={150}
-          height={60}
-        />
-        <img
-          src="/images/logo.png"
-          alt="impressive logo here"
-          width={150}
-          height={60}
-        />
+      <div className="relative w-full overflow-hidden">
+        <div className="flex max-sm:animate-marquee-mobile sm:animate-marquee">
+          <div className="flex shrink-0">
+            <img
+              src="/images/logo.png"
+              alt="impressive logo here"
+              width={150}
+              height={60}
+              className="mx-8"
+            />
+            <img
+              src="/images/logo.png"
+              alt="impressive logo here"
+              width={150}
+              height={60}
+              className="mx-8"
+            />
+            <img
+              src="/images/logo.png"
+              alt="impressive logo here"
+              width={150}
+              height={60}
+              className="mx-8"
+            />
+            <img
+              src="/images/logo.png"
+              alt="impressive logo here"
+              width={150}
+              height={60}
+              className="mx-8"
+            />
+            <img
+              src="/images/logo.png"
+              alt="impressive logo here"
+              width={150}
+              height={60}
+              className="mx-8"
+            />
+            <img
+              src="/images/logo.png"
+              alt="impressive logo here"
+              width={150}
+              height={60}
+              className="mx-8"
+            />
+          </div>
+          <div className="flex shrink-0">
+            <img
+              src="/images/logo.png"
+              alt="impressive logo here"
+              width={150}
+              height={60}
+              className="mx-8"
+            />
+            <img
+              src="/images/logo.png"
+              alt="impressive logo here"
+              width={150}
+              height={60}
+              className="mx-8"
+            />
+            <img
+              src="/images/logo.png"
+              alt="impressive logo here"
+              width={150}
+              height={60}
+              className="mx-8"
+            />
+            <img
+              src="/images/logo.png"
+              alt="impressive logo here"
+              width={150}
+              height={60}
+              className="mx-8"
+            />
+            <img
+              src="/images/logo.png"
+              alt="impressive logo here"
+              width={150}
+              height={60}
+              className="mx-8"
+            />
+            <img
+              src="/images/logo.png"
+              alt="impressive logo here"
+              width={150}
+              height={60}
+              className="mx-8"
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
