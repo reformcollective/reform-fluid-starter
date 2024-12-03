@@ -2,9 +2,12 @@
 import type { Product } from "@/types/product";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { useState } from "react";
 
 const Product = ({ product }: { product: Product }) => {
   const { affiliateSlug } = useParams();
+  const [page, setPage] = useState(1);
+
   return (
     <div className="snap-start">
       <div className="w-[364px] h-full max-h-[466px]">
