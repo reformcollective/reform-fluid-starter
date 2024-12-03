@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import CountryLanguagePicker from "@/components/CountryLanguagePicker";
 import { Company } from "@/types/company";
 import {
@@ -5,28 +8,53 @@ import {
   faMagnifyingGlass,
   faUser,
 } from "@awesome.me/kit-ac6c036e20/icons/classic/regular";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
-import { FC } from "react";
 
-const Navbar: FC<{ company: Company; params: Record<string, any> }> = ({
-  company,
-  params,
-}) => {
+type NavbarProps = {
+  company: Company;
+  params: Record<string, any>;
+};
+
+const Navbar = ({ company, params }: NavbarProps) => {
   const affiliateSlug = params.affiliateSlug;
+
   return (
-    <div className="h-18 border-b border-black px-20 flex justify-center">
-      <div className="max-w-[1200px] inline-flex mx-auto justify-between w-full">
-        <div className="inline-flex gap-4 w-72 py-6">
-          <Link href={`/${affiliateSlug || "home"}/`}>Home</Link>
-          <Link href={`/${affiliateSlug || "home"}/shop/`}>Shop</Link>
+    <div className="border-b border-black">
+      {/* Main Container */}
+      <div
+        className="max-w-[1440px] mx-auto h-[72px] px-[32px] grid"
+        style={{
+          gridTemplateColumns: "1fr auto 1fr",
+          alignItems: "center",
+        }}
+      >
+        {/* Left Links */}
+        <div className="flex gap-[32px]">
+          <Link
+            href={`/${affiliateSlug || "home"}/`}
+            className="text-[16px] font-normal leading-[24px] text-black font-sans"
+          >
+            Home
+          </Link>
+          <Link
+            href={`/${affiliateSlug || "home"}/shop/`}
+            className="text-[16px] font-normal leading-[24px] text-black font-sans"
+          >
+            Shop
+          </Link>
         </div>
-        <img
-          src={company.logo_url}
-          alt={`${company.name}'s logo`}
-          className="max-h-10 my-4 mx-auto text-center"
-        />
-        <div className="inline-flex gap-4 w-72 py-6">
+
+        {/* Centered Logo */}
+        <div className="flex justify-center">
+          <img
+            src={company.logo_url || "/placeholder-logo.png"}
+            alt={`${company.name}'s logo`}
+            className="h-[43px] object-contain"
+          />
+        </div>
+
+        {/* Right Section */}
+        <div className="flex items-center justify-end gap-[24px]">
+          {/* Country & Language Picker */}
           <CountryLanguagePicker
             languageOptions={company.languages.map((l) => ({
               label: l.name,
@@ -38,13 +66,15 @@ const Navbar: FC<{ company: Company; params: Record<string, any> }> = ({
               value: c.iso,
             }))}
           />
-          <Link href={`/${affiliateSlug || "home"}/shop/`}>
+
+          {/* Icons */}
+          <Link href={`/${affiliateSlug || "home"}/shop/`} className="text-lg">
             <FontAwesomeIcon icon={faMagnifyingGlass} />
           </Link>
-          <Link href={`/${affiliateSlug || "home"}/`}>
+          <Link href={`/${affiliateSlug || "home"}/`} className="text-lg">
             <FontAwesomeIcon icon={faUser} />
           </Link>
-          <Link href={`/${affiliateSlug || "home"}/cart/`}>
+          <Link href={`/${affiliateSlug || "home"}/cart/`} className="text-lg">
             <FontAwesomeIcon icon={faCartShopping} />
           </Link>
         </div>
