@@ -16,6 +16,9 @@ const Page = ({ product }: Props) => {
     product.variants?.[0].id
   );
   const [quantity, setQuantity] = useState(1);
+  const [subscribe, setSubscribe] = useState<"subscription" | "regular">(
+    "regular"
+  );
 
   return (
     <div className="pt-28 px-20">
@@ -113,6 +116,28 @@ const Page = ({ product }: Props) => {
               </div>
             </div>
           )}
+          <div className="inline-flex w-1/2 justify-between gap-2">
+            <div className="flex flex-row gap-2 items-center">
+              <input
+                className="mr-1 checked:bg-gray-500 text-gray-500"
+                type="radio"
+                value="subscribe"
+                checked={subscribe === "subscription"}
+                onChange={() => setSubscribe("subscription")}
+              />
+              Subscribe and save{" "}
+            </div>
+            <div className="flex flex-row gap-2 items-center">
+              <input
+                className="mr-1 checked:bg-gray-500 text-gray-500"
+                type="radio"
+                value="regular"
+                checked={subscribe === "regular"}
+                onChange={() => setSubscribe("regular")}
+              />
+              One-time purchase{" "}
+            </div>
+          </div>
           <div className="inline-flex gap-2">
             <Button
               onClick={() => setQuantity((prev) => (prev > 1 ? prev - 1 : 1))}

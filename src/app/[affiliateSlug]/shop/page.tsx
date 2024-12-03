@@ -3,9 +3,14 @@ import CallToAction from "@/components/PageElements/CallToAction";
 import Product from "@/components/Product";
 import { faChevronDown } from "@awesome.me/kit-ac6c036e20/icons/classic/regular";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { cookies } from "next/headers";
 
 const Shop = async () => {
-  const products = await getProducts({});
+  const cookiesList = cookies();
+  const products = await getProducts({
+    language: cookiesList.get("language")?.value,
+    country: cookiesList.get("country")?.value,
+  });
   // the filtering and sorting are not implemented on purpose, we're just showing the products
   return (
     <>
