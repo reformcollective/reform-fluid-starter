@@ -1,32 +1,41 @@
 "use client";
+
 import Button from "@/components/Button";
-import useWindowDimensions from "@/hooks/useWindowDimensions";
 
 const BigImageTextOver = () => {
-  const { width, height } = useWindowDimensions();
-
   return (
-    <div className="relative">
-      <img
-        src={`https://placehold.co/${width || 1920}x${
-          (height || 980) - 72
-        }/2F4F4F/black@3x.png`}
-        alt="Big Image"
-      />
-      <div className="absolute top-1/2 transform -translate-y-1/2 px-16 w-1/2">
-        <h1 className="text-4xl text-white font-bold mb-4">
-          Medium sized text over image TITLE
-        </h1>
-        <div>
-          <p className="text-white mb-5">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    <div
+      className="relative bg-cover bg-center h-[900px]"
+      style={{
+        backgroundImage: "url('https://placehold.co/1440x900/2F4F4F/FFFFFF')",
+      }}
+    >
+      {/* Content Wrapper */}
+      <div className="absolute inset-0 flex items-center px-[64px]">
+        <div className="max-w-[560px]">
+          {/* Title */}
+          <h1 className="text-white text-[56px] font-semibold leading-[67.2px] mb-4">
+            Medium length hero headline goes here
+          </h1>
+
+          {/* Description */}
+          <p className="text-white text-[18px] font-normal leading-[27px] mb-6">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            varius enim in eros elementum tristique. Duis cursus, mi quis
+            viverra ornare, eros dolor interdum nulla, ut commodo diam libero
+            vitae erat.
           </p>
-        </div>
-        <div className="inline-flex gap-2">
-          <Button>Button 1</Button>
-          <Button variant="transparent">Button 2</Button>
-          <Button variant="secondary">Button 3</Button>
+
+          {/* Actions Section */}
+          <div className="flex gap-[16px]">
+            {/* Buttons */}
+            <Button className="bg-black text-white text-[16px] leading-[24px] font-medium px-[24px] py-[12px] border border-black w-[99px] h-[48px]">
+              Button
+            </Button>
+            <Button className="bg-transparent border border-white text-white text-[16px] leading-[24px] font-medium px-[24px] py-[12px] w-[99px] h-[48px]">
+              Button
+            </Button>
+          </div>
         </div>
       </div>
     </div>
