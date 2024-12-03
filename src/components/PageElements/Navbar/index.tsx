@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CountryLanguagePicker from "@/components/CountryLanguagePicker";
 import { Company } from "@/types/company";
 import {
-  faCartShopping,
+  faBagShopping,
   faMagnifyingGlass,
   faUser,
 } from "@awesome.me/kit-ac6c036e20/icons/classic/regular";
@@ -75,7 +75,7 @@ const Navbar = ({ company, params }: NavbarProps) => {
             <FontAwesomeIcon icon={faUser} />
           </Link>
           <Link href={`/${affiliateSlug || "home"}/cart/`} className="text-lg">
-            <FontAwesomeIcon icon={faCartShopping} />
+            <FontAwesomeIcon icon={faBagShopping} />
           </Link>
         </div>
       </div>

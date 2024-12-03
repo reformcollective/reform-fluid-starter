@@ -1,43 +1,54 @@
 import Cube from "@/svgs/Cube";
+
 const HowItWorks = () => {
   return (
-    <div className="text-center py-28 px-12">
-      <h1 className="font-bold text-5xl mb-12">How it works</h1>
-      <div className="inline-flex max-w-[1200px] justify-between">
-        <div className="text-center w-1/4">
-          <div className="w-full flex justify-center">
+    <div className="text-center bg-white py-[112px] px-[64px]">
+      {/* Section Title */}
+      <h1 className="text-[40px] font-bold leading-[48px] text-black mb-[80px]">
+        How it works
+      </h1>
+
+      {/* Steps */}
+      <div className="flex flex-col lg:flex-row justify-between max-w-[1440px] mx-auto gap-[80px]">
+        {/* Step 1 */}
+        <div className="text-center w-full lg:w-1/3 px-4">
+          <div className="flex justify-center mb-[24px]">
             <Cube size={48} />
           </div>
-          <h2 className="font-bold text-2xl mt-12 mb-6">
-            Short Summary of Step 1
+          <h2 className="text-[24px] font-bold leading-[33.6px] text-black mb-[16px]">
+            Short summary of step one
           </h2>
-          <p>
+          <p className="text-[16px] leading-[24px] text-gray-700">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             varius enim in eros elementum tristique. Duis cursus, mi quis
             viverra ornare, eros dolor interdum nulla.
           </p>
         </div>
-        <div className="text-center w-1/4">
-          <div className="w-full flex justify-center">
+
+        {/* Step 2 */}
+        <div className="text-center w-full lg:w-1/3 px-4">
+          <div className="flex justify-center mb-[24px]">
             <Cube size={48} />
           </div>
-          <h2 className="font-bold text-2xl mt-12 mb-6">
-            Short Summary of Step 2
+          <h2 className="text-[24px] font-bold leading-[33.6px] text-black mb-[16px]">
+            Short summary of step two
           </h2>
-          <p>
+          <p className="text-[16px] leading-[24px] text-gray-700">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             varius enim in eros elementum tristique. Duis cursus, mi quis
             viverra ornare, eros dolor interdum nulla.
           </p>
         </div>
-        <div className="text-center w-1/4">
-          <div className="w-full flex justify-center">
+
+        {/* Step 3 */}
+        <div className="text-center w-full lg:w-1/3 px-4">
+          <div className="flex justify-center mb-[24px]">
             <Cube size={48} />
           </div>
-          <h2 className="font-bold text-2xl mt-12 mb-6">
-            Short Summary of Step 3
+          <h2 className="text-[24px] font-bold leading-[33.6px] text-black mb-[16px]">
+            Short summary of step three
           </h2>
-          <p>
+          <p className="text-[16px] leading-[24px] text-gray-700">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             varius enim in eros elementum tristique. Duis cursus, mi quis
             viverra ornare, eros dolor interdum nulla.
