@@ -6,7 +6,7 @@ const BigImageTextOver = () => {
   const { width, height } = useWindowDimensions();
 
   return (
-    <div className="relative">
+    <div className="relative text-xs sm:text-base overflow-hidden">
       <img
         src={`https://placehold.co/${width || 1920}x${
           (height || 980) - 72
@@ -14,7 +14,7 @@ const BigImageTextOver = () => {
         alt="Big Image"
       />
       <div className="absolute top-1/2 transform -translate-y-1/2 px-16 w-1/2">
-        <h1 className="text-4xl text-white font-bold mb-4">
+        <h1 className="text-xl sm:text-4xl text-white font-bold mb-4">
           Medium sized text over image TITLE
         </h1>
         <div>
