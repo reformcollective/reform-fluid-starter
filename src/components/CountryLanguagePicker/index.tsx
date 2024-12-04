@@ -1,10 +1,12 @@
 "use client";
-import Flag from "@/components/Flag";
-import Select from "@/components/Select";
+
+import { useEffect, useState } from "react";
 import { faChevronDown } from "@awesome.me/kit-ac6c036e20/icons/classic/regular";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as Popover from "@radix-ui/react-popover";
-import { useEffect, useState } from "react";
+
+import Flag from "@/components/Flag";
+import Select from "@/components/Select";
 
 type Props = {
   languageOptions: { label: string; value: string }[];
@@ -27,19 +29,26 @@ const CountryLanguagePicker = ({
   return (
     <Popover.Root>
       <Popover.Trigger asChild>
-        <button className="inline-flex gap-2 mr-4 max-h-24 overflow-hidden">
-          <Flag code={country} width={45.6} height={24} />
-          <div className="ml-2">
-            {country} | {lang.toUpperCase()}
+        <button className="inline-flex items-center">
+          <div className="w-6 h-6 rounded-full overflow-hidden mr-3 shrink-0">
+            <Flag
+              code={country}
+              width={24}
+              height={24}
+              className="w-full h-full object-cover scale-[1.4]"
+            />
           </div>
-          <FontAwesomeIcon className="mt-0.5" icon={faChevronDown} />
+          <span className="text-[16px] leading-[24px]">
+            {country} | {lang.toUpperCase()}
+          </span>
+          <FontAwesomeIcon icon={faChevronDown} className="text-xs ml-2" />
         </button>
       </Popover.Trigger>
       <Popover.Portal>
-        <Popover.Content>
-          <div className="p-4 flex flex-col bg-white shadow mt-4 gap-y-6">
-            <div>
-              <div className="mb-1">Select Your Country</div>
+        <Popover.Content className="z-50" align="end">
+          <div className="p-6 flex flex-col bg-white shadow mt-4 min-w-[280px]">
+            <div className="mb-6">
+              <div className="mb-2 text-xl">Select Your Country</div>
               <Select
                 placeholder="Country"
                 value={country}
@@ -48,7 +57,7 @@ const CountryLanguagePicker = ({
               />
             </div>
             <div>
-              <div className="mb-1">Select Your Language</div>
+              <div className="mb-2 text-xl">Select Your Language</div>
               <Select
                 placeholder="Language"
                 value={lang}
