@@ -33,13 +33,13 @@ const Page = ({ product }: Props) => {
   }, []);
 
   return (
-    <div className="pt-28 px-20">
+    <div className="container mx-auto px-10 py-16 md:pt-28 lg:px-20">
       <div className="pb-8">
         Shop &gt; <span className="font-semibold">{product.title}</span>
       </div>
-      <div className="flex flex-row w-full gap-24">
+      <div className="flex flex-col md:flex-row w-full gap-24">
         {!!(product.images.length || product.image_url) && (
-          <div className="w-1/2 flex flex-row-reverse">
+          <div className="w-full md:w-1/2 flex flex-row-reverse">
             <div className="h-full max-h-2/3 w-full relative">
               {(product.images[imageHoverIndex ?? imageSelectedIndex]
                 ?.image_url ||
@@ -86,13 +86,13 @@ const Page = ({ product }: Props) => {
         )}
         <div
           data-fluid-checkout-group={selectedVariant}
-          className="w-1/2 flex flex-col gap-6"
+          className="md:w-1/2 flex flex-col gap-6"
         >
           <div className="flex flex-col gap-2">
-            <h1 className="font-bold text-4xl">{product.title}</h1>
+            <h1 className="font-bold text-3xl md:text-4xl">{product.title}</h1>
             <h2 className="text-2xl font-bold">{product.display_price}</h2>
           </div>
-          <div className="inline-flex gap-2">
+          <div className="lg:inline-flex gap-2">
             <div className="inline-flex gap-1">
               <Star size={20} />
               <Star size={20} />
@@ -130,7 +130,7 @@ const Page = ({ product }: Props) => {
               </div>
             </div>
           )}
-          <div className="inline-flex w-1/2 justify-between gap-2">
+          <div className="xl:inline-flex 2xl:w-1/2 justify-start 2xl:justify-between gap-4">
             <div className="flex flex-row gap-2 items-center">
               <input
                 className="mr-1 checked:bg-gray-500 text-gray-500"
