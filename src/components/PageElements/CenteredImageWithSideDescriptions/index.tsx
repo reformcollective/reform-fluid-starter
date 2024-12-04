@@ -30,7 +30,8 @@ const descriptions = [
 const CenteredImageWithSideDescriptions = () => {
   return (
     <div className="bg-white">
-      <div className="max-w-[1440px] mx-auto px-4 md:px-8 lg:px-8">
+      <div className="container">
+        {/* Content Wrapper */}
         <div className="flex flex-col md:flex-row gap-8 lg:gap-12">
           {/* Left Items */}
           <div className="order-2 md:order-1 md:w-1/4 grid grid-cols-2 md:grid-cols-1 gap-8">
@@ -75,10 +76,12 @@ const CenteredImageWithSideDescriptions = () => {
         {/* Buttons */}
         <div className="flex justify-center mt-12 md:mt-20 pb-16 md:pb-28">
           <div className="flex gap-4">
-            <Button variant="transparent-dark">Button 1</Button>
+            <Button variant="transparent-dark" className="font-semibold">
+              Button 1
+            </Button>
             <Button
               variant="secondary"
-              className="inline-flex items-center gap-2"
+              className="inline-flex items-center gap-2 font-semibold"
             >
               Button 2 <FontAwesomeIcon icon={faChevronRight} />
             </Button>

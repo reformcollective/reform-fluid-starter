@@ -4,30 +4,38 @@ import Button from "@/components/Button";
 
 const BigImageTextOver = () => {
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative overflow-hidden bg-gray-800">
+      {/* Background Image */}
       <img
         src="https://placehold.co/1920x980/2F4F4F/black@3x.png"
         alt="Big Image"
         className="w-full min-h-[600px] md:min-h-[800px] object-cover"
       />
+
+      {/* Overlay Content */}
       <div className="absolute inset-0">
-        <div className="max-w-[1440px] mx-auto h-full px-4 md:px-8 lg:px-8">
-          <div className="flex flex-col justify-center h-full pt-20 md:pt-0">
-            <div className="max-w-[590px]">
-              <h1 className="text-white font-semibold text-4xl md:text-5xl lg:text-[56px] leading-tight mb-4">
+        <div className="container h-full px-4 md:px-6 lg:px-8">
+          <div className="flex flex-col justify-center h-full">
+            <div className="max-w-[600px]">
+              {/* Hero Headline */}
+              <h1 className="text-white font-bold text-4xl md:text-5xl lg:text-[56px] leading-tight mb-5">
                 Medium length hero headline goes here
               </h1>
-              <p className="text-white text-base md:text-lg mb-8 max-w-[480px]">
+
+              {/* Hero Description */}
+              <p className="text-white text-base md:text-lg mb-6 leading-relaxed max-w-[500px]">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse varius enim in eros elementum tristique.
+                Suspendisse varius enim in eros elementum tristique. Duis
+                cursus, mi quis viverra ornare, eros dolor interdum nulla, ut
+                commodo diam libero vitae erat.
               </p>
+
+              {/* Buttons */}
               <div className="flex gap-4">
-                <Button className="min-w-[100px] md:min-w-[120px]">
-                  Button
-                </Button>
+                <Button className="min-w-[120px] px-5 py-3">Button</Button>
                 <Button
                   variant="transparent"
-                  className="min-w-[100px] md:min-w-[120px]"
+                  className="min-w-[120px] px-5 py-3"
                 >
                   Button
                 </Button>

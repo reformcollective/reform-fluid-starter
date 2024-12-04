@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Testimonials = () => {
   return (
-    <div className="max-w-[1440px] mx-auto px-4 md:px-8 lg:px-8 py-20">
+    <div className="container py-20">
       {/* Header */}
       <div className="text-center">
         <h1 className="text-[40px] md:text-[48px] font-bold mb-4">

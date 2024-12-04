@@ -35,7 +35,7 @@ const Navbar = ({ company, params }: NavbarProps) => {
 
   return (
     <div className="border-b border-black">
-      <div className="max-w-[1440px] mx-auto h-[72px] px-4 md:px-8 lg:px-[32px]">
+      <div className="container h-[72px]">
         {/* Mobile Layout */}
         <div className="md:hidden flex items-center justify-between h-full">
           {/* Logo */}

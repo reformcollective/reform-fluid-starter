@@ -40,7 +40,7 @@ const Footer = ({ company, params }: FooterProps) => {
   ];
 
   return (
-    <footer className="max-w-[1440px] mx-auto px-4 md:px-8 lg:px-[32px] py-16 md:py-28">
+    <footer className="container py-16 md:py-28">
       {/* Logo */}
       <div className="text-center mb-12">
         <Link href={`/${affiliateSlug || "home"}/`}>
