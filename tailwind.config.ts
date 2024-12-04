@@ -16,13 +16,6 @@ const config: Config = {
       screens: {
         "2xl": "1440px", // Custom breakpoint for large screens
       },
-      spacing: {
-        4: "1rem",
-        8: "2rem",
-        12: "3rem",
-        16: "4rem",
-        28: "7rem",
-      },
       colors: {
         baseGray: "#EEEEEE", 
         lightGray: "#E5E5E5", 

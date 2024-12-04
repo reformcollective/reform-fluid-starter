@@ -16,14 +16,14 @@ const BigImageTextOver = () => {
       <div className="absolute inset-0">
         <div className="container h-full px-4 md:px-6 lg:px-8">
           <div className="flex flex-col justify-center h-full">
-            <div className="max-w-[600px]">
+            <div className="max-w-2xl">
               {/* Hero Headline */}
-              <h1 className="text-white font-bold text-4xl md:text-5xl lg:text-[56px] leading-tight mb-5">
+              <h1 className="text-white font-bold text-4xl md:text-5xl lg:text-6xl leading-tight mb-5">
                 Medium length hero headline goes here
               </h1>
 
               {/* Hero Description */}
-              <p className="text-white text-base md:text-lg mb-6 leading-relaxed max-w-[500px]">
+              <p className="text-white text-base md:text-lg mb-6 leading-relaxed max-w-xl">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Suspendisse varius enim in eros elementum tristique. Duis
                 cursus, mi quis viverra ornare, eros dolor interdum nulla, ut

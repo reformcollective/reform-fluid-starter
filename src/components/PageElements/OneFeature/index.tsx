@@ -2,9 +2,24 @@
 import Cube from "@/svgs/Cube";
 import cx from "classnames";
 
-const OneFeature = ({ reversed }: { reversed?: boolean }) => {
+type Benefit = {
+  id: string;
+  text: string;
+};
+
+type OneFeatureProps = {
+  reversed?: boolean;
+};
+
+const benefits: Benefit[] = [
+  { id: "one", text: "Benefit one of this feature" },
+  { id: "two", text: "Benefit two of this feature" },
+  { id: "three", text: "Benefit three of this feature" },
+];
+
+const OneFeature = ({ reversed = false }: OneFeatureProps) => {
   return (
-    <div className="bg-white">
+    <section className="bg-white">
       <div className="container py-16 md:py-28">
         <div
           className={cx(
@@ -15,9 +30,10 @@ const OneFeature = ({ reversed }: { reversed?: boolean }) => {
           {/* Feature Image */}
           <div className="w-full md:w-1/2">
             <img
-              src="https://placehold.co/600x600/2F4F4F/black@3x.png"
+              src="https://placehold.co/600x600/DDDDDD/999999@3x.png"
               alt="Feature illustration"
               className="w-full aspect-square"
+              loading="lazy"
             />
           </div>
 
@@ -37,20 +53,18 @@ const OneFeature = ({ reversed }: { reversed?: boolean }) => {
               mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam
               libero vitae erat.
             </p>
-            <div className="space-y-4">
-              {["one", "two", "three"].map((item, index) => (
-                <div key={index} className="flex items-center gap-4">
+            <ul className="space-y-4">
+              {benefits.map((benefit) => (
+                <li key={benefit.id} className="flex items-center gap-4">
                   <Cube size={24} />
-                  <p className="text-grayText">
-                    Benefit {item} of this feature
-                  </p>
-                </div>
+                  <p className="text-grayText">{benefit.text}</p>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

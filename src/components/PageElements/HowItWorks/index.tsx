@@ -43,7 +43,7 @@ const HowItWorks = () => {
               </h3>
 
               {/* Description */}
-              <p className="text-base text-gray-700 mx-auto max-w-[300px] md:max-w-[360px]">
+              <p className="text-base text-gray-700 mx-auto max-w-xs md:max-w-sm">
                 {step.description}
               </p>
             </div>

@@ -18,43 +18,68 @@ type NavbarProps = {
   params: Record<string, any>;
 };
 
+type MenuItem = {
+  href: string;
+  label: string;
+  icon: any | null;
+};
+
 const Navbar = ({ company, params }: NavbarProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const affiliateSlug = params.affiliateSlug;
+  const affiliateSlug = params.affiliateSlug || "home";
 
-  const menuItems = [
-    { href: `/${affiliateSlug || "home"}/`, label: "Home", icon: null },
-    { href: `/${affiliateSlug || "home"}/shop/`, label: "Shop", icon: null },
-    {
-      href: `/${affiliateSlug || "home"}/shop/`,
-      label: "Search",
-      icon: faMagnifyingGlass,
-    },
-    { href: `/${affiliateSlug || "home"}/`, label: "Account", icon: faUser },
+  const getUrl = (path: string) => `/${affiliateSlug}${path}`;
+
+  const menuItems: MenuItem[] = [
+    { href: getUrl("/"), label: "Home", icon: null },
+    { href: getUrl("/shop/"), label: "Shop", icon: null },
+    { href: getUrl("/shop/"), label: "Search", icon: faMagnifyingGlass },
+    { href: getUrl("/"), label: "Account", icon: faUser },
   ];
 
+  const desktopLinks = menuItems.slice(0, 2);
+  const desktopIcons = [
+    { href: getUrl("/shop/"), icon: faMagnifyingGlass },
+    { href: getUrl("/"), icon: faUser },
+    { href: getUrl("/cart/"), icon: faBagShopping },
+  ];
+
+  const Logo = () => (
+    <Link href={getUrl("/")}>
+      <img
+        src={company.logo_url || "/placeholder-logo.png"}
+        alt={`${company.name}'s logo`}
+        className="h-8 md:h-[43px] object-contain"
+      />
+    </Link>
+  );
+
+  const languagePickerProps = {
+    languageOptions: company.languages.map((l) => ({
+      label: l.name,
+      value: l.iso,
+    })),
+    defaultCountry: company.default_country.iso,
+    countryOptions: company.countries.map((c) => ({
+      label: c.name,
+      value: c.iso,
+    })),
+  };
+
   return (
-    <div className="border-b border-black">
+    <nav className="border-b border-black">
       <div className="container h-[72px]">
         {/* Mobile Layout */}
         <div className="md:hidden flex items-center justify-between h-full">
-          {/* Logo */}
-          <Link href={`/${affiliateSlug || "home"}/`}>
-            <img
-              src={company.logo_url || "/placeholder-logo.png"}
-              alt={`${company.name}'s logo`}
-              className="h-[32px] object-contain"
-            />
-          </Link>
-
-          {/* Mobile Right Actions */}
+          <Logo />
           <div className="flex items-center gap-4">
-            <Link href={`/${affiliateSlug || "home"}/cart/`} className="p-2">
+            <Link href={getUrl("/cart/")} className="p-2">
               <FontAwesomeIcon icon={faBagShopping} className="text-xl" />
             </Link>
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="p-2"
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             >
               <FontAwesomeIcon
                 icon={isMobileMenuOpen ? faXmark : faBars}
@@ -67,58 +92,31 @@ const Navbar = ({ company, params }: NavbarProps) => {
         {/* Desktop Layout */}
         <div className="hidden md:grid grid-cols-[1fr_auto_1fr] items-center h-full">
           {/* Left Links */}
-          <div className="flex gap-[32px]">
-            <Link
-              href={`/${affiliateSlug || "home"}/`}
-              className="text-[16px] leading-[24px] text-black"
-            >
-              Home
-            </Link>
-            <Link
-              href={`/${affiliateSlug || "home"}/shop/`}
-              className="text-[16px] leading-[24px] text-black"
-            >
-              Shop
-            </Link>
+          <div className="flex gap-8">
+            {desktopLinks.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="text-base leading-6 text-black"
+              >
+                {item.label}
+              </Link>
+            ))}
           </div>
 
-          {/* Logo */}
-          <Link
-            href={`/${affiliateSlug || "home"}/`}
-            className="flex justify-center"
-          >
-            <img
-              src={company.logo_url || "/placeholder-logo.png"}
-              alt={`${company.name}'s logo`}
-              className="h-[43px] object-contain"
-            />
-          </Link>
+          <Logo />
 
           {/* Right Section */}
           <div className="flex items-center justify-end">
             <div className="mr-8">
-              <CountryLanguagePicker
-                languageOptions={company.languages.map((l) => ({
-                  label: l.name,
-                  value: l.iso,
-                }))}
-                defaultCountry={company.default_country.iso}
-                countryOptions={company.countries.map((c) => ({
-                  label: c.name,
-                  value: c.iso,
-                }))}
-              />
+              <CountryLanguagePicker {...languagePickerProps} />
             </div>
             <div className="flex items-center gap-8">
-              <Link href={`/${affiliateSlug || "home"}/shop/`}>
-                <FontAwesomeIcon icon={faMagnifyingGlass} className="text-xl" />
-              </Link>
-              <Link href={`/${affiliateSlug || "home"}/`}>
-                <FontAwesomeIcon icon={faUser} className="text-xl" />
-              </Link>
-              <Link href={`/${affiliateSlug || "home"}/cart/`}>
-                <FontAwesomeIcon icon={faBagShopping} className="text-xl" />
-              </Link>
+              {desktopIcons.map((item, index) => (
+                <Link key={index} href={item.href}>
+                  <FontAwesomeIcon icon={item.icon} className="text-xl" />
+                </Link>
+              ))}
             </div>
           </div>
         </div>
@@ -142,7 +140,7 @@ const Navbar = ({ company, params }: NavbarProps) => {
                       className="text-xl w-6 mr-3"
                     />
                   )}
-                  <span className="text-[16px] leading-[24px] text-black">
+                  <span className="text-base leading-6 text-black">
                     {item.label}
                   </span>
                 </Link>
@@ -150,23 +148,13 @@ const Navbar = ({ company, params }: NavbarProps) => {
 
               {/* Country & Language */}
               <div className="py-4 mt-2 border-t border-gray-200 pl-2">
-                <CountryLanguagePicker
-                  languageOptions={company.languages.map((l) => ({
-                    label: l.name,
-                    value: l.iso,
-                  }))}
-                  defaultCountry={company.default_country.iso}
-                  countryOptions={company.countries.map((c) => ({
-                    label: c.name,
-                    value: c.iso,
-                  }))}
-                />
+                <CountryLanguagePicker {...languagePickerProps} />
               </div>
             </div>
           </div>
         </div>
       )}
-    </div>
+    </nav>
   );
 };
 

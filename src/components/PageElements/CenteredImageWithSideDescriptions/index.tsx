@@ -37,11 +37,13 @@ const CenteredImageWithSideDescriptions = () => {
           <div className="order-2 md:order-1 md:w-1/4 grid grid-cols-2 md:grid-cols-1 gap-8">
             {descriptions.slice(0, 2).map((item, index) => (
               <div key={index} className="text-center">
-                <div className="flex justify-center mb-4">
+                <div className="flex justify-center mb-6">
                   <Cube size={48} />
                 </div>
-                <h2 className="font-bold text-lg mb-3">{item.title}</h2>
-                <p className="max-w-xs mx-auto text-gray-600">
+                <h2 className="font-bold text-2xl mb-4 max-w-[200px] mx-auto">
+                  {item.title}
+                </h2>
+                <p className="text-gray-800 mx-auto max-w-[280px] text-base leading-7">
                   {item.description}
                 </p>
               </div>
@@ -51,7 +53,7 @@ const CenteredImageWithSideDescriptions = () => {
           {/* Center Image */}
           <div className="order-1 md:order-2 md:w-1/2">
             <img
-              src="https://placehold.co/600x600/2F4F4F/black@3x.png"
+              src="https://placehold.co/600x600/DDDDDD/999999@3x.png"
               alt="Centered Image"
               className="w-full aspect-square"
             />
@@ -61,11 +63,13 @@ const CenteredImageWithSideDescriptions = () => {
           <div className="order-3 md:w-1/4 grid grid-cols-2 md:grid-cols-1 gap-8">
             {descriptions.slice(2, 4).map((item, index) => (
               <div key={index} className="text-center">
-                <div className="flex justify-center mb-4">
+                <div className="flex justify-center mb-6">
                   <Cube size={48} />
                 </div>
-                <h2 className="font-bold text-lg mb-3">{item.title}</h2>
-                <p className="max-w-xs mx-auto text-gray-600">
+                <h2 className="font-bold text-2xl mb-4 max-w-[200px] mx-auto">
+                  {item.title}
+                </h2>
+                <p className="text-gray-800 mx-auto max-w-[280px] text-base leading-7">
                   {item.description}
                 </p>
               </div>
@@ -76,14 +80,15 @@ const CenteredImageWithSideDescriptions = () => {
         {/* Buttons */}
         <div className="flex justify-center mt-12 md:mt-20 pb-16 md:pb-28">
           <div className="flex gap-4">
-            <Button variant="transparent-dark" className="font-semibold">
-              Button 1
+            <Button variant="transparent-dark" className="px-12 py-3 text-base">
+              Button
             </Button>
             <Button
               variant="secondary"
-              className="inline-flex items-center gap-2 font-semibold"
+              className="inline-flex items-center gap-1.5 px-12 py-3 text-base"
             >
-              Button 2 <FontAwesomeIcon icon={faChevronRight} />
+              Button{" "}
+              <FontAwesomeIcon icon={faChevronRight} className="w-3.5 h-3.5" />
             </Button>
           </div>
         </div>

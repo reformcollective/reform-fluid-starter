@@ -6,7 +6,7 @@ const CallToAction = () => {
   return (
     <div className="relative">
       {/* Light line at the top */}
-      <div className="absolute top-0 left-0 w-full h-[1px] bg-gray-300"></div>
+      <div className="absolute top-0 left-0 w-full border-t border-gray-300"></div>
 
       {/* Main Call-to-Action Section */}
       <div className="flex flex-col items-center text-center bg-baseGray py-16 md:py-24 lg:py-28 px-4 md:px-container-md lg:px-container-lg">
@@ -31,7 +31,7 @@ const CallToAction = () => {
       </div>
 
       {/* Dark line at the bottom */}
-      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-black"></div>
+      <div className="absolute bottom-0 left-0 w-full border-t border-black"></div>
     </div>
   );
 };
