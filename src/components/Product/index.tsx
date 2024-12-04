@@ -18,8 +18,8 @@ const Product = ({ product }: { product: Product }) => {
               src={
                 product?.images[0]?.image_url ||
                 product?.image_url ||
-                product?.variants[0]?.images?.[0]?.image_url ||
-                product?.variants[0]?.image_urL ||
+                product?.variants?.[0]?.images?.[0]?.image_url ||
+                product?.variants?.[0]?.image_urL ||
                 "https://placehold.co/304x364/2F4F4F/black@3x.png"
               }
               className="object-contain h-[233px]"
@@ -34,7 +34,7 @@ const Product = ({ product }: { product: Product }) => {
             <div
               className="text-sm line-clamp-[8] overflow-ellipsis"
               dangerouslySetInnerHTML={{ __html: product.description }}
-            />
+            ></div>
           </div>
         </Link>
       </div>
