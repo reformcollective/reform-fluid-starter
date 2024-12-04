@@ -4,7 +4,13 @@ import Input from "@/components/Input";
 import Star from "@/svgs/Star";
 import { Product } from "@/types/product";
 import cx from "classnames";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+declare global {
+  interface Window {
+    reAddFluidCheckoutListeners?: () => void;
+  }
+}
 type Props = {
   product: Product;
 };
@@ -12,13 +18,19 @@ type Props = {
 const Page = ({ product }: Props) => {
   const [imageHoverIndex, setImageHoverIndex] = useState<number>();
   const [imageSelectedIndex, setImageSelectedIndex] = useState(0);
-  const [selectedVariant, setSelectedVariant] = useState<number>(
+  const [selectedVariant, setSelectedVariant] = useState<number | undefined>(
     product.variants?.[0].id
   );
   const [quantity, setQuantity] = useState(1);
   const [subscribe, setSubscribe] = useState<"subscription" | "regular">(
     "regular"
   );
+
+  useEffect(() => {
+    if (window.reAddFluidCheckoutListeners) {
+      window.reAddFluidCheckoutListeners();
+    }
+  }, []);
 
   return (
     <div className="pt-28 px-20">
@@ -90,8 +102,10 @@ const Page = ({ product }: Props) => {
             </div>
             <div>(4.5 stars) • 10 reviews</div>
           </div>
-          <div dangerouslySetInnerHTML={{ __html: product.description }} />
-          {!!product.variants.length && (
+          {product.description && (
+            <div dangerouslySetInnerHTML={{ __html: product.description }} />
+          )}
+          {!!product.variants?.length && (
             <div className="flex flex-col gap-2">
               <div>Variant</div>
               <div className="flex flex-row gap-2 overflow-x-auto overflow-y-hidden">
@@ -166,6 +180,7 @@ const Page = ({ product }: Props) => {
           </div>
           <div className="flex flex-col gap-4 pb-6 ">
             <Button
+              onClick={() => console.log("I am clicked", selectedVariant)}
               data-fluid-checkout-type="variant"
               data-fluid-checkout-group-id={selectedVariant}
               data-variant={selectedVariant}
