@@ -26,7 +26,7 @@ const productSchema = z.object({
   keep_selling: z.boolean().nullable(),
   image_url: z.string(),
   images: z.array(imageSchema),
-  variants: z.array(variantSchema),
+  variants: z.array(variantSchema).nullable(),
 });
 
 export type Product = z.infer<typeof productSchema>;

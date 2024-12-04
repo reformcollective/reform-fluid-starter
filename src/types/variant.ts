@@ -8,10 +8,10 @@ const variantSchema = z.object({
   is_master: z.boolean().nullable(),
   image_urL: z.string().nullable().optional(),
   buyable: z.boolean().nullable(),
-  allow_subscription: z.boolean(),
+  allow_subscription: z.boolean().nullable(),
   subscription_only: z.boolean().nullable(),
   shipping_included_in_price: z.boolean().nullable(),
-  variant_countries: z.record(variantCountrySchema),
+  variant_countries: z.record(variantCountrySchema).nullable(),
   images: z.array(imageSchema).nullable(),
 });
 

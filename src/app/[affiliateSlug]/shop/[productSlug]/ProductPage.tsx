@@ -4,7 +4,13 @@ import Input from "@/components/Input";
 import Star from "@/svgs/Star";
 import { Product } from "@/types/product";
 import cx from "classnames";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+declare global {
+  interface Window {
+    addFluidCheckoutListeners?: () => void;
+  }
+}
 type Props = {
   product: Product;
 };
@@ -12,7 +18,7 @@ type Props = {
 const Page = ({ product }: Props) => {
   const [imageHoverIndex, setImageHoverIndex] = useState<number>();
   const [imageSelectedIndex, setImageSelectedIndex] = useState(0);
-  const [selectedVariant, setSelectedVariant] = useState<number>(
+  const [selectedVariant, setSelectedVariant] = useState<number | undefined>(
     product.variants?.[0].id
   );
   const [quantity, setQuantity] = useState(1);
@@ -20,14 +26,20 @@ const Page = ({ product }: Props) => {
     "regular"
   );
 
+  useEffect(() => {
+    if (window.addFluidCheckoutListeners) {
+      window.addFluidCheckoutListeners();
+    }
+  }, []);
+
   return (
-    <div className="pt-28 px-20">
+    <div className="container mx-auto px-10 py-16 md:pt-28 lg:px-20">
       <div className="pb-8">
         Shop &gt; <span className="font-semibold">{product.title}</span>
       </div>
-      <div className="flex flex-row w-full gap-24">
+      <div className="flex flex-col md:flex-row w-full gap-24">
         {!!(product.images.length || product.image_url) && (
-          <div className="w-1/2 flex flex-row-reverse">
+          <div className="w-full md:w-1/2 flex flex-row-reverse">
             <div className="h-full max-h-2/3 w-full relative">
               {(product.images[imageHoverIndex ?? imageSelectedIndex]
                 ?.image_url ||
@@ -74,13 +86,13 @@ const Page = ({ product }: Props) => {
         )}
         <div
           data-fluid-checkout-group={selectedVariant}
-          className="w-1/2 flex flex-col gap-6"
+          className="md:w-1/2 flex flex-col gap-6"
         >
           <div className="flex flex-col gap-2">
-            <h1 className="font-bold text-4xl">{product.title}</h1>
+            <h1 className="font-bold text-3xl md:text-4xl">{product.title}</h1>
             <h2 className="text-2xl font-bold">{product.display_price}</h2>
           </div>
-          <div className="inline-flex gap-2">
+          <div className="lg:inline-flex gap-2">
             <div className="inline-flex gap-1">
               <Star size={20} />
               <Star size={20} />
@@ -90,8 +102,10 @@ const Page = ({ product }: Props) => {
             </div>
             <div>(4.5 stars) • 10 reviews</div>
           </div>
-          <div dangerouslySetInnerHTML={{ __html: product.description }} />
-          {!!product.variants.length && (
+          {product.description && (
+            <div dangerouslySetInnerHTML={{ __html: product.description }} />
+          )}
+          {!!product.variants?.length && (
             <div className="flex flex-col gap-2">
               <div>Variant</div>
               <div className="flex flex-row gap-2 overflow-x-auto overflow-y-hidden">
@@ -116,7 +130,7 @@ const Page = ({ product }: Props) => {
               </div>
             </div>
           )}
-          <div className="inline-flex w-1/2 justify-between gap-2">
+          <div className="xl:inline-flex 2xl:w-1/2 justify-start 2xl:justify-between gap-4">
             <div className="flex flex-row gap-2 items-center">
               <input
                 className="mr-1 checked:bg-gray-500 text-gray-500"
@@ -166,6 +180,7 @@ const Page = ({ product }: Props) => {
           </div>
           <div className="flex flex-col gap-4 pb-6 ">
             <Button
+              onClick={() => console.log("I am clicked", selectedVariant)}
               data-fluid-checkout-type="variant"
               data-fluid-checkout-group-id={selectedVariant}
               data-variant={selectedVariant}

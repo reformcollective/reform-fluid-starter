@@ -7,9 +7,9 @@ const variantCountrySchema = z.object({
   shipping: z.string(),
   shipping_time: z.string().nullable(),
   currency_code: z.string(),
-  subscription_price: z.string(),
-  wholesale: z.string(),
-  wholesale_subscription_price: z.string(),
+  subscription_price: z.string().nullable(),
+  wholesale: z.string().nullable(),
+  wholesale_subscription_price: z.string().nullable(),
   cost_of_goods_sold: z.string(),
   compare_price: z.string().nullable(),
 });
