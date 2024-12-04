@@ -55,7 +55,7 @@ export default async function RootLayout({ children, params }: PageProps) {
       <body className={`${inter.className} h-screen`}>
         <Navbar params={params} company={company} />
         {children}
-        <Footer />
+        <Footer params={params} company={company} />
       </body>
     </html>
   );
