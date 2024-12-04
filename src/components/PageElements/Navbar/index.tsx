@@ -49,7 +49,7 @@ const Navbar = ({ company, params }: NavbarProps) => {
       <img
         src={company.logo_url || "/placeholder-logo.png"}
         alt={`${company.name}'s logo`}
-        className="h-8 md:h-[43px] object-contain"
+        className="h-8 md:h-11 object-contain"
       />
     </Link>
   );
@@ -68,7 +68,7 @@ const Navbar = ({ company, params }: NavbarProps) => {
 
   return (
     <nav className="border-b border-black">
-      <div className="container h-[72px]">
+      <div className="container h-18">
         {/* Mobile Layout */}
         <div className="md:hidden flex items-center justify-between h-full">
           <Logo />
@@ -97,7 +97,7 @@ const Navbar = ({ company, params }: NavbarProps) => {
               <Link
                 key={item.label}
                 href={item.href}
-                className="text-base leading-6 text-black"
+                className="text-base text-black"
               >
                 {item.label}
               </Link>
@@ -140,9 +140,7 @@ const Navbar = ({ company, params }: NavbarProps) => {
                       className="text-xl w-6 mr-3"
                     />
                   )}
-                  <span className="text-base leading-6 text-black">
-                    {item.label}
-                  </span>
+                  <span className="text-base text-black">{item.label}</span>
                 </Link>
               ))}
 

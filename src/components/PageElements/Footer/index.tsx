@@ -47,7 +47,7 @@ const Footer = ({ company, params }: FooterProps) => {
           <img
             src={company.logo_url || "/placeholder-logo.png"}
             alt={`${company.name}'s logo`}
-            className="h-[32px] md:h-[43px] object-contain inline-block"
+            className="h-8 md:h-11 object-contain inline-block"
           />
         </Link>
       </div>
@@ -59,7 +59,7 @@ const Footer = ({ company, params }: FooterProps) => {
             <li key={index}>
               <Link
                 href={link.href}
-                className="text-[16px] leading-[24px] hover:underline font-bold"
+                className="text-base hover:underline font-bold"
               >
                 {link.label}
               </Link>

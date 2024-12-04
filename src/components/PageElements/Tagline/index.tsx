@@ -9,7 +9,7 @@ const Tagline = () => {
           <h1 className="font-bold text-2xl md:text-4xl lg:text-5xl max-w-3xl mx-auto text-darkText mb-4 md:mb-6">
             Medium length section heading goes here
           </h1>
-          <p className="text-base md:text-lg max-w-2xl mx-auto text-grayText leading-relaxed">
+          <p className="text-base md:text-lg max-w-2xl mx-auto text-grayText">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             varius enim in eros elementum tristique. Duis cursus, mi quis
             viverra ornare, eros dolor interdum nulla, ut commodo diam libero

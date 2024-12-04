@@ -38,7 +38,7 @@ const CountryLanguagePicker = ({
               className="w-full h-full object-cover scale-[1.4]"
             />
           </div>
-          <span className="text-[16px] leading-[24px]">
+          <span className="text-base">
             {country} | {lang.toUpperCase()}
           </span>
           <FontAwesomeIcon icon={faChevronDown} className="text-xs ml-2" />
@@ -46,7 +46,7 @@ const CountryLanguagePicker = ({
       </Popover.Trigger>
       <Popover.Portal>
         <Popover.Content className="z-50" align="end">
-          <div className="p-6 flex flex-col bg-white shadow mt-4 min-w-[280px]">
+          <div className="p-6 flex flex-col bg-white shadow mt-4 min-w-72">
             <div className="mb-6">
               <div className="mb-2 text-xl">Select Your Country</div>
               <Select

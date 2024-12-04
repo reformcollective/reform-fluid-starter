@@ -106,7 +106,7 @@ const Testimonials = () => {
     <section className="container py-20">
       {/* Header */}
       <div className="text-center">
-        <h2 className="text-[40px] md:text-[48px] font-bold mb-4">
+        <h2 className="text-4xl md:text-5xl font-bold mb-4">
           Customer testimonials
           <br />
           [more social proof]

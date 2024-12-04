@@ -36,7 +36,7 @@ const Logos = () => {
               <img
                 src={logo.src}
                 alt={logo.alt}
-                className="h-8 md:h-10 lg:h-12 w-32 md:w-40 lg:w-48 object-contain"
+                className="h-8 md:h-10 lg:h-12 w-32 md:w-40 lg:w-[192px] object-contain"
               />
             </div>
           ))}

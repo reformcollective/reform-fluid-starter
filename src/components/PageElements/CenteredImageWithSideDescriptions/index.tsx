@@ -40,10 +40,10 @@ const CenteredImageWithSideDescriptions = () => {
                 <div className="flex justify-center mb-6">
                   <Cube size={48} />
                 </div>
-                <h2 className="font-bold text-2xl mb-4 max-w-[200px] mx-auto">
+                <h2 className="font-bold text-2xl mb-4 max-w-52 mx-auto">
                   {item.title}
                 </h2>
-                <p className="text-gray-800 mx-auto max-w-[280px] text-base leading-7">
+                <p className="text-gray-800 mx-auto max-w-72 text-base">
                   {item.description}
                 </p>
               </div>
@@ -66,10 +66,10 @@ const CenteredImageWithSideDescriptions = () => {
                 <div className="flex justify-center mb-6">
                   <Cube size={48} />
                 </div>
-                <h2 className="font-bold text-2xl mb-4 max-w-[200px] mx-auto">
+                <h2 className="font-bold text-2xl mb-4 max-w-52 mx-auto">
                   {item.title}
                 </h2>
-                <p className="text-gray-800 mx-auto max-w-[280px] text-base leading-7">
+                <p className="text-gray-800 mx-auto max-w-72 text-base">
                   {item.description}
                 </p>
               </div>
