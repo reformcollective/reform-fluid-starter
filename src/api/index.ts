@@ -3,6 +3,7 @@ import getCollection from "./getCollection";
 import getCollections from "./getCollections";
 import getProduct from "./getProduct";
 import getProducts from "./getProducts";
+import getCart from "./getCart";
 
 const safeZodParse = (
   data: unknown,
@@ -21,4 +22,11 @@ const safeZodParse = (
   }
 };
 
-export { getCollection, getCollections, getProduct, getProducts, safeZodParse };
+export {
+  getCollection,
+  getCollections,
+  getProduct,
+  getProducts,
+  safeZodParse,
+  getCart,
+};
