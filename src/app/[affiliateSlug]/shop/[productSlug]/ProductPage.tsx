@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 
 declare global {
   interface Window {
-    reAddFluidCheckoutListeners?: () => void;
+    addFluidCheckoutListeners?: () => void;
   }
 }
 type Props = {
@@ -27,8 +27,8 @@ const Page = ({ product }: Props) => {
   );
 
   useEffect(() => {
-    if (window.reAddFluidCheckoutListeners) {
-      window.reAddFluidCheckoutListeners();
+    if (window.addFluidCheckoutListeners) {
+      window.addFluidCheckoutListeners();
     }
   }, []);
 

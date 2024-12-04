@@ -3,7 +3,7 @@ const envConfigVariables: Record<
   Record<string, string>
 > = {
   development: {
-    widgetHost: "http://localhost:3001/static/js/chat-widget-development.js",
+    widgetHost: "https://chat.fluid.app/static/js/chat-widget.js",
     apiHost: "http://fluid.lvh.me:3000/",
   },
   production: {
