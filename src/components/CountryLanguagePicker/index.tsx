@@ -38,7 +38,7 @@ const CountryLanguagePicker = ({
   return (
     <Popover.Root>
       <Popover.Trigger asChild>
-        <button className="inline-flex gap-2 mr-4 max-h-24 overflow-hidden">
+        <button className="inline-flex gap-1 sm:gap-2 sm:mr-4 max-h-24 overflow-hidden text-xs sm:text-base">
           <Flag code={country} size={24} />
           <div className="ml-2">
             {country} | {lang.toUpperCase()}
@@ -48,7 +48,7 @@ const CountryLanguagePicker = ({
       </Popover.Trigger>
       <Popover.Portal>
         <Popover.Content>
-          <div className="p-4 flex flex-col bg-white shadow mt-4 gap-y-6">
+          <div className="p-4 flex flex-col bg-white shadow mt-4 gap-y-3 sm:gap-y-6 text-xs sm:text-base">
             <div>
               <div className="mb-1">Select Your Country</div>
               <Select

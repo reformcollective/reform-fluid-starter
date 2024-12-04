@@ -11,7 +11,7 @@ const Shop = async () => {
     language: cookiesList.get("language")?.value,
     country: cookiesList.get("country")?.value,
   });
-  // the filtering and sorting are not implemented on purpose, we're just showing the products
+  // the filtering and sorting are not implemented on purpose, we're just showing all of the products
   return (
     <>
       <div className="flex flex-col gap-20 px-20 overflow-x-hidden mb-28">

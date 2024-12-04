@@ -18,7 +18,7 @@ const Testimonials = () => {
           <FontAwesomeIcon icon={faArrowLeft} />
         </div>
         <div className="inline-flex">
-          <div className="w-1/3 pr-4">
+          <div className="w-full md:w-1/3 md:pr-4">
             <div className="flex flex-col gap-8 border border-black p-8">
               <div className="inline-flex gap-1">
                 <Star size={20} />
@@ -44,7 +44,7 @@ const Testimonials = () => {
               </div>
             </div>
           </div>
-          <div className="h-40 w-1/3 pr-4 pl-4">
+          <div className="w-full md:w-1/3 pr-4 pl-4 hidden md:visible">
             <div className="flex flex-col gap-8 border border-black p-8">
               <div className="inline-flex gap-1">
                 <Star size={20} />
@@ -70,7 +70,7 @@ const Testimonials = () => {
               </div>
             </div>
           </div>
-          <div className="h-40 w-1/3 pl-4">
+          <div className="w-full md:w-1/3 pl-4 hidden md:visible">
             <div className="flex flex-col gap-8 border border-black p-8">
               <div className="inline-flex gap-1">
                 <Star size={20} />
