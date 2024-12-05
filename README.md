@@ -29,6 +29,8 @@ You can view the documentation for those projects to understand how to customize
 
 #### How does SEO meta tags work with the admin Product editor
 
+Within fluid, on admin product editor page, you can see Search engines section on right side. Once you select `Allow`, you can edit Search engine listing. After saving the SEO inputs on the modal, the meta tags will be added to your product's HTML page `<header>` with the image, title and description values that you have added.
+
 #### How to add a Product / Variant to cart
 
 You can look at the `shop/ProductPage.tsx` to see how we add properties to the `data-fluid-*` attributes. This is how Fluid knows which products and variants to add to the cart when clicked.
