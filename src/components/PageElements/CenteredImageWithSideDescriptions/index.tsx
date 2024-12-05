@@ -34,7 +34,7 @@ const CenteredImageWithSideDescriptions = () => {
         {/* Content Wrapper */}
         <div className="flex flex-col md:flex-row gap-8 lg:gap-12">
           {/* Left Items */}
-          <div className="order-2 md:order-1 md:w-1/4 grid grid-cols-2 md:grid-cols-1 gap-8">
+          <div className="order-2 md:order-1 md:w-1/4 grid grid-cols-1 gap-8">
             {descriptions.slice(0, 2).map((item, index) => (
               <div key={index} className="text-center">
                 <div className="flex justify-center mb-6">
@@ -60,7 +60,7 @@ const CenteredImageWithSideDescriptions = () => {
           </div>
 
           {/* Right Items */}
-          <div className="order-3 md:w-1/4 grid grid-cols-2 md:grid-cols-1 gap-8">
+          <div className="order-3 md:w-1/4 grid grid-cols-1 gap-8">
             {descriptions.slice(2, 4).map((item, index) => (
               <div key={index} className="text-center">
                 <div className="flex justify-center mb-6">

@@ -1,7 +1,7 @@
 const Tagline = () => {
   return (
     <section className="bg-white">
-      <div className="container py-16 md:py-28">
+      <div className="container py-12 md:py-28">
         <div className="text-center">
           <p className="text-sm font-bold text-gray-800 uppercase tracking-widest mb-3">
             Tagline
