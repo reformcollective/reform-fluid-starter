@@ -4,13 +4,14 @@ import client from "@/api/client";
 import { Carts, cartSchema } from "@/types/cart";
 import { cookies } from "next/headers";
 
-async function updateCart(changedData): Promise<Carts> {
+// TODO: update the API body and function params
+async function updateCart(changedData: Record<string, any>): Promise<Carts> {
   const cookiesList = cookies();
   const cartToken = cookiesList.get("cartToken")?.value;
 
   const { body } = await client(`carts/${cartToken}`, false, {
     method: "PATCH",
-    body: changedData,
+    body: JSON.stringify(changedData),
   });
 
   return safeZodParse(body, cartSchema);

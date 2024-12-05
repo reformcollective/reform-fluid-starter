@@ -15,7 +15,7 @@ const Page = ({ product }: Props) => {
   const [imageHoverIndex, setImageHoverIndex] = useState<number>();
   const [imageSelectedIndex, setImageSelectedIndex] = useState(1);
   const [selectedVariant, setSelectedVariant] = useState<number>(
-    product.variants?.[0].id
+    product.variants?.[0]?.id ?? 0
   );
   const [quantity, setQuantity] = useState(1);
 
@@ -85,11 +85,13 @@ const Page = ({ product }: Props) => {
               </div>
               <div>(4.5 stars) • 10 reviews</div>
             </div>
-            <div dangerouslySetInnerHTML={{ __html: product.description }} />
+            <div
+              dangerouslySetInnerHTML={{ __html: product.description || "" }}
+            />
             <div className="flex flex-col gap-2">
               <div>Variant</div>
               <div>
-                {product.variants.map((variant) => (
+                {(product?.variants ?? []).map((variant) => (
                   <Button
                     onClick={() =>
                       variant.id !== selectedVariant &&

@@ -18,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description: product.description,
     openGraph: {
       title: product.title,
-      description: product.description,
+      description: product.description ?? "",
       url: `${headersList.get("x-url")}`,
       images: [
         {
