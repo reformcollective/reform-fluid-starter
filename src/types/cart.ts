@@ -1,5 +1,9 @@
 import { z } from "zod";
 
+// Currently all validations are set to optional so as to not fail the build
+// since backend is not ready and response format keeps on changing.
+// Once backend is ready, the optional property on schemas should be removed.
+
 const addressSchema = z.object({
   id: z.number().optional(),
   name: z.string().optional(),

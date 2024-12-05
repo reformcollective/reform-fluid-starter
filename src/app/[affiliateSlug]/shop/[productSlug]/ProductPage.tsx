@@ -130,7 +130,7 @@ const Page = ({ product }: Props) => {
               </div>
             </div>
           )}
-          <div className="xl:inline-flex 2xl:w-1/2 justify-start 2xl:justify-between gap-4">
+          <div className="xl:inline-flex justify-start items-center gap-8">
             <div className="flex flex-row gap-2 items-center">
               <input
                 className="mr-1 checked:bg-gray-500 text-gray-500"
