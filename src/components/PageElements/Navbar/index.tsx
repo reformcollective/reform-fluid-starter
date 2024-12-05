@@ -49,7 +49,7 @@ const Navbar = ({ company, params }: NavbarProps) => {
       <img
         src={company.logo_url || "/placeholder-logo.png"}
         alt={`${company.name}'s logo`}
-        className="h-8 md:h-11 object-contain"
+        className="h-8 md:h-[43px] object-contain"
       />
     </Link>
   );
@@ -68,7 +68,7 @@ const Navbar = ({ company, params }: NavbarProps) => {
 
   return (
     <nav className="border-b border-black">
-      <div className="container h-18">
+      <div className="container h-[72px]">
         {/* Mobile Layout */}
         <div className="md:hidden flex items-center justify-between h-full">
           <Logo />
