@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { nullable, z } from "zod";
 
 const addressSchema = z.object({
   id: z.number(),
@@ -25,49 +25,44 @@ const paymentMethodSchema = z.object({
   id: z.string(),
   name: z.string(),
   icons: z.array(z.string()),
-  description: z.string(),
+  description: z.string().nullable(),
 });
 
 const cartItemsSchema = z.object({
-  id: z.number(),
-  cart_id: z.number(),
-  variant_id: z.number(),
+  id: z.number().nullable(),
+  variant_id: z.number().nullable(),
   quantity: z.number(),
-  subscription: z.boolean(),
-  price: z.string(),
-  external: z.boolean(),
-  origin_url: z.string().nullable(),
-  cart_adjustment_id: z.number().nullable(),
-  subscription_start: z.string().nullable(),
-  tax: z.string(),
-  cv: z.number(),
-  qv: z.number(),
+  price: z.string().nullable(),
 });
 
-const cartSchema = z.object({
-  id: z.number(),
-  token: z.string(),
-  attributable_id: z.number().nullable(),
-  attributable_type: z.string().nullable(),
-  ship_to: z
-    .object({
-      address: addressSchema,
-    })
-    .nullable(),
-  bill_to: z
-    .object({
-      address: addressSchema,
-    })
-    .nullable(),
-  discount_code: z.string().nullable(),
-  available_shipping_options: z
-    .array(shippingOptionSchema)
-    .nullable()
-    .optional(),
-  available_payment_methods: z.array(paymentMethodSchema).nullable().optional(),
-  cart_items: z.array(cartItemsSchema).nullable(),
-  payment_method: paymentMethodSchema.nullable(),
-});
+const cartSchema = z
+  .object({
+    id: z.number().nullable(),
+    attributable_id: z.number().nullable(),
+    attributable_type: z.string().nullable(),
+    ship_to: z
+      .object({
+        address: addressSchema,
+      })
+      .nullable(),
+    bill_to: z
+      .object({
+        address: addressSchema,
+      })
+      .nullable(),
+    discount_code: z.string().nullable(),
+    available_shipping_options: z
+      .array(shippingOptionSchema)
+      .nullable()
+      .optional(),
+    available_payment_methods: z
+      .array(paymentMethodSchema)
+      .nullable()
+      .optional(),
+    cart_items: z.array(cartItemsSchema).nullable(),
+    payment_method: paymentMethodSchema.nullable(),
+  })
+  .nullable();
 
 export type Carts = z.infer<typeof cartSchema>;
 export { cartSchema };
