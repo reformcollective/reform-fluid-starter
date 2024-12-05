@@ -58,7 +58,6 @@ const CountryLanguagePicker = ({
                 value={country}
                 onChange={setCountry}
                 options={countryOptions}
-                id="country-picker"
               />
             </div>
             <div>
@@ -68,7 +67,6 @@ const CountryLanguagePicker = ({
                 value={lang}
                 onChange={setLang}
                 options={languageOptions}
-                id="language-picker"
               />
             </div>
           </div>
