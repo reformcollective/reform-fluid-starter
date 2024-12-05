@@ -46,7 +46,7 @@ export async function generateMetadata({
     description: product.description,
     openGraph: {
       title: product.title,
-      description: product.description,
+      description: product.description ?? "",
       url: `${headersList.get("x-url")}`,
       images,
       locale: "en_US",

@@ -1,5 +1,5 @@
 import { getCart } from "@/api";
-import updateCart from "@/api/updateCart";
+// import updateCart from "@/api/updateCart";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import LinkButton from "@/components/LinkButton";
@@ -22,17 +22,17 @@ const Page = async ({ params }: PageProps) => {
     return subtotal.toFixed(2);
   };
 
-  const updateQuantity = async (id: number, quantity: number) => {
-    try {
-      const updateItem = {
-        cart_items: { id, quantity },
-      };
-      const res = await updateCart(updateItem);
-      console.log(res);
-    } catch (error) {
-      console.error("Failed to update cart item", error);
-    }
-  };
+  // const updateQuantity = async (id: number, quantity: number) => {
+  //   try {
+  //     const updateItem = {
+  //       cart_items: { id, quantity },
+  //     };
+  //     const res = await updateCart(updateItem);
+  //     console.log(res);
+  //   } catch (error) {
+  //     console.error("Failed to update cart item", error);
+  //   }
+  // };
 
   return (
     <div className="container mx-auto p-8 md:px-10 md:py-16 lg:px-20 lg:py-28 flex flex-col gap-8 md:gap-y-20">
