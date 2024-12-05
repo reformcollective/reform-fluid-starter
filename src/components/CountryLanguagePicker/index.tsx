@@ -45,8 +45,8 @@ const CountryLanguagePicker = ({
         </button>
       </Popover.Trigger>
       <Popover.Portal>
-        <Popover.Content className="z-50" align="end">
-          <div className="p-6 flex flex-col bg-white shadow mt-4 min-w-72">
+        <Popover.Content align="end">
+          <div className="p-4 flex flex-col bg-white shadow mt-4 w-64">
             <div className="mb-6">
               <div className="mb-1 text-base">Select Your Country</div>
               <Select
