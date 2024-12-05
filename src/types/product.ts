@@ -7,10 +7,10 @@ const productSchema = z.object({
   active: z.boolean(),
   title: z.string(),
   slug: z.string(),
-  description: z.string(),
+  description: z.string().nullable(),
   introduction: z.string().nullable(),
   feature_text: z.string().nullable(),
-  stripped: z.string(),
+  stripped: z.string().nullable(),
   price: z.string(),
   display_price: z.string(),
   shipping: z.string().nullable().optional(),
@@ -26,7 +26,7 @@ const productSchema = z.object({
   keep_selling: z.boolean().nullable(),
   image_url: z.string(),
   images: z.array(imageSchema),
-  variants: z.array(variantSchema),
+  variants: z.array(variantSchema).nullable(),
 });
 
 export type Product = z.infer<typeof productSchema>;

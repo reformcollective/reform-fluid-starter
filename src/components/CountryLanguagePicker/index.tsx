@@ -5,6 +5,7 @@ import { faChevronDown } from "@awesome.me/kit-ac6c036e20/icons/classic/regular"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as Popover from "@radix-ui/react-popover";
 import { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 
 type Props = {
   languageOptions: { label: string; value: string }[];
@@ -17,8 +18,18 @@ const CountryLanguagePicker = ({
   defaultCountry,
   countryOptions,
 }: Props) => {
-  const [country, setCountry] = useState(defaultCountry || "US");
-  const [lang, setLang] = useState("en");
+  const [cookies, setCookie] = useCookies();
+  const [country, setCountry] = useState(
+    cookies["country"] || defaultCountry || "US"
+  );
+  const [lang, setLang] = useState(cookies["language"] || "en");
+  useEffect(() => {
+    setCookie("country", country, { path: "/" });
+  }, [country]);
+
+  useEffect(() => {
+    setCookie("language", lang, { path: "/" });
+  }, [lang]);
 
   useEffect(() => {
     window.fcs = { ...(window.fcs || {}), language_iso: lang };
@@ -28,12 +39,7 @@ const CountryLanguagePicker = ({
     <Popover.Root>
       <Popover.Trigger asChild>
         <button className="inline-flex gap-1 sm:gap-2 sm:mr-4 max-h-24 overflow-hidden text-xs sm:text-base">
-          <Flag
-            className="max-sm:hidden sm:visible"
-            code={country}
-            width={45.6}
-            height={24}
-          />
+          <Flag code={country} size={24} />
           <div className="ml-2">
             {country} | {lang.toUpperCase()}
           </div>

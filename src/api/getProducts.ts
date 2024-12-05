@@ -7,11 +7,22 @@ const productsSchema = z.array(productSchema);
 
 type Props = {
   collectionId?: string;
+  language?: string;
+  country?: string;
 };
 
-async function getProducts({ collectionId }: Props): Promise<Product[]> {
+async function getProducts({
+  collectionId,
+  language,
+  country,
+}: Props): Promise<Product[]> {
+  const params = new URLSearchParams();
+  if (language) params.set("lang", language);
+  if (country) params.set("country_code", country);
+  if (collectionId) params.set("collection_id", collectionId);
+
   const { body } = await client(
-    `products/${collectionId ? `?collection_id=${collectionId}` : ""}`
+    `products/${params.toString() ? `?${params.toString()}` : ""}`
   );
   return safeZodParse(body.data.products, productsSchema);
 }
