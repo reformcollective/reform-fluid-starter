@@ -48,7 +48,7 @@ const CountryLanguagePicker = ({
         <Popover.Content className="z-50" align="end">
           <div className="p-6 flex flex-col bg-white shadow mt-4 min-w-72">
             <div className="mb-6">
-              <div className="mb-2 text-xl">Select Your Country</div>
+              <div className="mb-1 text-base">Select Your Country</div>
               <Select
                 placeholder="Country"
                 value={country}
@@ -57,7 +57,7 @@ const CountryLanguagePicker = ({
               />
             </div>
             <div>
-              <div className="mb-2 text-xl">Select Your Language</div>
+              <div className="mb-1 text-base">Select Your Language</div>
               <Select
                 placeholder="Language"
                 value={lang}
