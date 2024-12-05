@@ -57,6 +57,14 @@ export default function CartPage({ cartItems, slug }: CartPageProps) {
     (total, item) => total + (item.quantity ?? 0),
     0
   );
+
+  const onCheckoutClick = () => {
+    const cartWidget = document.getElementById("cart-widget");
+    if (cartWidget) {
+      cartWidget.click();
+    }
+  };
+
   return (
     <div className="container mx-auto p-8 md:px-10 md:py-16 lg:px-20 lg:py-28 flex flex-col gap-8 md:gap-y-20">
       <div className="inline-flex justify-between items-center">
@@ -153,7 +161,11 @@ export default function CartPage({ cartItems, slug }: CartPageProps) {
                 Subtotal: ${subtotal} (USD)
               </div>
               <div>Taxes and shipping calculated at checkout</div>
-              <Button className="w-full mt-2" variant="primary">
+              <Button
+                className="w-full mt-2"
+                variant="primary"
+                onClick={onCheckoutClick}
+              >
                 Checkout
               </Button>
             </div>
