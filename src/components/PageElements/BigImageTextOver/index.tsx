@@ -1,32 +1,44 @@
 "use client";
+
 import Button from "@/components/Button";
-import useWindowDimensions from "@/hooks/useWindowDimensions";
 
 const BigImageTextOver = () => {
-  const { width, height } = useWindowDimensions();
-
   return (
-    <div className="relative text-xs sm:text-base overflow-hidden">
+    <div className="relative overflow-hidden">
+      {/* Background Image */}
       <img
-        src={`https://placehold.co/${width || 1920}x${
-          (height || 980) - 72
-        }/2F4F4F/black@3x.png`}
+        src="https://placehold.co/1920x980/2F4F4F/black@3x.png"
         alt="Big Image"
+        className="w-full min-h-[50vh] md:min-h-[75vh] object-cover"
       />
-      <div className="absolute top-1/2 transform -translate-y-1/2 px-16 w-1/2">
-        <h1 className="text-xl sm:text-4xl text-white font-bold mb-4">
-          Medium sized text over image TITLE
-        </h1>
-        <div>
-          <p className="text-white mb-5">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-        </div>
-        <div className="inline-flex gap-2">
-          <Button>Button 1</Button>
-          <Button variant="transparent">Button 2</Button>
-          <Button variant="secondary">Button 3</Button>
+
+      {/* Overlay Content */}
+      <div className="absolute inset-0">
+        <div className="container h-full px-4 md:px-6 lg:px-8">
+          <div className="flex flex-col justify-center h-full">
+            <div className="max-w-2xl mt-16 lg:mt-24">
+              {/* Hero Headline */}
+              <h1 className="text-white font-bold text-4xl md:text-5xl lg:text-6xl mb-4">
+                Medium length hero headline goes here
+              </h1>
+
+              {/* Hero Description */}
+              <p className="text-white text-sm md:text-base lg:text-lg mb-6 max-w-xl">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Suspendisse varius enim in eros elementum tristique. Duis
+                cursus, mi quis viverra ornare, eros dolor interdum nulla, ut
+                commodo diam libero vitae erat.
+              </p>
+
+              {/* Buttons */}
+              <div className="flex gap-4 mb-8">
+                <Button className="min-w-32 px-5 py-3">Button</Button>
+                <Button variant="transparent" className="min-w-32 px-5 py-3">
+                  Button
+                </Button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

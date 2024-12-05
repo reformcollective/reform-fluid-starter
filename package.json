@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@awesome.me/kit-ac6c036e20": "^1.0.7",
+    "@fontsource/inter": "^5.1.0",
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@radix-ui/react-popover": "^1.1.1",
