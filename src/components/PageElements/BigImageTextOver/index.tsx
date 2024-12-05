@@ -4,12 +4,12 @@ import Button from "@/components/Button";
 
 const BigImageTextOver = () => {
   return (
-    <div className="relative overflow-hidden bg-gray-800">
+    <div className="relative overflow-hidden bg-[#2F4F4F]">
       {/* Background Image */}
       <img
         src="https://placehold.co/1920x980/2F4F4F/black@3x.png"
         alt="Big Image"
-        className="w-full min-h-[75vh] object-cover"
+        className="w-full min-h-[50vh] md:min-h-[75vh] object-cover"
       />
 
       {/* Overlay Content */}
