@@ -25,9 +25,13 @@ You can view the documentation for those projects to understand how to customize
 
 ### Customize
 
-#### How to create Product templates and assign them in Fluid admin
+#### How to create custom Product pages
+
+You can create custom product pages in this application under the shop directory, there is another directory called `80`. This means a product with that id will get the page in that directory instead of the dynamic default product page. You can just create a new directory with the product slug of the product you want a custom page for. This is handled by Nextjs routing, and you can view that documentation [here](https://nextjs.org/docs/app/building-your-application/routing) for a better idea of how it works.
 
 #### How does SEO meta tags work with the admin Product editor
+
+You can set the metadata for a page by exporting a `generateMetadata` function from the page.tsx file. This function should return a Metadata object. You can read more about the Metadata object inside of Nextjs [here](https://nextjs.org/docs/app/api-reference/file-conventions/metadata).
 
 #### How to add a Product / Variant to cart
 
