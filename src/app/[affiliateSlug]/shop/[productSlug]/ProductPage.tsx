@@ -192,6 +192,7 @@ const Page = ({ product }: Props) => {
               Add To Cart
             </Button>
             <Button
+              data-fluid-checkout={[selectedVariant]}
               data-variant={selectedVariant}
               variant="transparent-dark"
               className="w-full"
