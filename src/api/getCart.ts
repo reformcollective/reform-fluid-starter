@@ -13,15 +13,13 @@ async function getCart(): Promise<Carts> {
 
     return safeZodParse(body, cartSchema);
   } catch (error) {
+    console.log(error);
     return {
       id: null,
-      attributable_id: null,
-      attributable_type: null,
       ship_to: null,
       bill_to: null,
       cart_items: [],
       available_payment_methods: [],
-      discount_code: null,
       payment_method: null,
     };
   }
