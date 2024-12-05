@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import { faChevronDown } from "@awesome.me/kit-ac6c036e20/icons/classic/regular";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as Popover from "@radix-ui/react-popover";
-
-import Flag from "@/components/Flag";
-import Select from "@/components/Select";
+import { useCookies } from "react-cookie";
+import Flag from "../Flag";
+import Select from "../Select";
 
 type Props = {
   languageOptions: { label: string; value: string }[];
@@ -19,8 +19,19 @@ const CountryLanguagePicker = ({
   defaultCountry,
   countryOptions,
 }: Props) => {
-  const [country, setCountry] = useState(defaultCountry || "US");
-  const [lang, setLang] = useState("en");
+  const [cookies, setCookie] = useCookies();
+  const [country, setCountry] = useState(
+    cookies["country"] || defaultCountry || "US"
+  );
+  const [lang, setLang] = useState(cookies["language"] || "en");
+
+  useEffect(() => {
+    setCookie("country", country, { path: "/" });
+  }, [country]);
+
+  useEffect(() => {
+    setCookie("language", lang, { path: "/" });
+  }, [lang]);
 
   useEffect(() => {
     window.fcs = { ...(window.fcs || {}), language_iso: lang };
@@ -29,23 +40,16 @@ const CountryLanguagePicker = ({
   return (
     <Popover.Root>
       <Popover.Trigger asChild>
-        <button className="inline-flex items-center">
-          <div className="w-6 h-6 rounded-full overflow-hidden mr-3 shrink-0">
-            <Flag
-              code={country}
-              width={24}
-              height={24}
-              className="w-full h-full object-cover scale-[1.4]"
-            />
-          </div>
+        <button className="inline-flex items-center gap-2">
+          <Flag code={country} size={24} />
           <span className="text-base">
             {country} | {lang.toUpperCase()}
           </span>
-          <FontAwesomeIcon icon={faChevronDown} className="text-xs ml-2" />
+          <FontAwesomeIcon icon={faChevronDown} className="text-xs" />
         </button>
       </Popover.Trigger>
       <Popover.Portal>
-        <Popover.Content align="end">
+        <Popover.Content align="end" className="z-50">
           <div className="p-4 flex flex-col bg-white shadow mt-4 w-64">
             <div className="mb-6">
               <div className="mb-1 text-base">Select Your Country</div>

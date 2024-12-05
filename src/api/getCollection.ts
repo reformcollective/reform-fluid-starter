@@ -1,9 +1,15 @@
 import { getProducts, safeZodParse } from "@/api";
 import client from "@/api/client";
 import { Collection, collectionSchema } from "@/types/collection";
+import { cookies } from "next/headers";
 
 async function getCollection(collectionId: string): Promise<Collection> {
-  const products = await getProducts({ collectionId });
+  const cookiesList = cookies();
+  const products = await getProducts({
+    collectionId,
+    language: cookiesList.get("language")?.value,
+    country: cookiesList.get("country")?.value,
+  });
 
   const { body } = await client(`collections/${collectionId}`);
 

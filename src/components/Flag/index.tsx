@@ -1,21 +1,22 @@
+import cx from "classnames";
 import Image from "next/image";
-
 type LazySvgProps = {
   code: string;
-  height?: number;
-  width?: number;
+  size?: number;
   fill?: boolean;
   className?: string;
 };
 
-const Flag = ({ code, height, width, fill, className }: LazySvgProps) => (
-  <Image
-    className={className}
-    fill={fill}
-    src={`/countryFlag/${code.toLowerCase()}.svg`}
-    alt={code}
-    {...(!fill ? { height, width } : {})}
-    loading="lazy"
-  />
+const Flag = ({ code, size, fill, className }: LazySvgProps) => (
+  <div className="relative rounded-full overflow-hidden items-start justify-start">
+    <Image
+      className={cx("rounded-full h-6 w-6 object-cover", className)}
+      src={`/countryFlag/${code.toLowerCase()}.svg`}
+      alt={code}
+      height={size}
+      width={size}
+      loading="lazy"
+    />
+  </div>
 );
 export default Flag;
