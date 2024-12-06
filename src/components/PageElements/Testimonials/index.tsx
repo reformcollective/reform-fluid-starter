@@ -103,7 +103,7 @@ const Testimonials = () => {
   };
 
   return (
-    <section className="container py-20">
+    <section className="container py-12 md:py-20">
       {/* Header */}
       <div className="text-center">
         <h2 className="text-4xl md:text-5xl font-bold mb-4">
@@ -111,7 +111,7 @@ const Testimonials = () => {
           <br />
           [more social proof]
         </h2>
-        <p className="text-lg mb-16">
+        <p className="text-lg mb-8 md:mb-16">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </p>
       </div>
@@ -121,9 +121,9 @@ const Testimonials = () => {
         <NavigationButton direction="left" onClick={handlePrevious} />
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
-            <div key={index} className={index > 0 ? "hidden md:block" : ""}>
+            <div key={index} className={index > 0 ? "hidden xl:block" : ""}>
               <TestimonialCard {...testimonial} />
             </div>
           ))}

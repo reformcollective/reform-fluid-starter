@@ -9,7 +9,7 @@ const BigImageTextOver = () => {
       <img
         src="https://placehold.co/1920x980/2F4F4F/black@3x.png"
         alt="Big Image"
-        className="w-full min-h-[50vh] md:min-h-[75vh] object-cover"
+        className="w-full min-h-[55vh] md:min-h-[75vh] object-cover"
       />
 
       {/* Overlay Content */}

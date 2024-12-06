@@ -1,73 +1,72 @@
 import { z } from "zod";
 
+// Currently all validations are set to optional so as to not fail the build
+// since backend is not ready and response format keeps on changing.
+// Once backend is ready, the optional property on schemas should be removed.
+
 const addressSchema = z.object({
-  id: z.number(),
-  name: z.string(),
-  address1: z.string(),
-  address2: z.string().nullable(),
-  address3: z.string().nullable(),
-  city: z.string(),
-  state: z.string(),
-  subdivision_code: z.string().nullable(),
-  postal_code: z.string(),
-  country_code: z.string(),
+  id: z.number().optional(),
+  name: z.string().optional(),
+  address1: z.string().optional(),
+  address2: z.string().nullable().optional(),
+  address3: z.string().nullable().optional(),
+  city: z.string().optional(),
+  state: z.string().optional(),
+  subdivision_code: z.string().nullable().optional(),
+  postal_code: z.string().optional(),
+  country_code: z.string().optional(),
 });
 
 const shippingOptionSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  delivery_time: z.string(),
-  price: z.number(),
-  price_label: z.string(),
+  id: z.string().optional(),
+  name: z.string().optional(),
+  delivery_time: z.string().optional(),
+  price: z.number().optional(),
+  price_label: z.string().optional(),
 });
 
 const paymentMethodSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  icons: z.array(z.string()),
-  description: z.string(),
+  id: z.string().optional(),
+  name: z.string().optional(),
+  icons: z.array(z.string()).optional(),
+  description: z.string().nullable().optional(),
 });
 
 const cartItemsSchema = z.object({
-  id: z.number(),
-  cart_id: z.number(),
-  variant_id: z.number(),
-  quantity: z.number(),
-  subscription: z.boolean(),
-  price: z.string(),
-  external: z.boolean(),
-  origin_url: z.string().nullable(),
-  cart_adjustment_id: z.number().nullable(),
-  subscription_start: z.string().nullable(),
-  tax: z.string(),
-  cv: z.number(),
-  qv: z.number(),
+  id: z.number().nullable().optional(),
+  variant_id: z.number().nullable().optional(),
+  quantity: z.number().optional(),
+  price: z.string().nullable().optional(),
+  product_title: z.string().nullable().optional(),
 });
 
-const cartSchema = z.object({
-  id: z.number(),
-  token: z.string(),
-  attributable_id: z.number().nullable(),
-  attributable_type: z.string().nullable(),
-  ship_to: z
-    .object({
-      address: addressSchema,
-    })
-    .nullable(),
-  bill_to: z
-    .object({
-      address: addressSchema,
-    })
-    .nullable(),
-  discount_code: z.string().nullable(),
-  available_shipping_options: z
-    .array(shippingOptionSchema)
-    .nullable()
-    .optional(),
-  available_payment_methods: z.array(paymentMethodSchema).nullable().optional(),
-  cart_items: z.array(cartItemsSchema).nullable(),
-  payment_method: paymentMethodSchema.nullable(),
-});
+const cartSchema = z
+  .object({
+    id: z.number().nullable().optional(),
+    ship_to: z
+      .object({
+        address: addressSchema,
+      })
+      .nullable()
+      .optional(),
+    bill_to: z
+      .object({
+        address: addressSchema,
+      })
+      .nullable()
+      .optional(),
+    available_shipping_options: z
+      .array(shippingOptionSchema)
+      .nullable()
+      .optional(),
+    available_payment_methods: z
+      .array(paymentMethodSchema)
+      .nullable()
+      .optional(),
+    cart_items: z.array(cartItemsSchema).nullable().optional(),
+    payment_method: paymentMethodSchema.nullable().optional(),
+  })
+  .nullable();
 
 export type Carts = z.infer<typeof cartSchema>;
 export { cartSchema };

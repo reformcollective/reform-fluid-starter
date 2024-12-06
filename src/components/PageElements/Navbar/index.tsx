@@ -68,7 +68,7 @@ const Navbar = ({ company, params }: NavbarProps) => {
 
   return (
     <nav className="border-b border-black">
-      <div className="container h-[72px]">
+      <div className="container h-16">
         {/* Mobile Layout */}
         <div className="md:hidden flex items-center justify-between h-full">
           <Logo />
@@ -107,10 +107,8 @@ const Navbar = ({ company, params }: NavbarProps) => {
           <Logo />
 
           {/* Right Section */}
-          <div className="flex items-center justify-end">
-            <div className="mr-8">
-              <CountryLanguagePicker {...languagePickerProps} />
-            </div>
+          <div className="flex items-center justify-end gap-8">
+            <CountryLanguagePicker {...languagePickerProps} />
             <div className="flex items-center gap-8">
               {desktopIcons.map((item, index) => (
                 <Link key={index} href={item.href}>

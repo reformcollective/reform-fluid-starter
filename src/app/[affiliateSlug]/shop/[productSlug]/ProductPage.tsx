@@ -130,12 +130,13 @@ const Page = ({ product }: Props) => {
               </div>
             </div>
           )}
-          <div className="xl:inline-flex 2xl:w-1/2 justify-start 2xl:justify-between gap-4">
+          <div className="xl:inline-flex justify-start items-center gap-8">
             <div className="flex flex-row gap-2 items-center">
               <input
                 className="mr-1 checked:bg-gray-500 text-gray-500"
                 type="radio"
-                value="subscribe"
+                value="subscription"
+                name="fluid-checkout-subscribe"
                 checked={subscribe === "subscription"}
                 onChange={() => setSubscribe("subscription")}
               />
@@ -146,6 +147,7 @@ const Page = ({ product }: Props) => {
                 className="mr-1 checked:bg-gray-500 text-gray-500"
                 type="radio"
                 value="regular"
+                name="fluid-checkout-subscribe"
                 checked={subscribe === "regular"}
                 onChange={() => setSubscribe("regular")}
               />
@@ -180,7 +182,6 @@ const Page = ({ product }: Props) => {
           </div>
           <div className="flex flex-col gap-4 pb-6 ">
             <Button
-              onClick={() => console.log("I am clicked", selectedVariant)}
               data-fluid-checkout-type="variant"
               data-fluid-checkout-group-id={selectedVariant}
               data-variant={selectedVariant}
@@ -191,7 +192,7 @@ const Page = ({ product }: Props) => {
               Add To Cart
             </Button>
             <Button
-              data-fluid-checkout={selectedVariant}
+              data-fluid-checkout={[selectedVariant]}
               data-variant={selectedVariant}
               variant="transparent-dark"
               className="w-full"

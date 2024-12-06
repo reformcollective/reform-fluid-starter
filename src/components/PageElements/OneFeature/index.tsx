@@ -20,7 +20,7 @@ const benefits: Benefit[] = [
 const OneFeature = ({ reversed = false }: OneFeatureProps) => {
   return (
     <section className="bg-white">
-      <div className="container py-16 md:py-28">
+      <div className="container py-12 md:py-28">
         <div
           className={cx(
             "flex flex-col md:flex-row items-center gap-8 lg:gap-12",

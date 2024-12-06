@@ -5,12 +5,24 @@ import { Carts, cartSchema } from "@/types/cart";
 import { cookies } from "next/headers";
 
 async function getCart(): Promise<Carts> {
-  const cookiesList = cookies();
-  const cartToken = cookiesList.get("cartToken")?.value;
+  try {
+    const cookiesList = cookies();
+    const cartToken = cookiesList.get("cartToken")?.value;
 
-  const { body } = await client(`carts/${cartToken}`, false);
+    const { body } = await client(`carts/${cartToken}`, false);
 
-  return safeZodParse(body, cartSchema);
+    return safeZodParse(body, cartSchema);
+  } catch (error) {
+    console.log(error);
+    return {
+      id: null,
+      ship_to: null,
+      bill_to: null,
+      cart_items: [],
+      available_payment_methods: [],
+      payment_method: null,
+    };
+  }
 }
 
 export default getCart;
