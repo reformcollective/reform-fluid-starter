@@ -3,28 +3,19 @@ import updateCart from "@/api/updateCart";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import LinkButton from "@/components/LinkButton";
+import { CartItems, Carts } from "@/types/cart";
 import { faTrash } from "@awesome.me/kit-ac6c036e20/icons/classic/regular";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { debounce } from "lodash";
 import { useState } from "react";
 
-interface CartItem {
-  id?: number | null;
-  image?: string;
-  title?: string;
-  price?: string | null;
-  quantity?: number;
-  variant_id?: number | null;
-  currency_code?: string;
-}
-
 interface CartPageProps {
-  cartItems: CartItem[];
+  cartInfo: Carts;
   slug: string;
 }
 
-export default function CartPage({ cartItems, slug }: CartPageProps) {
-  const [cart, setCart] = useState<CartItem[]>(cartItems);
+export default function CartPage({ cartInfo, slug }: CartPageProps) {
+  const [cart, setCart] = useState<CartItems[]>();
 
   const updateQuantity = debounce(async (id: number, newQuantity: number) => {
     try {
@@ -37,23 +28,14 @@ export default function CartPage({ cartItems, slug }: CartPageProps) {
 
   const handleQuantityChange = (id: number, newQuantity: number) => {
     setCart((prevCart) =>
-      prevCart.map((item) =>
+      prevCart?.map((item) =>
         item.id === id ? { ...item, quantity: newQuantity } : item
       )
     );
     updateQuantity(id, newQuantity);
   };
 
-  const subtotal =
-    cartItems
-      ?.reduce(
-        (total, item) =>
-          total + Number(item.price || 0) * (item?.quantity ?? 0),
-        0
-      )
-      .toFixed(2) || "0.00";
-
-  const totalQuantityOnCart = cartItems?.reduce(
+  const totalQuantityOnCart = cartInfo?.cart_items?.reduce(
     (total, item) => total + (item.quantity ?? 0),
     0
   );
@@ -76,7 +58,7 @@ export default function CartPage({ cartItems, slug }: CartPageProps) {
         </LinkButton>
       </div>
 
-      {cartItems?.length ? (
+      {cartInfo?.cart_items?.length ?? 0 > 0 ? (
         <>
           <div className="overflow-auto">
             <table className="w-full">
@@ -88,17 +70,19 @@ export default function CartPage({ cartItems, slug }: CartPageProps) {
                 </tr>
               </thead>
               <tbody>
-                {cartItems?.map((item) => (
+                {cartInfo?.cart_items?.map((item) => (
                   <tr key={item.id} className="py-4 px-4 border-b border-black">
                     <td className="flex py-4 px-4 min-w-96">
                       <img
-                        src={item.image}
-                        alt="placeholder image"
+                        src={item.product?.image_url}
+                        alt={item?.product?.title}
                         height={100}
                         width={100}
                       />
                       <div className="flex flex-col ml-4 pt-8 gap-y-1">
-                        <div className="font-semibold">{item.title}</div>
+                        <div className="font-semibold">
+                          {item.product?.title}
+                        </div>
                         <div className="text-sm">Variant</div>
                       </div>
                     </td>
@@ -132,7 +116,7 @@ export default function CartPage({ cartItems, slug }: CartPageProps) {
                           className="pl-4 pt-1.5 h-10 w-10"
                           onClick={() =>
                             handleQuantityChange(
-                              item.variant_id!,
+                              item.id!,
                               (item.quantity || 0) + 1
                             )
                           }
@@ -140,15 +124,16 @@ export default function CartPage({ cartItems, slug }: CartPageProps) {
                           +
                         </Button>
                         <FontAwesomeIcon
-                          onClick={() =>
-                            handleQuantityChange(item.variant_id!, 0)
-                          }
+                          onClick={() => handleQuantityChange(item.id!, 0)}
                           className="ml-2 pt-2.5"
                           icon={faTrash}
                         />
                       </div>
                     </td>
-                    <td className="text-right px-4">${item.price} (USD)</td>
+                    <td className="text-right px-4">
+                      {cartInfo.currency_symbol}
+                      {item.price} ({cartInfo.currency_code})
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -158,7 +143,8 @@ export default function CartPage({ cartItems, slug }: CartPageProps) {
           <div className="w-full flex justify-end">
             <div className="flex flex-col justify-end text-end gap-4 w-full max-w-[450px]">
               <div className="font-bold text-2xl">
-                Subtotal: ${subtotal} (USD)
+                Subtotal: {cartInfo?.currency_symbol}
+                {cartInfo?.sub_total} ({cartInfo?.currency_code})
               </div>
               <div>Taxes and shipping calculated at checkout</div>
               <Button
