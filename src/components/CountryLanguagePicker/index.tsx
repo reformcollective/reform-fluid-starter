@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { faChevronDown } from "@awesome.me/kit-ac6c036e20/icons/classic/regular";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import chevronDown from "@/svgs/chevron-down.svg";
 import * as Popover from "@radix-ui/react-popover";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import Flag from "../Flag";
 import Select from "../Select";
@@ -45,7 +45,7 @@ const CountryLanguagePicker = ({
           <span className="text-base">
             {country} | {lang.toUpperCase()}
           </span>
-          <FontAwesomeIcon icon={faChevronDown} className="text-xs" />
+          <Image alt="chevron-down" height={10} width={10} src={chevronDown} />
         </button>
       </Popover.Trigger>
       <Popover.Portal>

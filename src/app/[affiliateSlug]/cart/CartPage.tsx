@@ -2,10 +2,10 @@
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import LinkButton from "@/components/LinkButton";
+import trash from "@/svgs/trash.svg";
 import { CartItem, Carts } from "@/types/cart";
-import { faTrash } from "@awesome.me/kit-ac6c036e20/icons/classic/regular";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { debounce } from "lodash";
+import Image from "next/image";
 import { useState } from "react";
 
 interface CartPageProps {
@@ -148,11 +148,15 @@ export default function CartPage({ cartInfo, slug }: CartPageProps) {
                         >
                           +
                         </Button>
-                        <FontAwesomeIcon
+                        <Button
                           onClick={() => handleQuantityChange(item.id!, 0)}
-                          className="ml-2 pt-2.5"
-                          icon={faTrash}
-                        />
+                        >
+                          <Image
+                            className="ml-2 pt-2.5"
+                            alt="trash"
+                            src={trash}
+                          />
+                        </Button>
                       </div>
                     </td>
                     <td className="text-right px-4">

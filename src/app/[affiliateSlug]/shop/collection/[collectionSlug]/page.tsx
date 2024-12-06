@@ -1,9 +1,9 @@
 import { getCollection } from "@/api";
 import ProductGrid from "@/components/ProductGrid";
-import { faChevronDown } from "@awesome.me/kit-ac6c036e20/icons/classic/regular";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import chevronDown from "@/svgs/chevron-down.svg";
 import { Metadata } from "next";
 import { headers } from "next/headers";
+import Image from "next/image";
 
 type PageProps = {
   params: Record<string, any>;
@@ -19,12 +19,24 @@ const Page = async ({ params }: PageProps) => {
           <span>Filter: </span>
           <span>
             <button>
-              Availibility <FontAwesomeIcon icon={faChevronDown} />
+              Availibility{" "}
+              <Image
+                alt="chevron-down"
+                height={10}
+                width={10}
+                src={chevronDown}
+              />
             </button>
           </span>
           <span>
             <button>
-              Price <FontAwesomeIcon icon={faChevronDown} />
+              Price{" "}
+              <Image
+                alt="chevron-down"
+                height={10}
+                width={10}
+                src={chevronDown}
+              />
             </button>
           </span>
         </div>
@@ -32,7 +44,13 @@ const Page = async ({ params }: PageProps) => {
           <span>Sort: </span>
           <span>
             <button>
-              Best Selling <FontAwesomeIcon icon={faChevronDown} />
+              Best Selling{" "}
+              <Image
+                alt="chevron-down"
+                height={10}
+                width={10}
+                src={chevronDown}
+              />
             </button>
           </span>
           <span>

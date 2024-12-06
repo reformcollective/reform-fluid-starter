@@ -11,7 +11,6 @@ yarn
 1. Rename file `template.env.local` to `.env.local` at the root of the project.
 2. Replace the `FLUID_API_TOKEN`'s value with your api token found in the [developer settings](https://www.fluid.app/settings/developer).
 3. Specify where the Fluid API is with `FLUID_BASE_URL` (no trailing slash `/`).
-4. Specify the FontAwesome NPM auth token with `FONTAWESOME_NPM_AUTH_TOKEN`. (this is for icons throught the app)
 
 ![where to find the Fluid API token](public/images/readme1.png)
 

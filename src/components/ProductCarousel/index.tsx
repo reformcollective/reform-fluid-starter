@@ -1,12 +1,10 @@
 "use client";
 import Product from "@/components/Product";
+import arrowLeft from "@/svgs/arrow-left.svg";
+import arrowRight from "@/svgs/arrow-right.svg";
 import Dot from "@/svgs/Dot";
 import type { Product as ProductType } from "@/types/product";
-import {
-  faArrowLeft,
-  faArrowRight,
-} from "@awesome.me/kit-ac6c036e20/icons/classic/regular";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Image from "next/image";
 import { useRef, useState } from "react";
 type Props = {
   products: ProductType[];
@@ -54,7 +52,7 @@ const ProductCarousel = ({ products }: Props) => {
               }
               className="border border-black rounded-full px-3 py-2"
             >
-              <FontAwesomeIcon icon={faArrowLeft} />
+              <Image alt="arrow-left" height={16} width={16} src={arrowLeft} />
             </button>
             <button
               onClick={() => {
@@ -64,7 +62,12 @@ const ProductCarousel = ({ products }: Props) => {
               }}
               className="border border-black rounded-full px-3 py-2"
             >
-              <FontAwesomeIcon icon={faArrowRight} />
+              <Image
+                alt="arrow-right"
+                height={16}
+                width={16}
+                src={arrowRight}
+              />
             </button>
           </div>
         </div>
