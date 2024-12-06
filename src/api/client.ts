@@ -1,11 +1,11 @@
 const FluidApiClient = async (
   url: string,
-  isV1 = true,
+  isCompanyAPI = true,
   options?: RequestInit
 ) => {
-  const baseUrl = isV1
+  const baseUrl = isCompanyAPI
     ? `${process.env.FLUID_BASE_URL}/api/company/v1/`
-    : `${process.env.FLUID_BASE_URL}/api/`;
+    : `${process.env.FLUID_BASE_URL}/api/v1/`;
   const response = await fetch(`${baseUrl}${url}`, {
     ...options,
     headers: {
