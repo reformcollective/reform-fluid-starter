@@ -3,9 +3,13 @@ const FluidApiClient = async (
   isCompanyAPI = true,
   options?: RequestInit
 ) => {
+  let fluidBaseUrl = process.env.FLUID_BASE_URL;
+  if (fluidBaseUrl?.[fluidBaseUrl.length - 1] !== "/") {
+    fluidBaseUrl += "/";
+  }
   const baseUrl = isCompanyAPI
-    ? `${process.env.FLUID_BASE_URL}/api/company/v1/`
-    : `${process.env.FLUID_BASE_URL}/api/v1/`;
+    ? `${process.env.FLUID_BASE_URL}api/company/v1/`
+    : `${process.env.FLUID_BASE_URL}api/v1/`;
 
   const response = await fetch(`${baseUrl}${url}`, {
     ...options,
