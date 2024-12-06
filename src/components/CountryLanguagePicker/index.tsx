@@ -3,6 +3,7 @@
 import chevronDown from "@/svgs/chevron-down.svg";
 import * as Popover from "@radix-ui/react-popover";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import Flag from "../Flag";
@@ -19,6 +20,7 @@ const CountryLanguagePicker = ({
   defaultCountry,
   countryOptions,
 }: Props) => {
+  const router = useRouter();
   const [cookies, setCookie] = useCookies();
   const [country, setCountry] = useState(
     cookies["country"] || defaultCountry || "US"
@@ -26,12 +28,13 @@ const CountryLanguagePicker = ({
   const [lang, setLang] = useState(cookies["language"] || "en");
 
   useEffect(() => {
+    router.refresh();
     setCookie("country", country, { path: "/" });
-  }, [country]);
+  }, [country, setCookie, router]);
 
   useEffect(() => {
     setCookie("language", lang, { path: "/" });
-  }, [lang]);
+  }, [lang, setCookie]);
 
   useEffect(() => {
     window.fcs = { ...(window.fcs || {}), language_iso: lang };
