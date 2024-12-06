@@ -47,7 +47,8 @@ To build a checkout from scratch, you add products within fluid, and you can cal
 
 #### How does attribution work on the JavaScript widget
 
-If you look at the `layout.tsx` you can see that there is a script being loaded. This is the fluid widget that you see in the bottom right that adds chat and cart capabilities. `window.fcs = {api_url_host: '${config.apiHost}', affiliate: '${affiliateSlug}'};`. The first parameter in the URL is a parameter (affiliateSlug) getting set on the widget. This is how Fluid knows who to attribute the sale to.
+If you look at the `layout.tsx` you can see that there is a script being loaded. This is the fluid widget that you see in the bottom right that adds chat and cart capabilities. `window.fcs = {api_url_host: '${config.apiHost}', affiliate: { share_guid: '${affiliateSlug}' }};`. The first parameter in the URL is a parameter (affiliateSlug) getting set on the widget. This is how Fluid knows who to attribute the sale to.
+the affiliate object can take any keys like email ( email of the reps), external_id ( ids for those reps on external system), share_guid( unique identifier to share the pages)
 
 #### How to set Country / Language
 

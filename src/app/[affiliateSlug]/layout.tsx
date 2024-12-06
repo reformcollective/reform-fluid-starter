@@ -38,7 +38,7 @@ export default async function RootLayout({ children, params }: PageProps) {
       <head>
         <Script id="fluid-widget-boot" strategy="beforeInteractive">
           {`
-          window.fcs = {api_url_host: '${config.apiHost}', affiliate: '${affiliateSlug}'};
+          window.fcs = {api_url_host: '${config.apiHost}', affiliate: { share_guid: '${affiliateSlug}' }};
           (function(){ var f_ws = document.createElement('script'); f_ws.async = true; f_ws.src = '${config.widgetHost}'; x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(f_ws,x); })();
         `}
         </Script>
