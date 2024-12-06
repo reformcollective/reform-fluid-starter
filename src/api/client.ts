@@ -6,10 +6,12 @@ const FluidApiClient = async (
   const baseUrl = isCompanyAPI
     ? `${process.env.FLUID_BASE_URL}/api/company/v1/`
     : `${process.env.FLUID_BASE_URL}/api/v1/`;
+
   const response = await fetch(`${baseUrl}${url}`, {
     ...options,
     headers: {
       ...options?.headers,
+      "Content-Type": "application/json",
       Authorization: `Bearer ${process.env.FLUID_API_TOKEN}`,
     },
   });

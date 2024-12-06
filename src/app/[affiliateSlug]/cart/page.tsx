@@ -1,4 +1,4 @@
-import { getCart, getProduct } from "@/api";
+import { getCart } from "@/api";
 import CartPage from "./CartPage";
 
 type PageProps = {
@@ -8,8 +8,6 @@ type PageProps = {
 const Page = async ({ params }: PageProps) => {
   const { affiliateSlug } = params;
   const cart = await getCart();
-
-  console.log(cart);
 
   return (
     <CartPage
