@@ -28,13 +28,15 @@ yarn
 # Your Fluid API token from developer settings
 FLUID_API_TOKEN=your_api_token_here
 
-# Fluid API base URL (no trailing slash)
-FLUID_BASE_URL=https://api.example.com
+# Fluid API base URL (leave trailing slash)
+FLUID_BASE_URL=https://yourco.fluid.app
 
 # FontAwesome NPM authentication token for icons
 FONTAWESOME_NPM_AUTH_TOKEN=your_fontawesome_token_here
 ```
 ![where to find the Fluid API token](public/images/readme1.png)
+
+[Fluid Developer Portal](https://fluid.app/settings/developer)
 
 #### 3. Start Development Server
 Run the development server:
