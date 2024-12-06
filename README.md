@@ -23,37 +23,105 @@ You can view the documentation for those projects to understand how to customize
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://www.heroku.com/deploy)
 
-### Customize
 
-#### How to create custom Product pages
+# Developer Documentation
 
-You can create custom product pages in this application under the shop directory, there is another directory called `80`. This means a product with that id will get the page in that directory instead of the dynamic default product page. You can just create a new directory with the product slug of the product you want a custom page for. This is handled by Nextjs routing, and you can view that documentation [here](https://nextjs.org/docs/app/building-your-application/routing) for a better idea of how it works.
+## Custom Product Pages
 
-#### How does SEO meta tags work with the admin Product editor
+### Creating a Custom Product Page
+1. Navigate to the `shop` directory
+2. Create a new directory named with your product's ID (e.g., `80`)
+3. Any product with this ID will use this custom page instead of the default dynamic product page
 
-You can set the metadata for a page by exporting a `generateMetadata` function from the page.tsx file. This function should return a Metadata object. You can read more about the Metadata object inside of Nextjs [here](https://nextjs.org/docs/app/api-reference/file-conventions/metadata).
+Example structure:
+```
+src/app/[affiliateSlug]/shop/
+    ├── [productSlug]/        # Default dynamic product pages
+    └── 80/                   # Custom page for product ID 80
+```
 
-#### How to add a Product / Variant to cart
+This routing is handled by Next.js - [see Next.js routing documentation for more details]
 
-You can look at the `shop/ProductPage.tsx` to see how we add properties to the `data-fluid-*` attributes. This is how Fluid knows which products and variants to add to the cart when clicked.
+## SEO and Metadata
 
-#### How to add a Product subscription to cart
+### Setting Page Metadata
+Export a `generateMetadata` function from your `page.tsx` file:
 
-Within the `data-fluid-checkout-group` element you can set an input element (probably a radio input element) with the name `data-fluid-checkout-subscribe` and the value `subscription` or `regular` and lastly the `checked` property to `truthy`. This is how we know how to add a subscription to the cart instead of a one-time product.
+```typescript
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: 'Your Product Title',
+    description: 'Product description'
+    // Add other metadata properties
+  }
+}
+```
 
-#### How to build a checkout from scratch
+## Cart Integration
 
-To build a checkout from scratch, you add products within fluid, and you can call fluid's APIs to get the products and variants. Then you build out your pages how you like, and follow the instructions above to add products to the cart.
+### Adding Products to Cart
+Add the following data attributes to your product elements:
 
-#### How does attribution work on the JavaScript widget
+```html
+<button 
+  data-fluid-product="[product-id]"
+  data-fluid-variant="[variant-id]"
+>
+  Add to Cart
+</button>
+```
 
-If you look at the `layout.tsx` you can see that there is a script being loaded. This is the fluid widget that you see in the bottom right that adds chat and cart capabilities. `window.fcs = {api_url_host: '${config.apiHost}', affiliate: { credit: '${affiliateSlug}' }};`. The first parameter in the URL is a parameter (affiliateSlug) getting set on the widget. This is how Fluid knows who to attribute the sale to.
-the affiliate object can take any keys like email ( email of the reps), external_id ( ids for those reps on external system), credit( unique identifier stored in fluid)
+Reference implementation can be found in `shop/ProductPage.tsx`
 
-#### How to set Country / Language
+### Adding Subscription Products
+To enable subscription options:
 
-In the top right of the application there is a dropdown to select the country / language. This app is only written in English, it will be up to you to translate strings within the app.
+```html
+<div data-fluid-checkout-group>
+  <input 
+    type="radio"
+    name="data-fluid-checkout-subscribe"
+    value="subscription"  <!-- or "regular" for one-time purchase -->
+    checked
+  />
+</div>
+```
 
-#### How do my reps share a link and get credit?
+## Building a Custom Checkout
 
-In this application, just replace the first url parameter with the slug of the affiliate you want attributions to go to.
+1. Use Fluid's APIs to fetch product and variant data
+2. Design your checkout pages
+3. Implement cart functionality using the data attributes described above
+4. Add checkout flow according to your needs
+
+## Attribution System
+
+### Widget Configuration
+The Fluid widget is configured in `layout.tsx`:
+
+```javascript
+window.fcs = {
+  api_url_host: '${config.apiHost}',
+  affiliate: {
+    credit: '${affiliateSlug}',    // Unique identifier
+    email: 'rep@example.com',      // Optional: Rep's email
+    external_id: 'REP123'          // Optional: External system ID
+  }
+};
+```
+
+### Rep Attribution Links
+To attribute sales to specific reps:
+- Base URL format: `https://yourdomain.com/[REP_SLUG]`
+- Replace `[REP_SLUG]` with the rep's unique identifier
+- Ex for shop page: `https://yourdomain.com/[REP_SLUG/shop`
+
+Once attributation has been set, the visitor can navigate to any page and the attribution will follow via fingerprinting and / or cookies.
+
+## Localization
+
+### Language/Country Selection
+- A country/language selector is available in the top-right corner
+- Default language is English
+- Custom translations must be implemented manually
+- Implement your own translation system for additional languages
