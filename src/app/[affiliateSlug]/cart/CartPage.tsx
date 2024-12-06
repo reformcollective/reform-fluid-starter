@@ -3,7 +3,7 @@ import updateCart from "@/api/updateCart";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import LinkButton from "@/components/LinkButton";
-import { CartItems, Carts } from "@/types/cart";
+import { CartItem, Carts } from "@/types/cart";
 import { faTrash } from "@awesome.me/kit-ac6c036e20/icons/classic/regular";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { debounce } from "lodash";
@@ -15,11 +15,18 @@ interface CartPageProps {
 }
 
 export default function CartPage({ cartInfo, slug }: CartPageProps) {
-  const [cart, setCart] = useState<CartItems[]>();
+  const [cart, setCart] = useState<CartItem[]>(cartInfo?.cart_items ?? []);
+  const [subtotal, setSubtotal] = useState<string>(
+    cartInfo?.sub_total ?? "0.00"
+  );
 
   const updateQuantity = debounce(async (id: number, newQuantity: number) => {
     try {
-      await updateCart({ cart_items: { variant: id, quantity: newQuantity } });
+      if (cartInfo?.id !== undefined) {
+        await updateCart({ cartId: cartInfo.id, quantity: newQuantity });
+      } else {
+        console.error("Cart ID is undefined");
+      }
       console.log(`Updated item ${id} to quantity ${newQuantity}`);
     } catch (error) {
       console.error("Failed to update cart item:", error);
@@ -70,7 +77,7 @@ export default function CartPage({ cartInfo, slug }: CartPageProps) {
                 </tr>
               </thead>
               <tbody>
-                {cartInfo?.cart_items?.map((item) => (
+                {cart?.map((item) => (
                   <tr key={item.id} className="py-4 px-4 border-b border-black">
                     <td className="flex py-4 px-4 min-w-96">
                       <img
@@ -83,7 +90,7 @@ export default function CartPage({ cartInfo, slug }: CartPageProps) {
                         <div className="font-semibold">
                           {item.product?.title}
                         </div>
-                        <div className="text-sm">Variant</div>
+                        {/* <div className="text-sm">Variant</div> */}
                       </div>
                     </td>
                     <td className="text-right">
@@ -101,7 +108,7 @@ export default function CartPage({ cartInfo, slug }: CartPageProps) {
                           -
                         </Button>
                         <Input
-                          className="w-24 text-center h-10"
+                          className="w-24 text-center h-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                           type="number"
                           defaultValue={item.quantity}
                           onChange={(e) =>
@@ -144,7 +151,7 @@ export default function CartPage({ cartInfo, slug }: CartPageProps) {
             <div className="flex flex-col justify-end text-end gap-4 w-full max-w-[450px]">
               <div className="font-bold text-2xl">
                 Subtotal: {cartInfo?.currency_symbol}
-                {cartInfo?.sub_total} ({cartInfo?.currency_code})
+                {subtotal} ({cartInfo?.currency_code})
               </div>
               <div>Taxes and shipping calculated at checkout</div>
               <Button

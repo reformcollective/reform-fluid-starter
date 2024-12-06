@@ -8,12 +8,12 @@ const productSchema = z.object({
   display_price: z.string(),
 });
 
-const cartItemsSchema = z.object({
+const cartItemSchema = z.object({
   id: z.number(),
   quantity: z.number(),
   price: z.string(),
   subscription: z.boolean(),
-  product: productSchema,
+  product: productSchema.optional(),
 });
 
 const cartSchema = z
@@ -21,15 +21,15 @@ const cartSchema = z
     id: z.number(),
     token: z.string().optional(),
     visitor_id: z.number().optional(),
-    type: z.string(),
+    type: z.string().optional(),
     currency_code: z.string(),
     currency_symbol: z.string(),
     display_price: z.string(),
     sub_total: z.string(),
-    cart_items: z.array(cartItemsSchema).nullable().optional(),
+    cart_items: z.array(cartItemSchema).nullable().optional(),
   })
   .nullable();
 
-export type CartItems = z.infer<typeof cartItemsSchema>;
+export type CartItem = z.infer<typeof cartItemSchema>;
 export type Carts = z.infer<typeof cartSchema>;
 export { cartSchema };
