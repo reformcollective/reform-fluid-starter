@@ -9,8 +9,7 @@ const envConfigVariables: Record<
   production: {
     widgetHost: "https://chat.fluid.app/static/js/chat-widget.js",
     apiHost:
-      (process.env.FLUID_BASE_URL?.[process.env.FLUID_BASE_URL.length - 1] !==
-      "/"
+      (process.env.FLUID_BASE_URL?.endsWith("/")
         ? `${process.env.FLUID_BASE_URL}/`
         : process.env.FLUID_BASE_URL) || "http://fluid.lvh.me:3000/",
   },

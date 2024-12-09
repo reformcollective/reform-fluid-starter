@@ -4,7 +4,7 @@ const FluidApiClient = async (
   options?: RequestInit
 ) => {
   let fluidBaseUrl = process.env.FLUID_BASE_URL;
-  if (fluidBaseUrl?.[fluidBaseUrl.length - 1] !== "/") {
+  if (fluidBaseUrl?.endsWith("/")) {
     fluidBaseUrl += "/";
   }
   const baseUrl = isCompanyAPI
