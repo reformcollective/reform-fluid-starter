@@ -7,6 +7,7 @@ type PageProps = {
 
 const Page = async ({ params }: PageProps) => {
   const { affiliateSlug } = params;
+  // TODO: on cookies cartItemsLength change refetch cart
   const cart = await getCart();
 
   return (

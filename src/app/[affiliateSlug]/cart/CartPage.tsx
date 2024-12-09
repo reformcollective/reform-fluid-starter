@@ -101,6 +101,8 @@ export default function CartPage({ cartInfo, slug }: CartPageProps) {
   };
 
   // TODO: re-init cart?? such that widget items shows real time value?
+  // 1. Trigger a custom event visibility change for this?
+  // 2. or change the cookie??
   // useEffect(() => {
   //   if (window.addFluidCheckoutListeners) {
   //     window.addFluidCheckoutListeners();
