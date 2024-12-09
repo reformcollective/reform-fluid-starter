@@ -6,7 +6,7 @@ import { CartItem, Carts } from "@/types/cart";
 import { faTrash } from "@awesome.me/kit-ac6c036e20/icons/classic/regular";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { debounce } from "lodash";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface CartPageProps {
   cartInfo: Carts;
@@ -14,7 +14,7 @@ interface CartPageProps {
 }
 
 export default function CartPage({ cartInfo, slug }: CartPageProps) {
-  const [cart, setCart] = useState<CartItem[]>(cartInfo?.cart_items ?? []);
+  const [cart, setCart] = useState<CartItem[] | []>(cartInfo?.cart_items ?? []);
   const [subtotal, setSubtotal] = useState<string>(
     cartInfo?.sub_total ?? "0.00"
   );
@@ -60,7 +60,7 @@ export default function CartPage({ cartInfo, slug }: CartPageProps) {
     updateQuantity(id, newQuantity);
   };
 
-  const totalQuantityOnCart = cartInfo?.cart_items?.reduce(
+  const totalQuantityOnCart = (cart ?? [])?.reduce(
     (total, item) => total + (item.quantity ?? 0),
     0
   );
@@ -71,6 +71,41 @@ export default function CartPage({ cartInfo, slug }: CartPageProps) {
       cartWidget.click();
     }
   };
+
+  const handleItemDelete = async (id: number) => {
+    try {
+      const response = await fetch("/api/cart", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          cartId: id,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to delete cart-item");
+      }
+
+      const updatedCart = await response.json();
+
+      setCart(updatedCart.cart_items.length > 0 ? updatedCart.cart_items : []);
+
+      if (updatedCart.sub_total) {
+        setSubtotal(updatedCart.sub_total);
+      }
+    } catch (error) {
+      console.error("Failed to delete cart item:", error);
+    }
+  };
+
+  // TODO: re-init cart?? such that widget items shows real time value?
+  // useEffect(() => {
+  //   if (window.addFluidCheckoutListeners) {
+  //     window.addFluidCheckoutListeners();
+  //   }
+  // }, [cart]);
 
   return (
     <div className="container mx-auto p-8 md:px-10 md:py-16 lg:px-20 lg:py-28 flex flex-col gap-8 md:gap-y-20">
@@ -128,7 +163,7 @@ export default function CartPage({ cartInfo, slug }: CartPageProps) {
                         <Input
                           className="w-24 text-center h-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                           type="number"
-                          defaultValue={item.quantity}
+                          value={item.quantity}
                           onChange={(e) =>
                             handleQuantityChange(
                               item.id!,
@@ -149,8 +184,8 @@ export default function CartPage({ cartInfo, slug }: CartPageProps) {
                           +
                         </Button>
                         <FontAwesomeIcon
-                          onClick={() => handleQuantityChange(item.id!, 0)}
-                          className="ml-2 pt-2.5"
+                          onClick={() => handleItemDelete(item.id!)}
+                          className="ml-2 pt-2.5 cursor-pointer"
                           icon={faTrash}
                         />
                       </div>

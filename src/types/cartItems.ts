@@ -2,11 +2,11 @@ import { z } from "zod";
 
 const cartItemsSchema = z
   .object({
-    id: z.number(),
-    quantity: z.number(),
-    price: z.string(),
-    subscription: z.boolean(),
-    sub_total: z.string(),
+    id: z.number().optional(),
+    quantity: z.number().optional(),
+    price: z.string().optional(),
+    subscription: z.boolean().optional(),
+    sub_total: z.string().optional(),
   })
   .nullable();
 

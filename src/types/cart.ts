@@ -32,4 +32,4 @@ const cartSchema = z
 
 export type CartItem = z.infer<typeof cartItemSchema>;
 export type Carts = z.infer<typeof cartSchema>;
-export { cartSchema };
+export { cartSchema, cartItemSchema };
