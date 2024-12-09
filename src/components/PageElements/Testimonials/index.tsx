@@ -1,11 +1,9 @@
 "use client";
 import Dot from "@/svgs/Dot";
 import Star from "@/svgs/Star";
-import {
-  faArrowLeft,
-  faArrowRight,
-} from "@awesome.me/kit-ac6c036e20/icons/classic/regular";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import arrowLeft from "@/svgs/arrow-left.svg";
+import arrowRight from "@/svgs/arrow-right.svg";
+import Image from "next/image";
 
 type TestimonialProps = {
   rating: number;
@@ -86,8 +84,11 @@ const NavigationButton = ({
     aria-label={direction === "left" ? "Previous" : "Next"}
     onClick={onClick}
   >
-    <FontAwesomeIcon
-      icon={direction === "left" ? faArrowLeft : faArrowRight}
+    <Image
+      alt={direction === "left" ? "arrow-left" : "arrow-right"}
+      height={16}
+      width={16}
+      src={direction === "left" ? arrowLeft : arrowRight}
       className="w-4 h-4"
     />
   </button>

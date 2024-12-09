@@ -1,7 +1,7 @@
-import { faCheck } from "@awesome.me/kit-ac6c036e20/icons/classic/regular";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import check from "@/svgs/check.svg";
 import * as Select from "@radix-ui/react-select";
 import classnames from "classnames";
+import Image from "next/image";
 import { ElementRef, forwardRef, PropsWithChildren } from "react";
 
 type SelectItemProps = {
@@ -23,7 +23,7 @@ const SelectItem = forwardRef<
     >
       <Select.ItemText>{children}</Select.ItemText>
       <Select.ItemIndicator className="w-6">
-        <FontAwesomeIcon icon={faCheck} />
+        <Image alt="check" height={16} width={16} src={check} />
       </Select.ItemIndicator>
     </Select.Item>
   );

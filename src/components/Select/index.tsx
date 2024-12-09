@@ -1,7 +1,7 @@
+import chevronDown from "@/svgs/chevron-down.svg";
 import { Option } from "@/types/option";
-import { faChevronDown } from "@awesome.me/kit-ac6c036e20/icons/classic/regular";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as Select from "@radix-ui/react-select";
+import Image from "next/image";
 import { FC } from "react";
 import SelectItem from "./SelectItem";
 
@@ -23,7 +23,7 @@ const FluidSelect: FC<FluidSelectProps> = ({
       <Select.Trigger className="border border-black px-3 py-2 inline-flex gap-2 justify-between w-full">
         <Select.Value placeholder={placeholder} />
         <Select.Icon>
-          <FontAwesomeIcon icon={faChevronDown} />
+          <Image alt="chevron-down" height={16} width={16} src={chevronDown} />
         </Select.Icon>
       </Select.Trigger>
       <Select.Portal>

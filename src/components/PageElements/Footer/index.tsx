@@ -1,15 +1,13 @@
 "use client";
 
-import {
-  faFacebook,
-  faInstagram,
-  faLinkedin,
-  faXTwitter,
-  faYoutube,
-} from "@awesome.me/kit-ac6c036e20/icons/classic/brands";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
+import facebook from "@/svgs/facebook.svg";
+import instagram from "@/svgs/instagram.svg";
+import linkedin from "@/svgs/linkedin-in.svg";
+import x from "@/svgs/x-twitter.svg";
+import youtube from "@/svgs/youtube.svg";
 import { Company } from "@/types/company";
+import Image from "next/image";
+import Link from "next/link";
 
 type FooterProps = {
   company: Company;
@@ -20,11 +18,11 @@ const Footer = ({ company, params }: FooterProps) => {
   const affiliateSlug = params.affiliateSlug;
 
   const socialIcons = [
-    { icon: faFacebook, href: "#" },
-    { icon: faInstagram, href: "#" },
-    { icon: faXTwitter, href: "#" },
-    { icon: faLinkedin, href: "#" },
-    { icon: faYoutube, href: "#" },
+    { icon: facebook, href: "#" },
+    { icon: instagram, href: "#" },
+    { icon: x, href: "#" },
+    { icon: linkedin, href: "#" },
+    { icon: youtube, href: "#" },
   ];
 
   const navLinks = [
@@ -100,7 +98,12 @@ const Footer = ({ company, params }: FooterProps) => {
               className="text-black hover:text-gray-600 transition-colors"
               aria-label={`Visit our ${social.icon.iconName}`}
             >
-              <FontAwesomeIcon icon={social.icon} className="w-5 h-5" />
+              <Image
+                alt={social.icon.iconName}
+                height={20}
+                width={20}
+                src={social.icon}
+              />
             </a>
           ))}
         </div>

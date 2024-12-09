@@ -1,8 +1,8 @@
 "use client";
 import Button from "@/components/Button";
 import Cube from "@/svgs/Cube";
-import { faChevronRight } from "@awesome.me/kit-ac6c036e20/icons/classic/regular";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import chevronRight from "@/svgs/chevron-right.svg";
+import Image from "next/image";
 
 const descriptions = [
   {
@@ -88,7 +88,13 @@ const CenteredImageWithSideDescriptions = () => {
               className="inline-flex items-center gap-1.5 px-12 py-3 text-base"
             >
               Button{" "}
-              <FontAwesomeIcon icon={faChevronRight} className="w-3.5 h-3.5" />
+              <Image
+                alt="chevron-right"
+                height={12}
+                width={12}
+                src={chevronRight}
+                className="w-3.5 h-3.5"
+              />
             </Button>
           </div>
         </div>
