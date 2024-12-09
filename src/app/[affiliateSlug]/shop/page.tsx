@@ -7,10 +7,11 @@ import { cookies } from "next/headers";
 
 const Shop = async () => {
   const cookiesList = cookies();
-  const products = await getProducts({
-    language: cookiesList.get("language")?.value,
-    country: cookiesList.get("country")?.value,
-  });
+  const products =
+    (await getProducts({
+      language: cookiesList.get("language")?.value,
+      country: cookiesList.get("country")?.value,
+    })) ?? [];
   // the filtering and sorting are not implemented on purpose, we're just showing all of the products
   return (
     <>
@@ -30,11 +31,17 @@ const Shop = async () => {
           </div>
           <div>Sort: Best Selling</div>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {(products || []).map((product) => (
-            <Product key={product.id} product={product} />
-          ))}
-        </div>
+        {products?.length > 0 ? (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {(products || []).map((product) => (
+              <Product key={product.id} product={product} />
+            ))}
+          </div>
+        ) : (
+          <div className="container mx-auto p-8 text-2xl text-center font-semibold">
+            <p>There are currently no products.</p>
+          </div>
+        )}
       </div>
       <CallToAction />
     </>
