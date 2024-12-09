@@ -64,7 +64,7 @@ export default function CartPage({ cartInfo, slug }: CartPageProps) {
     } catch (error) {
       console.error("Failed to update cart item:", error);
     }
-  }, 300);
+  }, 100);
 
   const totalQuantity = (cart ?? [])?.reduce(
     (total, item) => total + (item.quantity ?? 0),
@@ -76,9 +76,9 @@ export default function CartPage({ cartInfo, slug }: CartPageProps) {
   }, [totalQuantity, setCookie]);
 
   const handleQuantityChange = (id: number, quantity: number) => {
-    setCart((prevCart) =>
-      prevCart.map((item) => (item.id === id ? { ...item, quantity } : item))
-    );
+    // setCart((prevCart) =>
+    //   prevCart.map((item) => (item.id === id ? { ...item, quantity } : item))
+    // );
     updateQuantity(id, quantity);
   };
 
