@@ -2,12 +2,12 @@
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import LinkButton from "@/components/LinkButton";
+import trash from "@/svgs/trash.svg";
 import { CartItem, Carts } from "@/types/cart";
-import { faTrash } from "@awesome.me/kit-ac6c036e20/icons/classic/regular";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { debounce } from "lodash";
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
+import Image from "next/image";
 
 interface CartPageProps {
   cartInfo: Carts;
@@ -184,11 +184,15 @@ export default function CartPage({ cartInfo, slug }: CartPageProps) {
                         >
                           +
                         </Button>
-                        <FontAwesomeIcon
+                        <Button
                           onClick={() => handleItemDelete(item.id!)}
-                          className="ml-2 pt-2.5 cursor-pointer"
-                          icon={faTrash}
-                        />
+                        >
+                          <Image
+                            className="ml-2 pt-2.5 cursor-pointer"
+                            alt="trash"
+                            src={trash}
+                          />
+                        </Button>
                       </div>
                     </td>
                     <td className="text-right px-4">

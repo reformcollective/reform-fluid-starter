@@ -1,10 +1,9 @@
 import { getProducts } from "@/api/index";
 import CallToAction from "@/components/PageElements/CallToAction";
 import Product from "@/components/Product";
-import { faChevronDown } from "@awesome.me/kit-ac6c036e20/icons/classic/regular";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import chevronDown from "@/svgs/chevron-down.svg";
 import { cookies } from "next/headers";
-
+import Image from "next/image";
 const Shop = async () => {
   const cookiesList = cookies();
   const products =
@@ -18,15 +17,25 @@ const Shop = async () => {
       <div className="container mx-auto flex flex-col px-10 md:gap-20 lg:px-20 overflow-x-hidden mb-28">
         <div className="text-4xl font-bold mt-10">All Products</div>
         <div className="sm:inline-flex justify-between w-full">
-          <div className="inline-flex gap-2 my-2">
+          <div className="inline-flex gap-4 my-2">
             Filter:
             <div className="inline-flex gap-1">
               Availability
-              <FontAwesomeIcon className="text-sm mt-1" icon={faChevronDown} />
+              <Image
+                alt="chevron-down"
+                height={10}
+                width={10}
+                src={chevronDown}
+              />
             </div>
             <div className="inline-flex gap-1">
               Price
-              <FontAwesomeIcon className="text-sm mt-1" icon={faChevronDown} />
+              <Image
+                alt="chevron-down"
+                height={10}
+                width={10}
+                src={chevronDown}
+              />
             </div>
           </div>
           <div>Sort: Best Selling</div>

@@ -10,15 +10,11 @@
     "FLUID_BASE_URL": {
       "description": "The base url of the Fluid API.",
       "value": "https://<your account slug>.fluid.app"
-    },
-    "FONTAWESOME_NPM_AUTH_TOKEN": {
-      "description": "The npm auth token for FontAwesome.",
-      "value": "<your npm auth token>"
     }
   },
   "image": "heroku/nodejs",
   "logo": "https://ik.imagekit.io/fluid/s3/Bv44xc3TR6spQ6ucP9Am_OKP0yD5ZRcadn11Kz9P9_logo%25402x.png?tr=h-35",
   "scripts": {
-    "postinstall": "echo '${FONTAWESOME_NPM_AUTH_TOKEN}' && yarn && yarn build && yarn heroku_start"
+    "postinstall": "yarn && yarn build && yarn heroku_start"
   }
 }
