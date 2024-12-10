@@ -38,33 +38,51 @@ export default function CartPage({ cartInfo, slug }: CartPageProps) {
     refetchCart();
   }, [cookie.cartItemsLength]);
 
-  const updateQuantity = debounce(async (id: number, newQuantity: number) => {
-    try {
-      const response = await fetch("/api/cart", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          cartId: id,
-          quantity: newQuantity,
-        }),
-      });
+  const updateCart = debounce(
+    async ({
+      id,
+      newQuantity,
+      subscribed,
+    }: {
+      id: number;
+      newQuantity?: number;
+      subscribed?: boolean;
+    }) => {
+      try {
+        const response = await fetch("/api/cart", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            cartId: id,
+            quantity: newQuantity,
+            subscription: subscribed,
+          }),
+        });
 
-      if (!response.ok) throw new Error("Failed to update cart");
+        if (!response.ok) throw new Error("Failed to update cart");
 
-      const updatedCart = await response.json();
+        const updatedCart = await response.json();
 
-      setCart((prevCart) =>
-        prevCart?.map((item) =>
-          item.id === id ? { ...item, quantity: newQuantity } : item
-        )
-      );
-      setSubtotal(updatedCart.sub_total);
-    } catch (error) {
-      console.error("Failed to update cart item:", error);
-    }
-  }, 100);
+        setCart((prevCart) =>
+          prevCart?.map((item) =>
+            item.id === id
+              ? {
+                  ...item,
+                  quantity: newQuantity ?? item.quantity,
+                  subscription: subscribed ?? item.subscription,
+                }
+              : item
+          )
+        );
+        setSubtotal(updatedCart.sub_total);
+      } catch (error) {
+        console.error("Failed to update cart item:", error);
+      }
+    },
+    100
+  );
 
   const totalQuantity = (cart ?? [])?.reduce(
     (total, item) => total + (item.quantity ?? 0),
@@ -75,11 +93,22 @@ export default function CartPage({ cartInfo, slug }: CartPageProps) {
     setCookie("cartItemsLength", totalQuantity, { path: "/" });
   }, [totalQuantity, setCookie]);
 
+  const handleSubscriptionChange = (id: number, subscribed: boolean) => {
+    updateCart({ id, subscribed });
+    setCart((prevCart) =>
+      prevCart?.map((item) =>
+        item.id === id
+          ? {
+              ...item,
+              subscription: subscribed ?? item.subscription,
+            }
+          : item
+      )
+    );
+  };
+
   const handleQuantityChange = (id: number, quantity: number) => {
-    // setCart((prevCart) =>
-    //   prevCart.map((item) => (item.id === id ? { ...item, quantity } : item))
-    // );
-    updateQuantity(id, quantity);
+    updateCart({ id, newQuantity: quantity });
   };
 
   const handleItemDelete = async (id: number) => {
@@ -144,7 +173,25 @@ export default function CartPage({ cartInfo, slug }: CartPageProps) {
                         <div className="font-semibold">
                           {item.product?.title}
                         </div>
-                        {/* <div className="text-sm">Variant</div> */}
+                        <div>
+                          <label
+                            htmlFor="subscribe"
+                            className="text-sm flex items-center gap-2"
+                          >
+                            <input
+                              type="checkbox"
+                              id="subscribe"
+                              onChange={(e) =>
+                                handleSubscriptionChange(
+                                  item.id!,
+                                  e.target.checked
+                                )
+                              }
+                              checked={item.subscription}
+                            />
+                            Subscribe
+                          </label>
+                        </div>
                       </div>
                     </td>
                     <td className="text-right">
@@ -185,12 +232,15 @@ export default function CartPage({ cartInfo, slug }: CartPageProps) {
                           +
                         </Button>
                         <Button
+                          variant="transparent"
                           onClick={() => handleItemDelete(item.id!)}
                         >
                           <Image
-                            className="ml-2 pt-2.5 cursor-pointer"
+                            className="mx-2 cursor-pointer"
                             alt="trash"
                             src={trash}
+                            height={16}
+                            width={16}
                           />
                         </Button>
                       </div>

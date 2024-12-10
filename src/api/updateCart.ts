@@ -6,7 +6,8 @@ import { cookies } from "next/headers";
 
 type TUpdateCartProps = {
   cartId: number;
-  quantity: number;
+  quantity?: number;
+  subscription?: boolean;
 };
 
 async function updateCart(payload: TUpdateCartProps): Promise<CartItems> {
@@ -19,7 +20,10 @@ async function updateCart(payload: TUpdateCartProps): Promise<CartItems> {
     body: JSON.stringify({
       cart_token: cartToken,
       visitor_token: visitorToken,
-      cart_item: { quantity: payload.quantity },
+      cart_item: {
+        quantity: payload.quantity,
+        subscription: payload.subscription,
+      },
     }),
   });
 
