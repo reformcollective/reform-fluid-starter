@@ -5,8 +5,9 @@ import LinkButton from "@/components/LinkButton";
 import trash from "@/svgs/trash.svg";
 import { CartItem, Carts } from "@/types/cart";
 import { debounce } from "lodash";
+import { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 import Image from "next/image";
-import { useState } from "react";
 
 interface CartPageProps {
   cartInfo: Carts;
@@ -14,10 +15,28 @@ interface CartPageProps {
 }
 
 export default function CartPage({ cartInfo, slug }: CartPageProps) {
-  const [cart, setCart] = useState<CartItem[]>(cartInfo?.cart_items ?? []);
+  const [cart, setCart] = useState<CartItem[] | []>(cartInfo?.cart_items ?? []);
   const [subtotal, setSubtotal] = useState<string>(
     cartInfo?.sub_total ?? "0.00"
   );
+  const [cookie, setCookie] = useCookies();
+
+  const refetchCart = async () => {
+    try {
+      const response = await fetch("/api/cart");
+      if (!response.ok) throw new Error("Failed to fetch cart");
+
+      const updatedCart = await response.json();
+      setCart(updatedCart.cart_items);
+      setSubtotal(updatedCart.sub_total);
+    } catch (error) {
+      console.error("Error fetching cart:", error);
+    }
+  };
+
+  useEffect(() => {
+    refetchCart();
+  }, [cookie.cartItemsLength]);
 
   const updateQuantity = debounce(async (id: number, newQuantity: number) => {
     try {
@@ -32,38 +51,55 @@ export default function CartPage({ cartInfo, slug }: CartPageProps) {
         }),
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to update cart");
-      }
+      if (!response.ok) throw new Error("Failed to update cart");
 
       const updatedCart = await response.json();
+
       setCart((prevCart) =>
         prevCart?.map((item) =>
           item.id === id ? { ...item, quantity: newQuantity } : item
         )
       );
-
-      if (updatedCart.sub_total) {
-        setSubtotal(updatedCart.sub_total);
-      }
+      setSubtotal(updatedCart.sub_total);
     } catch (error) {
       console.error("Failed to update cart item:", error);
     }
-  }, 300);
+  }, 100);
 
-  const handleQuantityChange = (id: number, newQuantity: number) => {
-    setCart((prevCart) =>
-      prevCart?.map((item) =>
-        item.id === id ? { ...item, quantity: newQuantity } : item
-      )
-    );
-    updateQuantity(id, newQuantity);
-  };
-
-  const totalQuantityOnCart = cartInfo?.cart_items?.reduce(
+  const totalQuantity = (cart ?? [])?.reduce(
     (total, item) => total + (item.quantity ?? 0),
     0
   );
+
+  useEffect(() => {
+    setCookie("cartItemsLength", totalQuantity, { path: "/" });
+  }, [totalQuantity, setCookie]);
+
+  const handleQuantityChange = (id: number, quantity: number) => {
+    // setCart((prevCart) =>
+    //   prevCart.map((item) => (item.id === id ? { ...item, quantity } : item))
+    // );
+    updateQuantity(id, quantity);
+  };
+
+  const handleItemDelete = async (id: number) => {
+    try {
+      const response = await fetch("/api/cart", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ cartId: id }),
+      });
+
+      if (!response.ok) throw new Error("Failed to delete cart-item");
+
+      const updatedCart = await response.json();
+      setCart(updatedCart.cart_items.length > 0 ? updatedCart.cart_items : []);
+
+      if (updatedCart.sub_total) setSubtotal(updatedCart.sub_total);
+    } catch (error) {
+      console.error("Failed to delete cart item:", error);
+    }
+  };
 
   const onCheckoutClick = () => {
     const cartWidget = document.getElementById("cart-widget");
@@ -76,7 +112,7 @@ export default function CartPage({ cartInfo, slug }: CartPageProps) {
     <div className="container mx-auto p-8 md:px-10 md:py-16 lg:px-20 lg:py-28 flex flex-col gap-8 md:gap-y-20">
       <div className="inline-flex justify-between items-center">
         <div className="text-2xl md:text-5xl font-bold">
-          Your Cart ({totalQuantityOnCart ?? 0})
+          Your Cart ({totalQuantity ?? 0})
         </div>
         <LinkButton className="mt-4" href={`/${slug}/shop`}>
           Keep Shopping
@@ -128,7 +164,7 @@ export default function CartPage({ cartInfo, slug }: CartPageProps) {
                         <Input
                           className="w-24 text-center h-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                           type="number"
-                          defaultValue={item.quantity}
+                          value={item.quantity}
                           onChange={(e) =>
                             handleQuantityChange(
                               item.id!,
@@ -149,10 +185,10 @@ export default function CartPage({ cartInfo, slug }: CartPageProps) {
                           +
                         </Button>
                         <Button
-                          onClick={() => handleQuantityChange(item.id!, 0)}
+                          onClick={() => handleItemDelete(item.id!)}
                         >
                           <Image
-                            className="ml-2 pt-2.5"
+                            className="ml-2 pt-2.5 cursor-pointer"
                             alt="trash"
                             src={trash}
                           />
