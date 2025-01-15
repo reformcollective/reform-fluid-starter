@@ -31,7 +31,7 @@ const companySchema = z.object({
   display_comments: z.boolean(),
   promo_video_url: z.string().nullable(),
   display_fantasy: z.boolean(),
-  display_giveaways: z.boolean(),
+  display_giveaways: z.boolean().optional(),
   display_orders: z.boolean(),
   display_leads: z.boolean(),
   display_courses: z.boolean(),
