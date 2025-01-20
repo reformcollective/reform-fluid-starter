@@ -1,13 +1,9 @@
 "use client";
-import Button from "@/components/Button";
-import Input from "@/components/Input";
-import LinkButton from "@/components/LinkButton";
-import trash from "@/svgs/trash.svg";
-import { CartItem, Carts } from "@/types/cart";
+
+import type { CartItem, Carts } from "@/types/cart";
 import { debounce } from "lodash";
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-import Image from "next/image";
 
 interface CartPageProps {
   cartInfo: Carts;
@@ -143,9 +139,9 @@ export default function CartPage({ cartInfo, slug }: CartPageProps) {
         <div className="text-2xl md:text-5xl font-bold">
           Your Cart ({totalQuantity ?? 0})
         </div>
-        <LinkButton className="mt-4" href={`/${slug}/shop`}>
+        <a className="mt-4" href={`/${slug}/shop`}>
           Keep Shopping
-        </LinkButton>
+        </a>
       </div>
 
       {cart?.length > 0 ? (
@@ -196,8 +192,7 @@ export default function CartPage({ cartInfo, slug }: CartPageProps) {
                     </td>
                     <td className="text-right">
                       <div className="inline-flex gap-2">
-                        <Button
-                          variant="transparent-dark"
+                        <button
                           className="pl-4 pt-1.5 w-10 h-10"
                           onClick={() =>
                             handleQuantityChange(
@@ -207,8 +202,8 @@ export default function CartPage({ cartInfo, slug }: CartPageProps) {
                           }
                         >
                           -
-                        </Button>
-                        <Input
+                        </button>
+                        <input
                           className="w-24 text-center h-10 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                           type="number"
                           value={item.quantity}
@@ -219,8 +214,7 @@ export default function CartPage({ cartInfo, slug }: CartPageProps) {
                             )
                           }
                         />
-                        <Button
-                          variant="transparent-dark"
+                        <button
                           className="pl-4 pt-1.5 h-10 w-10"
                           onClick={() =>
                             handleQuantityChange(
@@ -230,19 +224,12 @@ export default function CartPage({ cartInfo, slug }: CartPageProps) {
                           }
                         >
                           +
-                        </Button>
-                        <Button
-                          variant="transparent"
+                        </button>
+                        <button
                           onClick={() => handleItemDelete(item.id!)}
                         >
-                          <Image
-                            className="mx-2 cursor-pointer"
-                            alt="trash"
-                            src={trash}
-                            height={16}
-                            width={16}
-                          />
-                        </Button>
+                          trash
+                        </button>
                       </div>
                     </td>
                     <td className="text-right px-4">
@@ -263,13 +250,12 @@ export default function CartPage({ cartInfo, slug }: CartPageProps) {
                 {subtotal} ({cartInfo?.currency_code})
               </div>
               <div>Taxes and shipping calculated at checkout</div>
-              <Button
+              <button
                 className="w-full mt-2"
-                variant="primary"
                 onClick={onCheckoutClick}
               >
                 Checkout
-              </Button>
+              </button>
             </div>
           </div>
         </>

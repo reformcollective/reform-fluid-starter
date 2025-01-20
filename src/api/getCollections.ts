@@ -11,7 +11,7 @@ const collectionArraySchema = z.array(collectionSchema);
 async function getCollections(): Promise<Collection[]> {
   const { body } = await client("collections");
   const { collections } = body.data;
-  const cookiesList = cookies();
+  const cookiesList = await cookies();
   const productPromisesByCollectionIds = collections.map(
     (collection: Collection) =>
       getProducts({

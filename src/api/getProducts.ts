@@ -1,6 +1,6 @@
 import { safeZodParse } from "@/api";
 import client from "@/api/client";
-import { Product, productSchema } from "@/types/product";
+import { type Product, productSchema } from "@/types/product";
 import { z } from "zod";
 
 const productsSchema = z.array(productSchema);

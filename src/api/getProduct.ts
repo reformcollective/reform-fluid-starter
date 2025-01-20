@@ -1,6 +1,6 @@
 import { safeZodParse } from "@/api";
 import client from "@/api/client";
-import { Product, productSchema } from "@/types/product";
+import { type Product, productSchema } from "@/types/product";
 
 async function getProduct(productIdOrSlug: string): Promise<Product> {
   const { body } = await client(`products/${productIdOrSlug}`);

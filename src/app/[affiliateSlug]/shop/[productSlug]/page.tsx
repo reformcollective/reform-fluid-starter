@@ -1,21 +1,25 @@
 import { getProduct } from "@/api";
-import { Product } from "@/types/product";
-import { Metadata } from "next";
+import { type Product } from "@/types/product";
+import { type Metadata } from "next";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import ProductPage from "./ProductPage";
 
 type PageProps = {
-  params: Record<string, any>;
-};
+	params: Promise<{
+		productSlug: string
+		[key: string]: unknown
+	}>
+}
 
 const Page = async ({ params }: PageProps) => {
+  const resolvedParams = await params
   let product: Product;
   try {
-    product = await getProduct(params.productSlug);
+    product = await getProduct(resolvedParams.productSlug);
   } catch (error) {
     console.error(error);
-    redirect(`/${params.affiliateSlug}/shop/`);
+    redirect(`/${resolvedParams.affiliateSlug}/shop/`);
   }
   return <ProductPage product={product} />;
 };
@@ -23,8 +27,10 @@ const Page = async ({ params }: PageProps) => {
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const product = await getProduct(params.productSlug);
-  const headersList = headers();
+  const resolvedParams = await params
+
+  const product = await getProduct(resolvedParams.productSlug);
+  const headersList = await headers();
 
   const images = [
     {

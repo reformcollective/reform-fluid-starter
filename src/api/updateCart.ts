@@ -1,7 +1,7 @@
 "use server";
 import { safeZodParse } from "@/api";
 import client from "@/api/client";
-import { CartItems, cartItemsSchema } from "@/types/cartItems";
+import { type CartItems, cartItemsSchema } from "@/types/cartItems";
 import { cookies } from "next/headers";
 
 type TUpdateCartProps = {
@@ -11,7 +11,7 @@ type TUpdateCartProps = {
 };
 
 async function updateCart(payload: TUpdateCartProps): Promise<CartItems> {
-  const cookiesList = cookies();
+  const cookiesList = await cookies();
   const cartToken = cookiesList.get("cartToken")?.value;
   const visitorToken = cookiesList.get("fluid_v")?.value;
 

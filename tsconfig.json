@@ -1,26 +1,20 @@
 {
-  "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+	"extends": "@total-typescript/tsconfig/bundler/dom",
+	"compilerOptions": {
+		"jsx": "preserve",
+		"incremental": true,
+		"plugins": [{ "name": "next" }],
+		"baseUrl": "./src/app",
+		"paths": {
+			"@/*": ["../*"]
+		}
+	},
+	"include": ["**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+	"exclude": [
+		"node_modules",
+		"next-env.d.ts",
+		"./src/app/library/sanity",
+		"./src/app/sanity",
+		"./src/app/library/UniversalImage.tsx"
+	]
 }
