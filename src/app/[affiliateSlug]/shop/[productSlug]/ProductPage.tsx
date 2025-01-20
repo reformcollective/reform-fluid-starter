@@ -1,8 +1,6 @@
 "use client";
-import Button from "@/components/Button";
-import Input from "@/components/Input";
-import Star from "@/svgs/Star";
-import { Product } from "@/types/product";
+
+import { type Product } from "@/types/product";
 import cx from "classnames";
 import { useEffect, useState } from "react";
 
@@ -19,7 +17,7 @@ const Page = ({ product }: Props) => {
   const [imageHoverIndex, setImageHoverIndex] = useState<number>();
   const [imageSelectedIndex, setImageSelectedIndex] = useState(0);
   const [selectedVariant, setSelectedVariant] = useState<number | undefined>(
-    product.variants?.[0].id
+    product.variants?.[0]?.id
   );
   const [quantity, setQuantity] = useState(1);
   const [subscribe, setSubscribe] = useState<"subscription" | "regular">(
@@ -93,13 +91,6 @@ const Page = ({ product }: Props) => {
             <h2 className="text-2xl font-bold">{product.display_price}</h2>
           </div>
           <div className="lg:inline-flex gap-2">
-            <div className="inline-flex gap-1">
-              <Star size={20} />
-              <Star size={20} />
-              <Star size={20} />
-              <Star size={20} />
-              <Star size={20} />
-            </div>
             <div>(4.5 stars) • 10 reviews</div>
           </div>
           {product.description && (
@@ -110,7 +101,7 @@ const Page = ({ product }: Props) => {
               <div>Variant</div>
               <div className="flex flex-row gap-2 overflow-x-auto overflow-y-hidden">
                 {product.variants.map((variant, index) => (
-                  <Button
+                  <button
                     className={cx(
                       variant.id === selectedVariant
                         ? "bg-gray-100 font-bold"
@@ -120,12 +111,12 @@ const Page = ({ product }: Props) => {
                     onClick={() =>
                       variant.id !== selectedVariant &&
                       setSelectedVariant(variant.id)
-                    }
-                    variant={variant.buyable ? "primary" : "transparent-dark"}
+                    }                    
+                    disabled={variant.buyable ?? true}
                     key={variant.id}
                   >
                     {variant.title || `Variant ${index + 1}`}
-                  </Button>
+                  </button>
                 ))}
               </div>
             </div>
@@ -155,14 +146,13 @@ const Page = ({ product }: Props) => {
             </div>
           </div>
           <div className="inline-flex gap-2">
-            <Button
+            <button
               onClick={() => setQuantity((prev) => (prev > 1 ? prev - 1 : 1))}
-              variant="transparent-dark"
               className="pl-3.5 w-10"
             >
               -
-            </Button>
-            <Input
+            </button>
+            <input
               onChange={(e) => {
                 const value = parseInt(e.target.value);
                 setQuantity(value < 1 ? 1 : value);
@@ -172,33 +162,30 @@ const Page = ({ product }: Props) => {
               type="number"
               value={quantity}
             />
-            <Button
+            <button
               onClick={() => setQuantity((prev) => prev + 1)}
-              variant="transparent-dark"
               className="pl-3.5 w-10"
             >
               +
-            </Button>
+            </button>
           </div>
           <div className="flex flex-col gap-4 pb-6 ">
-            <Button
+            <button
               data-fluid-checkout-type="variant"
               data-fluid-checkout-group-id={selectedVariant}
               data-variant={selectedVariant}
               id="add-to-cart-button"
-              variant="primary"
               className="w-full"
             >
               Add To Cart
-            </Button>
-            <Button
+            </button>
+            <button
               data-fluid-checkout={[selectedVariant]}
               data-variant={selectedVariant}
-              variant="transparent-dark"
               className="w-full"
             >
               Buy Now
-            </Button>
+            </button>
             <div className="text-xs text-center">Free shipping over $50</div>
           </div>
         </div>

@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 
 const Shop = async () => {
 
-  const cookiesList = cookies();
+  const cookiesList = await cookies();
   const products =
     (await getProducts({
       language: cookiesList.get("language")?.value,
