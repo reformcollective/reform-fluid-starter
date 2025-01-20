@@ -5,14 +5,16 @@
 		"node": "22.x"
 	},
 	"scripts": {
-		"dev": "next dev",
+		"dev": "next",
 		"build": "next build",
-		"start": "next start",
 		"serve": "next start",
 		"lint": "biome lint --write && stylelint . --fix",
 		"format": "prettier --write . && biome format --write",
-		"prepare": "husky",
-		"preinstall": "npx only-allow pnpm"
+		"pnpm:devPreinstall": "npx only-allow pnpm && npm run checkEnv && npm run submodule",
+		"checkEnv": "if [ -n \"$CI\" ]; then exit 0; else ls .env || (echo 'You are missing a .env file' && exit 1); fi",
+		"submodule": "git diff --exit-code --quiet && git submodule update --init || exit 0",
+		"postinstall": "npm run typegen",
+		"prepare": "husky"
 	},
 	"dependencies": {
 		"@biomejs/biome": "1.9.4",

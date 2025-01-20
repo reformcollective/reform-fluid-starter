@@ -44,7 +44,7 @@
 		"**/index.tsx": "${dirname} / index.tsx",
 		"**/index.ts": "${dirname} / index.ts",
 		"**/page.tsx": "${dirname} / page.tsx",
-		"**/layout.ts": "${dirname} / layout.ts"
+		"**/layout.ts": "${dirname} / layout.tsx"
 	},
 	"editor.linkedEditing": true,
 

@@ -14,7 +14,7 @@ import Footer from "@/app/components/Footer"
 import Header from "@/app/components/Header"
 import GlobalProviders from "@/app/components/Providers"
 
-import colors from "styles/colors"
+import colors, { ColorStyle } from "styles/colors"
 import "../globals.css"
 
 declare global {
@@ -51,6 +51,7 @@ export default async function RootLayout({ children, params }: PageProps) {
 			<PageRoot suppressHydrationWarning>
 				<GlobalProviders>
 					<GlobalStyles>{globalCss}</GlobalStyles>
+					<ColorStyle/>
 					<Header />
 					{children}
 					<Footer />
